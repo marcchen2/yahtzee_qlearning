@@ -8,8 +8,9 @@ class YahtzeeGame:
         self.categories = OrderedDict([
             ('Ones', None), ('Twos', None), ('Threes', None), ('Fours', None),
             ('Fives', None), ('Sixes', None), ('Three of a Kind', None),
-            ('Four of a Kind', None), ('Full House', None), ('Small Straight', None),
-            ('Large Straight', None), ('Yahtzee', None), ('Chance', None)
+            ('Four of a Kind', None), ('Full House', None),
+            ('Small Straight', None), ('Large Straight', None),
+            ('Yahtzee', None), ('Chance', None)
         ])
         self.upper_bonus = 0
         self.yahtzee_bonuses = 0
@@ -35,7 +36,6 @@ class YahtzeeGame:
         }
     
     def get_encoded_state(self):
-        """Return state as a PyTorch tensor for RL agent."""
         return encode_state(self.get_state())
 
     def set_state(self, state):
@@ -46,13 +46,18 @@ class YahtzeeGame:
         self.yahtzee_bonuses = state['yahtzee_bonuses']
 
     def roll_dice(self, keep_mask=None):
+        """
+        Reroll any dice slots marked False in keep_mask (or all dice if keep_mask is None),
+        then sort the dice.
+        """
         if keep_mask is None:
-            self.dice = [random.randint(1,6) for _ in range(5)]
+            self.dice = [random.randint(1, 6) for _ in range(5)]
         else:
             for i in range(5):
                 if not keep_mask[i]:
-                    self.dice[i] = random.randint(1,6)
-        # self.dice.sort()
+                    self.dice[i] = random.randint(1, 6)
+        # Always sort after rerolling.
+        self.dice.sort()
         self.rolls_left -= 1
 
     def get_possible_moves(self):
@@ -60,8 +65,16 @@ class YahtzeeGame:
 
     def calculate_score(self, category, dice):
         counts = [dice.count(i) for i in range(1,7)]
-        if category in ['Ones', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']:
-            value = int(category[0]) if category[0].isdigit() else 6
+        number_map = {
+            'Ones':   1,
+            'Twos':   2,
+            'Threes': 3,
+            'Fours':  4,
+            'Fives':  5,
+            'Sixes':  6
+        }
+        if category in number_map:
+            value = number_map[category]
             return sum(d for d in dice if d == value)
         elif category == 'Three of a Kind':
             return sum(dice) if max(counts) >= 3 else 0
@@ -83,24 +96,25 @@ class YahtzeeGame:
         score = self.calculate_score(category, self.dice)
         
         if category in ['Ones', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']:
-            # Convert items to list before slicing
             upper_section = list(self.categories.items())[:6]
             upper_total = sum(v for k, v in upper_section if v is not None)
+            # If crossing 63 for the first time, award 35 bonus
             if upper_total + score >= 63 and self.upper_bonus == 0:
                 self.upper_bonus = 35
-                
+
+        # Extra Yahtzee bonus if we've already scored Yahtzee category previously
         if category == 'Yahtzee' and score == 50 and self.categories['Yahtzee'] is not None:
             self.yahtzee_bonuses += 100
-            
+
         self.categories[category] = score
         return score
 
     def step(self, action):
-        """ action might be either:
-        - (’reroll’, keep_mask)  # keep_mask is a list of True/False for each die
-        - (’score’, category_name)
         """
-
+        action is either:
+          ('reroll', keep_mask)   # keep_mask is a list of True/False for each die index
+          ('score', category_name)
+        """
         reward = 0.0
         done = False
 
@@ -108,17 +122,16 @@ class YahtzeeGame:
             keep_mask = action[1]
             if self.rolls_left > 0:
                 self.roll_dice(keep_mask)
-            # Possibly reward = 0 for just re-roll
+            # reward might remain 0 for a re-roll
 
         elif action[0] == 'score':
             category = action[1]
             if self.categories[category] is not None:
-                # Category already used; in a strict RL setup you might penalize or ignore
+                # Category used already
                 reward = 0
             else:
                 reward = self.apply_move(category)
-            # This might be your immediate reward from placing a score
-            # check if the game is finished, e.g. all categories filled
+            # Check if game ended (all categories filled)
             if all(v is not None for v in self.categories.values()):
                 done = True
 
@@ -127,16 +140,12 @@ class YahtzeeGame:
 
 
 class DumbAgent:
-    # placeholder agent that choose randomly
-    def __init__(self):
-        pass
-
     def choose_dice_to_keep(self, current_dice, rolls_left):
-        return [random.randint(0,1) for _ in range(5)]  # Placeholder: keep all dice
+        return [bool(random.getrandbits(1)) for _ in range(5)]  # random T/F
 
     def choose_category(self, game_state):
         available = [cat for cat, score in game_state['categories'].items() if score is None]
-        return random.choice(available)  # Placeholder: random choice
+        return random.choice(available)
 
 def simulation_mode(agent, num_games=1):
     for _ in range(num_games):
@@ -147,39 +156,35 @@ def simulation_mode(agent, num_games=1):
         while None in game.categories.values():
             print(f"\n=== Turn {turn_counter} ===")
 
-            # Give the player up to 3 total rolls this turn
+            # 3 total rolls
             game.rolls_left = 3
 
-            # Perform up to 3 rolls
+            # Up to 3 rolls
             for roll_index in range(3):
-                # If no rolls left for any reason, break
                 if game.rolls_left <= 0:
                     break
 
                 if roll_index == 0:
                     # First roll: always reroll all dice
                     state, reward, done, _ = game.step(("reroll", None))
-                    print(f"  Roll #1: {game.dice}")
+                    print(f"  Roll #1 (sorted): {game.dice}")
                 else:
                     # Subsequent rolls: choose dice to keep
                     keep_mask = agent.choose_dice_to_keep(game.dice, game.rolls_left)
-                    
-                    # Create "K"/"_" string
                     keep_str = "".join("K" if k else "_" for k in keep_mask)
 
                     state, reward, done, _ = game.step(("reroll", keep_mask))
-                    print(f"  Roll #{roll_index+1}: {game.dice}  ({keep_str})")
+                    print(f"  Roll #{roll_index+1} (sorted): {game.dice}  (mask: {keep_str})")
 
-            # Now choose a category to score (and effectively end the turn)
+            # Score a category
             category = agent.choose_category(game.get_state())
             prev_bonus = game.upper_bonus + game.yahtzee_bonuses
             state, score_gained, done, _ = game.step(("score", category))
 
-            # Compute total score so far
             category_scores = sum(v for v in game.categories.values() if v is not None)
             total_score = category_scores + game.upper_bonus + game.yahtzee_bonuses
 
-            print(f"  Final dice: {game.dice}")
+            print(f"  Final dice (sorted): {game.dice}")
             print(f"  Chose category: {category}, got {score_gained} points")
             if (game.upper_bonus + game.yahtzee_bonuses) > prev_bonus:
                 print(f"  Bonus awarded! (Upper/Yahtzee bonuses now: "
@@ -188,13 +193,12 @@ def simulation_mode(agent, num_games=1):
 
             turn_counter += 1
             if done:
-                # All categories filled
                 break
 
-        # End of game
         final_score = sum(v for v in game.categories.values() if v is not None)
         final_score += game.upper_bonus + game.yahtzee_bonuses
         print(f"\nGame Over! Final Score: {final_score}\n")
+
 
 
 import itertools
