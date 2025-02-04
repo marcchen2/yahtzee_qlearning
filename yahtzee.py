@@ -1,6 +1,7 @@
 import random
 from collections import OrderedDict
 import numpy as np
+from state_rep import encode_state
 
 class YahtzeeGame:
     def __init__(self):
@@ -32,6 +33,10 @@ class YahtzeeGame:
             'upper_bonus': self.upper_bonus,
             'yahtzee_bonuses': self.yahtzee_bonuses
         }
+    
+    def get_encoded_state(self):
+        """Return state as a PyTorch tensor for RL agent."""
+        return encode_state(self.get_state())
 
     def set_state(self, state):
         self.categories = state['categories'].copy()
@@ -298,24 +303,30 @@ def performance_mode(agent, num_games=100):
 
         # 13 turns total
         for _ in range(13):
-            game.rolls_left = 2
-            # First roll
-            _, _, done, _ = game.step(("reroll", None))
+            # Set rolls_left = 3 for each new turn (same as simulation_mode).
+            game.rolls_left = 3
 
-            # Up to two more rerolls
-            for _ in range(2):
-                if game.rolls_left > 0:
+            # Perform up to 3 rolls this turn
+            for roll_index in range(3):
+                if game.rolls_left <= 0:
+                    break
+                if roll_index == 0:
+                    # First roll: reroll all dice
+                    _, _, done, _ = game.step(("reroll", None))
+                else:
+                    # Subsequent rolls: choose which dice to keep
                     keep_mask = agent.choose_dice_to_keep(game.dice, game.rolls_left)
                     _, _, done, _ = game.step(("reroll", keep_mask))
 
-            # Score a category
+            # Now choose a category to score (ending the turn)
             available = game.get_possible_moves()
-            if not available:  # If no moves left, game is effectively done
+            if not available:  # If no categories left, game is essentially done
                 break
             category = agent.choose_category(game.get_state())
             _, _, done, _ = game.step(("score", category))
 
             if done:
+                # If the game is flagged done (all categories filled), break early
                 break
 
         total_score = sum(v for v in game.categories.values() if v is not None)
@@ -325,6 +336,7 @@ def performance_mode(agent, num_games=100):
     print(f"\nPerformance over {num_games} games:")
     print(f"Mean score: {np.mean(scores):.1f}")
     print(f"Median score: {np.median(scores):.1f}")
+
 
 if __name__ == "__main__":
     agent = DumbAgent()
