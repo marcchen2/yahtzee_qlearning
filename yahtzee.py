@@ -3,6 +3,11 @@ from collections import OrderedDict
 import numpy as np
 from state_rep import encode_state
 
+import random
+from collections import OrderedDict
+import numpy as np
+from state_rep import encode_state
+
 class YahtzeeGame:
     def __init__(self):
         self.categories = OrderedDict([
@@ -15,6 +20,8 @@ class YahtzeeGame:
         self.upper_bonus = 0
         self.yahtzee_bonuses = 0
         self.dice = [0]*5
+        # Start with 0 rolls_left; it will be set to 3 internally 
+        # whenever the first reroll is requested each turn:
         self.rolls_left = 0
 
     def reset(self):
@@ -46,25 +53,21 @@ class YahtzeeGame:
         self.yahtzee_bonuses = state['yahtzee_bonuses']
 
     def roll_dice(self, keep_mask=None):
-        """
-        Reroll any dice slots marked False in keep_mask (or all dice if keep_mask is None),
-        then sort the dice.
-        """
         if keep_mask is None:
-            self.dice = [random.randint(1, 6) for _ in range(5)]
+            # Generate all 5 dice at once
+            self.dice = np.random.randint(1, 7, size=5)
         else:
-            for i in range(5):
-                if not keep_mask[i]:
-                    self.dice[i] = random.randint(1, 6)
-        # Always sort after rerolling.
+            # Generate new values only for non-kept dice
+            new_values = np.random.randint(1, 7, size=5)
+            self.dice = np.where(keep_mask, self.dice, new_values)
         self.dice.sort()
-        self.rolls_left -= 1
 
     def get_possible_moves(self):
         return [cat for cat, score in self.categories.items() if score is None]
 
     def calculate_score(self, category, dice):
-        counts = [dice.count(i) for i in range(1,7)]
+        dice_np = np.array(dice)
+        counts = np.bincount(dice_np, minlength=7)[1:]  # Count occurrences of 1-6
         number_map = {
             'Ones':   1,
             'Twos':   2,
@@ -95,10 +98,10 @@ class YahtzeeGame:
     def apply_move(self, category):
         score = self.calculate_score(category, self.dice)
         
+        # Check if we're crossing 63 in the upper section for the first time
         if category in ['Ones', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']:
             upper_section = list(self.categories.items())[:6]
             upper_total = sum(v for k, v in upper_section if v is not None)
-            # If crossing 63 for the first time, award 35 bonus
             if upper_total + score >= 63 and self.upper_bonus == 0:
                 self.upper_bonus = 35
 
@@ -112,7 +115,7 @@ class YahtzeeGame:
     def step(self, action):
         """
         action is either:
-          ('reroll', keep_mask)   # keep_mask is a list of True/False for each die index
+          ('reroll', keep_mask)
           ('score', category_name)
         """
         reward = 0.0
@@ -120,9 +123,14 @@ class YahtzeeGame:
 
         if action[0] == 'reroll':
             keep_mask = action[1]
+            # If rolls_left == 0, treat this as the start of a brand-new turn
+            # (i.e. allow up to 3 rolls this turn).
+            if self.rolls_left == 0:
+                self.rolls_left = 3
+
             if self.rolls_left > 0:
                 self.roll_dice(keep_mask)
-            # reward might remain 0 for a re-roll
+                self.rolls_left -= 1  # use up one roll
 
         elif action[0] == 'score':
             category = action[1]
@@ -131,6 +139,10 @@ class YahtzeeGame:
                 reward = 0
             else:
                 reward = self.apply_move(category)
+
+            # Scoring ends the turn; set rolls_left to 0
+            self.rolls_left = 0
+
             # Check if game ended (all categories filled)
             if all(v is not None for v in self.categories.values()):
                 done = True
@@ -157,13 +169,11 @@ def simulation_mode(agent, num_games=1):
             print(f"\n=== Turn {turn_counter} ===")
 
             # 3 total rolls
-            game.rolls_left = 3
+            # game.rolls_left = 3
 
             # Up to 3 rolls
             for roll_index in range(3):
-                if game.rolls_left <= 0:
-                    break
-
+                
                 if roll_index == 0:
                     # First roll: always reroll all dice
                     state, reward, done, _ = game.step(("reroll", None))
@@ -175,6 +185,9 @@ def simulation_mode(agent, num_games=1):
 
                     state, reward, done, _ = game.step(("reroll", keep_mask))
                     print(f"  Roll #{roll_index+1} (sorted): {game.dice}  (mask: {keep_str})")
+                
+                if game.rolls_left <= 0:
+                    break
 
             # Score a category
             category = agent.choose_category(game.get_state())
@@ -308,12 +321,12 @@ def performance_mode(agent, num_games=100):
         # 13 turns total
         for _ in range(13):
             # Set rolls_left = 3 for each new turn (same as simulation_mode).
-            game.rolls_left = 3
+            # game.rolls_left = 3
 
             # Perform up to 3 rolls this turn
             for roll_index in range(3):
-                if game.rolls_left <= 0:
-                    break
+                # if game.rolls_left <= 0:
+                #     break
                 if roll_index == 0:
                     # First roll: reroll all dice
                     _, _, done, _ = game.step(("reroll", None))

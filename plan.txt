@@ -1,0 +1,8 @@
+yahtzee_rl/
+│── main.py  # Entry point to run the agent
+│── yahtzee_env.py  # Game environment (your existing code)
+│── state_representation.py  # State encoding in PyTorch
+│── dqn_agent.py  # Deep Q-learning agent
+│── train.py  # Training loop for the agent
+│── utils.py  # Helper functions
+│── requirements.txt  # Dependencies
