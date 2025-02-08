@@ -30,8 +30,8 @@ class YahtzeeGame:
         self.upper_bonus = 0
         self.yahtzee_bonuses = 0
         self.dice = [0]*5
-        self.rolls_left = 0
-        return self.get_state()
+        self.rolls_left = 3
+        return self.get_encoded_state()
 
     def get_state(self):
         return {
@@ -147,8 +147,24 @@ class YahtzeeGame:
             if all(v is not None for v in self.categories.values()):
                 done = True
 
-        next_state = self.get_state()
+        next_state = self.get_encoded_state()
         return next_state, reward, done, {}
+
+    def get_valid_actions_mask(self):
+        """Returns boolean mask for all 45 actions (32 reroll patterns + 13 categories)"""
+        mask = [False] * 45
+        
+        if self.rolls_left > 0:
+            # Rolling phase: can reroll (first 32 actions)
+            mask[:32] = [True] * 32
+        else:
+            # Scoring phase: can choose unused categories
+            available_cats = [i for i, (cat, score) in enumerate(self.categories.items()) 
+                            if score is None]
+            for idx in available_cats:
+                mask[32 + idx] = True  # Scoring actions start at index 32
+                
+        return mask
 
 
 class DumbAgent:
@@ -353,6 +369,8 @@ def performance_mode(agent, num_games=100):
     print(f"\nPerformance over {num_games} games:")
     print(f"Mean score: {np.mean(scores):.1f}")
     print(f"Median score: {np.median(scores):.1f}")
+    
+    
 
 
 if __name__ == "__main__":

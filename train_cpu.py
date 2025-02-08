@@ -32,19 +32,13 @@ def train_dqn(env_cls, num_episodes=1000,
     epsilon_*: params for epsilon schedule
     update_target_every: how often to sync target net
     """
-    
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
+
     # Create DQN, target net, replay buffer
-    dqn = dqn_agent.DQN(state_dim=40, action_dim=len(ALL_ACTIONS)).to(device)
-    target_dqn = dqn_agent.DQN(state_dim=40, action_dim=len(ALL_ACTIONS)).to(device)
+    dqn = dqn_agent.DQN(state_dim=40, action_dim=len(ALL_ACTIONS))
+    target_dqn = dqn_agent.DQN(state_dim=40, action_dim=len(ALL_ACTIONS))
     target_dqn.load_state_dict(dqn.state_dict())
     optimizer = optim.Adam(dqn.parameters(), lr=lr)
-    replay_buffer = dqn_agent.ReplayBuffer(buffer_capacity).to(device)
-    
-    # wrap with DataParallel if multiple GPUs
-    if torch.cuda.device_count() > 1:
-        dqn = nn.DataParallel(dqn)
+    replay_buffer = dqn_agent.ReplayBuffer(buffer_capacity)
 
     # Simple linear epsilon schedule
     def get_epsilon(step):

@@ -22,3 +22,7 @@ def generate_all_actions():
     return actions
 
 ALL_ACTIONS = generate_all_actions()  # length = 32 + 13 = 45
+
+if __name__ == "__main__":
+    ALL_ACTIONS = generate_all_actions()  # length = 32 + 13 = 45
+    print(ALL_ACTIONS)
