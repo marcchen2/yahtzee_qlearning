@@ -7,12 +7,10 @@ import random
 import numpy as np
 
 class DQN(nn.Module):
-    def __init__(self, state_dim=40, action_dim=45, hidden=1024):
+    def __init__(self, state_dim=40, action_dim=45, hidden=128):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(state_dim, hidden),
-            nn.ReLU(),
-            nn.Linear(hidden, hidden),
             nn.ReLU(),
             nn.Linear(hidden, hidden),
             nn.ReLU(),

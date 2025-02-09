@@ -1,0 +1,62 @@
+Episode 100: Training score = 36.0, Epsilon = 0.998
+Episode 200: Training score = 54.0, Epsilon = 0.996
+Episode 300: Training score = 34.0, Epsilon = 0.994
+Episode 400: Training score = 12.0, Epsilon = 0.992
+Episode 500: Training score = 38.0, Epsilon = 0.990
+Episode 600: Training score = 66.0, Epsilon = 0.988
+Episode 700: Training score = 110.0, Epsilon = 0.986
+Episode 800: Training score = 24.0, Epsilon = 0.984
+Episode 900: Training score = 46.0, Epsilon = 0.981
+Evaluation after episode 1000: Average score over 100 games = 42.1
+Episode 1000: Training score = 34.0, Epsilon = 0.979
+Episode 1100: Training score = 18.0, Epsilon = 0.977
+Episode 1200: Training score = 30.0, Epsilon = 0.975
+Episode 1300: Training score = 30.0, Epsilon = 0.973
+Episode 1400: Training score = 68.0, Epsilon = 0.971
+Episode 1500: Training score = 22.0, Epsilon = 0.969
+Episode 1600: Training score = 34.0, Epsilon = 0.967
+Episode 1700: Training score = 30.0, Epsilon = 0.965
+Episode 1800: Training score = 32.0, Epsilon = 0.963
+Episode 1900: Training score = 44.0, Epsilon = 0.961
+Evaluation after episode 2000: Average score over 100 games = 55.2
+Episode 2000: Training score = 34.0, Epsilon = 0.959
+Episode 2100: Training score = 22.0, Epsilon = 0.957
+Episode 2200: Training score = 58.0, Epsilon = 0.955
+Episode 2300: Training score = 24.0, Epsilon = 0.953
+Episode 2400: Training score = 36.0, Epsilon = 0.951
+Episode 2500: Training score = 36.0, Epsilon = 0.949
+Episode 2600: Training score = 42.0, Epsilon = 0.947
+Episode 2700: Training score = 28.0, Epsilon = 0.944
+Episode 2800: Training score = 36.0, Epsilon = 0.942
+Episode 2900: Training score = 30.0, Epsilon = 0.940
+Evaluation after episode 3000: Average score over 100 games = 58.5
+Episode 3000: Training score = 34.0, Epsilon = 0.938
+Episode 3100: Training score = 26.0, Epsilon = 0.936
+Episode 3200: Training score = 72.0, Epsilon = 0.934
+Episode 3300: Training score = 26.0, Epsilon = 0.932
+Episode 3400: Training score = 28.0, Epsilon = 0.930
+Episode 3500: Training score = 46.0, Epsilon = 0.928
+Episode 3600: Training score = 24.0, Epsilon = 0.926
+Episode 3700: Training score = 72.0, Epsilon = 0.924
+Episode 3800: Training score = 44.0, Epsilon = 0.922
+Episode 3900: Training score = 38.0, Epsilon = 0.920
+Evaluation after episode 4000: Average score over 100 games = 55.6
+Episode 4000: Training score = 34.0, Epsilon = 0.918
+Episode 4100: Training score = 62.0, Epsilon = 0.916
+Episode 4200: Training score = 48.0, Epsilon = 0.914
+Episode 4300: Training score = 78.0, Epsilon = 0.912
+Episode 4400: Training score = 32.0, Epsilon = 0.909
+Episode 4500: Training score = 60.0, Epsilon = 0.907
+Episode 4600: Training score = 40.0, Epsilon = 0.905
+Episode 4700: Training score = 24.0, Epsilon = 0.903
+Episode 4800: Training score = 22.0, Epsilon = 0.901
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 313, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 267, in train_dqn
+    s_batch, a_batch, r_batch, s2_batch, d_batch = replay_buffer.sample(batch_size)
+  File "/home/mc5635/yahtzee/yahtzee_rl/dqn_agent.py", line 51, in sample
+    torch.stack([ns if isinstance(ns, torch.Tensor) else torch.FloatTensor(ns) for ns in next_states]).to(self.device),
+  File "/home/mc5635/yahtzee/yahtzee_rl/dqn_agent.py", line 51, in <listcomp>
+    torch.stack([ns if isinstance(ns, torch.Tensor) else torch.FloatTensor(ns) for ns in next_states]).to(self.device),
+KeyboardInterrupt

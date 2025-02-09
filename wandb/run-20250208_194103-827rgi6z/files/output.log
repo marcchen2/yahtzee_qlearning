@@ -1,0 +1,24 @@
+Episode 100: Training score = 66.0, Epsilon = 0.998
+Episode 200: Training score = 28.0, Epsilon = 0.996
+Episode 300: Training score = 64.0, Epsilon = 0.994
+Episode 400: Training score = 69.0, Epsilon = 0.992
+Episode 500: Training score = 32.0, Epsilon = 0.990
+Episode 600: Training score = 20.0, Epsilon = 0.988
+Episode 700: Training score = 40.0, Epsilon = 0.986
+Episode 800: Training score = 36.0, Epsilon = 0.984
+Episode 900: Training score = 40.0, Epsilon = 0.981
+Evaluation after episode 1000: Average score over 100 games = 6.9
+Episode 1000: Training score = 24.0, Epsilon = 0.979
+Episode 1100: Training score = 66.0, Epsilon = 0.977
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 313, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 288, in train_dqn
+    loss.backward()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

@@ -1,0 +1,187 @@
+Episode 100: Training score = 20.0, Epsilon = 0.998
+Episode 200: Training score = 30.0, Epsilon = 0.996
+Episode 300: Training score = 26.0, Epsilon = 0.994
+Episode 400: Training score = 36.0, Epsilon = 0.992
+Episode 500: Training score = 40.0, Epsilon = 0.990
+Episode 600: Training score = 18.0, Epsilon = 0.988
+Episode 700: Training score = 30.0, Epsilon = 0.986
+Episode 800: Training score = 34.0, Epsilon = 0.984
+Episode 900: Training score = 36.0, Epsilon = 0.981
+Evaluation after episode 1000: Average score over 100 games = 28.1
+Episode 1000: Training score = 10.0, Epsilon = 0.979
+Episode 1100: Training score = 24.0, Epsilon = 0.977
+Episode 1200: Training score = 30.0, Epsilon = 0.975
+Episode 1300: Training score = 34.0, Epsilon = 0.973
+Episode 1400: Training score = 78.0, Epsilon = 0.971
+Episode 1500: Training score = 34.0, Epsilon = 0.969
+Episode 1600: Training score = 30.0, Epsilon = 0.967
+Episode 1700: Training score = 6.0, Epsilon = 0.965
+Episode 1800: Training score = 28.0, Epsilon = 0.963
+Episode 1900: Training score = 38.0, Epsilon = 0.961
+Evaluation after episode 2000: Average score over 100 games = 59.2
+Episode 2000: Training score = 76.0, Epsilon = 0.959
+Episode 2100: Training score = 64.0, Epsilon = 0.957
+Episode 2200: Training score = 40.0, Epsilon = 0.955
+Episode 2300: Training score = 42.0, Epsilon = 0.953
+Episode 2400: Training score = 68.0, Epsilon = 0.951
+Episode 2500: Training score = 100.0, Epsilon = 0.949
+Episode 2600: Training score = 36.0, Epsilon = 0.947
+Episode 2700: Training score = 26.0, Epsilon = 0.944
+Episode 2800: Training score = 28.0, Epsilon = 0.942
+Episode 2900: Training score = 52.0, Epsilon = 0.940
+Evaluation after episode 3000: Average score over 100 games = 53.9
+Episode 3000: Training score = 24.0, Epsilon = 0.938
+Episode 3100: Training score = 30.0, Epsilon = 0.936
+Episode 3200: Training score = 76.0, Epsilon = 0.934
+Episode 3300: Training score = 22.0, Epsilon = 0.932
+Episode 3400: Training score = 38.0, Epsilon = 0.930
+Episode 3500: Training score = 42.0, Epsilon = 0.928
+Episode 3600: Training score = 34.0, Epsilon = 0.926
+Episode 3700: Training score = 46.0, Epsilon = 0.924
+Episode 3800: Training score = 32.0, Epsilon = 0.922
+Episode 3900: Training score = 58.0, Epsilon = 0.920
+Evaluation after episode 4000: Average score over 100 games = 61.1
+Episode 4000: Training score = 22.0, Epsilon = 0.918
+Episode 4100: Training score = 33.0, Epsilon = 0.916
+Episode 4200: Training score = 38.0, Epsilon = 0.914
+Episode 4300: Training score = 34.0, Epsilon = 0.912
+Episode 4400: Training score = 14.0, Epsilon = 0.909
+Episode 4500: Training score = 26.0, Epsilon = 0.907
+Episode 4600: Training score = 28.0, Epsilon = 0.905
+Episode 4700: Training score = 34.0, Epsilon = 0.903
+Episode 4800: Training score = 66.0, Epsilon = 0.901
+Episode 4900: Training score = 28.0, Epsilon = 0.899
+Evaluation after episode 5000: Average score over 100 games = 44.6
+Episode 5000: Training score = 38.0, Epsilon = 0.897
+Episode 5100: Training score = 26.0, Epsilon = 0.895
+Episode 5200: Training score = 32.0, Epsilon = 0.893
+Episode 5300: Training score = 32.0, Epsilon = 0.891
+Episode 5400: Training score = 68.0, Epsilon = 0.889
+Episode 5500: Training score = 38.0, Epsilon = 0.887
+Episode 5600: Training score = 24.0, Epsilon = 0.885
+Episode 5700: Training score = 30.0, Epsilon = 0.883
+Episode 5800: Training score = 91.0, Epsilon = 0.881
+Episode 5900: Training score = 63.0, Epsilon = 0.879
+Evaluation after episode 6000: Average score over 100 games = 41.0
+Episode 6000: Training score = 26.0, Epsilon = 0.877
+Episode 6100: Training score = 30.0, Epsilon = 0.875
+Episode 6200: Training score = 30.0, Epsilon = 0.872
+Episode 6300: Training score = 32.0, Epsilon = 0.870
+Episode 6400: Training score = 50.0, Epsilon = 0.868
+Episode 6500: Training score = 15.0, Epsilon = 0.866
+Episode 6600: Training score = 76.0, Epsilon = 0.864
+Episode 6700: Training score = 106.0, Epsilon = 0.862
+Episode 6800: Training score = 57.0, Epsilon = 0.860
+Episode 6900: Training score = 26.0, Epsilon = 0.858
+Evaluation after episode 7000: Average score over 100 games = 43.4
+Episode 7000: Training score = 40.0, Epsilon = 0.856
+Episode 7100: Training score = 22.0, Epsilon = 0.854
+Episode 7200: Training score = 32.0, Epsilon = 0.852
+Episode 7300: Training score = 20.0, Epsilon = 0.850
+Episode 7400: Training score = 28.0, Epsilon = 0.848
+Episode 7500: Training score = 16.0, Epsilon = 0.846
+Episode 7600: Training score = 34.0, Epsilon = 0.844
+Episode 7700: Training score = 22.0, Epsilon = 0.842
+Episode 7800: Training score = 34.0, Epsilon = 0.840
+Episode 7900: Training score = 58.0, Epsilon = 0.837
+Evaluation after episode 8000: Average score over 100 games = 44.3
+Episode 8000: Training score = 30.0, Epsilon = 0.835
+Episode 8100: Training score = 44.0, Epsilon = 0.833
+Episode 8200: Training score = 18.0, Epsilon = 0.831
+Episode 8300: Training score = 30.0, Epsilon = 0.829
+Episode 8400: Training score = 36.0, Epsilon = 0.827
+Episode 8500: Training score = 42.0, Epsilon = 0.825
+Episode 8600: Training score = 42.0, Epsilon = 0.823
+Episode 8700: Training score = 22.0, Epsilon = 0.821
+Episode 8800: Training score = 22.0, Epsilon = 0.819
+Episode 8900: Training score = 36.0, Epsilon = 0.817
+Evaluation after episode 9000: Average score over 100 games = 51.8
+Episode 9000: Training score = 50.0, Epsilon = 0.815
+Episode 9100: Training score = 36.0, Epsilon = 0.813
+Episode 9200: Training score = 38.0, Epsilon = 0.811
+Episode 9300: Training score = 26.0, Epsilon = 0.809
+Episode 9400: Training score = 21.0, Epsilon = 0.807
+Episode 9500: Training score = 18.0, Epsilon = 0.805
+Episode 9600: Training score = 45.0, Epsilon = 0.803
+Episode 9700: Training score = 58.0, Epsilon = 0.800
+Episode 9800: Training score = 22.0, Epsilon = 0.798
+Episode 9900: Training score = 36.0, Epsilon = 0.796
+Evaluation after episode 10000: Average score over 100 games = 29.4
+Episode 10000: Training score = 32.0, Epsilon = 0.794
+Episode 10100: Training score = 12.0, Epsilon = 0.792
+Episode 10200: Training score = 34.0, Epsilon = 0.790
+Episode 10300: Training score = 38.0, Epsilon = 0.788
+Episode 10400: Training score = 100.0, Epsilon = 0.786
+Episode 10500: Training score = 34.0, Epsilon = 0.784
+Episode 10600: Training score = 28.0, Epsilon = 0.782
+Episode 10700: Training score = 20.0, Epsilon = 0.780
+Episode 10800: Training score = 16.0, Epsilon = 0.778
+Episode 10900: Training score = 36.0, Epsilon = 0.776
+Evaluation after episode 11000: Average score over 100 games = 41.1
+Episode 11000: Training score = 72.0, Epsilon = 0.774
+Episode 11100: Training score = 28.0, Epsilon = 0.772
+Episode 11200: Training score = 36.0, Epsilon = 0.770
+Episode 11300: Training score = 22.0, Epsilon = 0.768
+Episode 11400: Training score = 42.0, Epsilon = 0.765
+Episode 11500: Training score = 33.0, Epsilon = 0.763
+Episode 11600: Training score = 16.0, Epsilon = 0.761
+Episode 11700: Training score = 46.0, Epsilon = 0.759
+Episode 11800: Training score = 26.0, Epsilon = 0.757
+Episode 11900: Training score = 32.0, Epsilon = 0.755
+Evaluation after episode 12000: Average score over 100 games = 47.0
+Episode 12000: Training score = 22.0, Epsilon = 0.753
+Episode 12100: Training score = 36.0, Epsilon = 0.751
+Episode 12200: Training score = 32.0, Epsilon = 0.749
+Episode 12300: Training score = 40.0, Epsilon = 0.747
+Episode 12400: Training score = 10.0, Epsilon = 0.745
+Episode 12500: Training score = 30.0, Epsilon = 0.743
+Episode 12600: Training score = 58.0, Epsilon = 0.741
+Episode 12700: Training score = 40.0, Epsilon = 0.739
+Episode 12800: Training score = 36.0, Epsilon = 0.737
+Episode 12900: Training score = 30.0, Epsilon = 0.735
+Evaluation after episode 13000: Average score over 100 games = 48.1
+Episode 13000: Training score = 14.0, Epsilon = 0.733
+Episode 13100: Training score = 14.0, Epsilon = 0.731
+Episode 13200: Training score = 30.0, Epsilon = 0.728
+Episode 13300: Training score = 66.0, Epsilon = 0.726
+Episode 13400: Training score = 38.0, Epsilon = 0.724
+Episode 13500: Training score = 30.0, Epsilon = 0.722
+Episode 13600: Training score = 26.0, Epsilon = 0.720
+Episode 13700: Training score = 34.0, Epsilon = 0.718
+Episode 13800: Training score = 28.0, Epsilon = 0.716
+Episode 13900: Training score = 32.0, Epsilon = 0.714
+Evaluation after episode 14000: Average score over 100 games = 48.3
+Episode 14000: Training score = 66.0, Epsilon = 0.712
+Episode 14100: Training score = 34.0, Epsilon = 0.710
+Episode 14200: Training score = 51.0, Epsilon = 0.708
+Episode 14300: Training score = 26.0, Epsilon = 0.706
+Episode 14400: Training score = 63.0, Epsilon = 0.704
+Episode 14500: Training score = 36.0, Epsilon = 0.702
+Episode 14600: Training score = 32.0, Epsilon = 0.700
+Episode 14700: Training score = 28.0, Epsilon = 0.698
+Episode 14800: Training score = 45.0, Epsilon = 0.696
+Episode 14900: Training score = 52.0, Epsilon = 0.693
+Evaluation after episode 15000: Average score over 100 games = 22.3
+Episode 15000: Training score = 24.0, Epsilon = 0.691
+Episode 15100: Training score = 30.0, Epsilon = 0.689
+Episode 15200: Training score = 26.0, Epsilon = 0.687
+Episode 15300: Training score = 32.0, Epsilon = 0.685
+Episode 15400: Training score = 32.0, Epsilon = 0.683
+Episode 15500: Training score = 32.0, Epsilon = 0.681
+Episode 15600: Training score = 100.0, Epsilon = 0.679
+Episode 15700: Training score = 38.0, Epsilon = 0.677
+Episode 15800: Training score = 32.0, Epsilon = 0.675
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 313, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 289, in train_dqn
+    optimizer.step()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 493, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 91, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/adam.py", line 244, in step
+    adam(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 140, in maybe_fallback
+    @functools.wraps(func)
+KeyboardInterrupt

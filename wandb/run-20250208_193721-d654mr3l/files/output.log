@@ -1,0 +1,25 @@
+Episode 100: Training score = 22.0, Epsilon = 0.998
+Episode 200: Training score = 34.0, Epsilon = 0.996
+Episode 300: Training score = 58.0, Epsilon = 0.994
+Episode 400: Training score = 26.0, Epsilon = 0.992
+Episode 500: Training score = 69.0, Epsilon = 0.990
+Episode 600: Training score = 28.0, Epsilon = 0.988
+Episode 700: Training score = 44.0, Epsilon = 0.986
+Episode 800: Training score = 14.0, Epsilon = 0.984
+Episode 900: Training score = 22.0, Epsilon = 0.981
+Evaluation after episode 1000: Average score over 100 games = 61.2
+Episode 1000: Training score = 51.0, Epsilon = 0.979
+Episode 1100: Training score = 22.0, Epsilon = 0.977
+Episode 1200: Training score = 28.0, Epsilon = 0.975
+Episode 1300: Training score = 34.0, Epsilon = 0.973
+Episode 1400: Training score = 62.0, Epsilon = 0.971
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 313, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 267, in train_dqn
+    s_batch, a_batch, r_batch, s2_batch, d_batch = replay_buffer.sample(batch_size)
+  File "/home/mc5635/yahtzee/yahtzee_rl/dqn_agent.py", line 43, in sample
+    batch = random.sample(self.buffer, batch_size)
+  File "/usr/lib/python3.10/random.py", line 494, in sample
+    pool[j] = pool[n - i - 1]  # move non-selected item into vacancy
+KeyboardInterrupt
