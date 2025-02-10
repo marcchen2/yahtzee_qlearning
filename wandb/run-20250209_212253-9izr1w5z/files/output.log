@@ -1,0 +1,22 @@
+Evaluation after episode 100: Average score over 100 games = 71.6
+Episode 100: Training score = 51.0, Epsilon = 0.987
+Evaluation after episode 200: Average score over 100 games = 79.2
+Episode 200: Training score = 37.0, Epsilon = 0.974
+Evaluation after episode 300: Average score over 100 games = 83.0
+Episode 300: Training score = 41.0, Epsilon = 0.961
+Evaluation after episode 400: Average score over 100 games = 89.5
+Episode 400: Training score = 63.0, Epsilon = 0.949
+Evaluation after episode 500: Average score over 100 games = 81.7
+Episode 500: Training score = 43.0, Epsilon = 0.936
+Evaluation after episode 600: Average score over 100 games = 89.2
+Episode 600: Training score = 44.0, Epsilon = 0.923
+Evaluation after episode 700: Average score over 100 games = 86.5
+Episode 700: Training score = 51.0, Epsilon = 0.910
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 233, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 189, in train_dqn
+    q_target = r_batch + gamma * max_q_next * (1 - d_batch)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_tensor.py", line 37, in wrapped
+    if has_torch_function(args):
+KeyboardInterrupt

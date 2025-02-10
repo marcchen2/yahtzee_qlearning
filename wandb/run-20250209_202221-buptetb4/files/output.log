@@ -1,0 +1,324 @@
+Evaluation after episode 100: Average score over 100 games = 75.6
+Episode 100: Training score = 51.0, Epsilon = 0.992
+Evaluation after episode 200: Average score over 100 games = 83.7
+Episode 200: Training score = 48.0, Epsilon = 0.984
+Evaluation after episode 300: Average score over 100 games = 75.5
+Episode 300: Training score = 53.0, Epsilon = 0.977
+Evaluation after episode 400: Average score over 100 games = 85.3
+Episode 400: Training score = 25.0, Epsilon = 0.969
+Evaluation after episode 500: Average score over 100 games = 85.3
+Episode 500: Training score = 86.0, Epsilon = 0.961
+Evaluation after episode 600: Average score over 100 games = 98.4
+Episode 600: Training score = 35.0, Epsilon = 0.953
+Evaluation after episode 700: Average score over 100 games = 105.7
+Episode 700: Training score = 29.0, Epsilon = 0.945
+Evaluation after episode 800: Average score over 100 games = 89.1
+Episode 800: Training score = 109.0, Epsilon = 0.938
+Evaluation after episode 900: Average score over 100 games = 88.1
+Episode 900: Training score = 32.0, Epsilon = 0.930
+Evaluation after episode 1000: Average score over 100 games = 101.0
+Episode 1000: Training score = 58.0, Epsilon = 0.922
+Evaluation after episode 1100: Average score over 100 games = 95.1
+Episode 1100: Training score = 52.0, Epsilon = 0.914
+Evaluation after episode 1200: Average score over 100 games = 94.2
+Episode 1200: Training score = 97.0, Epsilon = 0.906
+Evaluation after episode 1300: Average score over 100 games = 107.9
+Episode 1300: Training score = 36.0, Epsilon = 0.899
+Evaluation after episode 1400: Average score over 100 games = 110.5
+Episode 1400: Training score = 43.0, Epsilon = 0.891
+Evaluation after episode 1500: Average score over 100 games = 96.2
+Episode 1500: Training score = 69.0, Epsilon = 0.883
+Evaluation after episode 1600: Average score over 100 games = 93.5
+Episode 1600: Training score = 65.0, Epsilon = 0.875
+Evaluation after episode 1700: Average score over 100 games = 106.3
+Episode 1700: Training score = 80.0, Epsilon = 0.867
+Evaluation after episode 1800: Average score over 100 games = 104.3
+Episode 1800: Training score = 70.0, Epsilon = 0.860
+Evaluation after episode 1900: Average score over 100 games = 107.6
+Episode 1900: Training score = 32.0, Epsilon = 0.852
+Evaluation after episode 2000: Average score over 100 games = 111.6
+Episode 2000: Training score = 76.0, Epsilon = 0.844
+Evaluation after episode 2100: Average score over 100 games = 114.0
+Episode 2100: Training score = 100.0, Epsilon = 0.836
+Evaluation after episode 2200: Average score over 100 games = 109.2
+Episode 2200: Training score = 20.0, Epsilon = 0.828
+Evaluation after episode 2300: Average score over 100 games = 106.8
+Episode 2300: Training score = 66.0, Epsilon = 0.821
+Evaluation after episode 2400: Average score over 100 games = 103.4
+Episode 2400: Training score = 48.0, Epsilon = 0.813
+Evaluation after episode 2500: Average score over 100 games = 113.5
+Episode 2500: Training score = 39.0, Epsilon = 0.805
+Evaluation after episode 2600: Average score over 100 games = 109.2
+Episode 2600: Training score = 53.0, Epsilon = 0.797
+Evaluation after episode 2700: Average score over 100 games = 103.7
+Episode 2700: Training score = 40.0, Epsilon = 0.789
+Evaluation after episode 2800: Average score over 100 games = 105.2
+Episode 2800: Training score = 79.0, Epsilon = 0.782
+Evaluation after episode 2900: Average score over 100 games = 110.5
+Episode 2900: Training score = 70.0, Epsilon = 0.774
+Evaluation after episode 3000: Average score over 100 games = 114.6
+Episode 3000: Training score = 82.0, Epsilon = 0.766
+Evaluation after episode 3100: Average score over 100 games = 110.1
+Episode 3100: Training score = 47.0, Epsilon = 0.758
+Evaluation after episode 3200: Average score over 100 games = 110.1
+Episode 3200: Training score = 52.0, Epsilon = 0.750
+Evaluation after episode 3300: Average score over 100 games = 111.1
+Episode 3300: Training score = 34.0, Epsilon = 0.743
+Evaluation after episode 3400: Average score over 100 games = 116.6
+Episode 3400: Training score = 94.0, Epsilon = 0.735
+Evaluation after episode 3500: Average score over 100 games = 116.0
+Episode 3500: Training score = 73.0, Epsilon = 0.727
+Evaluation after episode 3600: Average score over 100 games = 113.6
+Episode 3600: Training score = 75.0, Epsilon = 0.719
+Evaluation after episode 3700: Average score over 100 games = 114.2
+Episode 3700: Training score = 62.0, Epsilon = 0.711
+Evaluation after episode 3800: Average score over 100 games = 113.1
+Episode 3800: Training score = 49.0, Epsilon = 0.704
+Evaluation after episode 3900: Average score over 100 games = 113.2
+Episode 3900: Training score = 70.0, Epsilon = 0.696
+Evaluation after episode 4000: Average score over 100 games = 112.3
+Episode 4000: Training score = 72.0, Epsilon = 0.688
+Evaluation after episode 4100: Average score over 100 games = 109.7
+Episode 4100: Training score = 57.0, Epsilon = 0.680
+Evaluation after episode 4200: Average score over 100 games = 111.0
+Episode 4200: Training score = 48.0, Epsilon = 0.672
+Evaluation after episode 4300: Average score over 100 games = 114.4
+Episode 4300: Training score = 56.0, Epsilon = 0.665
+Evaluation after episode 4400: Average score over 100 games = 110.4
+Episode 4400: Training score = 64.0, Epsilon = 0.657
+Evaluation after episode 4500: Average score over 100 games = 114.5
+Episode 4500: Training score = 64.0, Epsilon = 0.649
+Evaluation after episode 4600: Average score over 100 games = 114.7
+Episode 4600: Training score = 45.0, Epsilon = 0.641
+Evaluation after episode 4700: Average score over 100 games = 114.1
+Episode 4700: Training score = 75.0, Epsilon = 0.633
+Evaluation after episode 4800: Average score over 100 games = 120.8
+Episode 4800: Training score = 56.0, Epsilon = 0.626
+Evaluation after episode 4900: Average score over 100 games = 109.0
+Episode 4900: Training score = 85.0, Epsilon = 0.618
+Evaluation after episode 5000: Average score over 100 games = 104.8
+Episode 5000: Training score = 58.0, Epsilon = 0.610
+Evaluation after episode 5100: Average score over 100 games = 120.7
+Episode 5100: Training score = 102.0, Epsilon = 0.602
+Evaluation after episode 5200: Average score over 100 games = 116.4
+Episode 5200: Training score = 89.0, Epsilon = 0.594
+Evaluation after episode 5300: Average score over 100 games = 117.5
+Episode 5300: Training score = 59.0, Epsilon = 0.587
+Evaluation after episode 5400: Average score over 100 games = 113.3
+Episode 5400: Training score = 92.0, Epsilon = 0.579
+Evaluation after episode 5500: Average score over 100 games = 125.2
+Episode 5500: Training score = 96.0, Epsilon = 0.571
+Evaluation after episode 5600: Average score over 100 games = 121.0
+Episode 5600: Training score = 36.0, Epsilon = 0.563
+Evaluation after episode 5700: Average score over 100 games = 118.5
+Episode 5700: Training score = 107.0, Epsilon = 0.555
+Evaluation after episode 5800: Average score over 100 games = 131.5
+Episode 5800: Training score = 50.0, Epsilon = 0.548
+Evaluation after episode 5900: Average score over 100 games = 126.4
+Episode 5900: Training score = 93.0, Epsilon = 0.540
+Evaluation after episode 6000: Average score over 100 games = 130.2
+Episode 6000: Training score = 45.0, Epsilon = 0.532
+Evaluation after episode 6100: Average score over 100 games = 118.3
+Episode 6100: Training score = 27.0, Epsilon = 0.524
+Evaluation after episode 6200: Average score over 100 games = 127.2
+Episode 6200: Training score = 67.0, Epsilon = 0.516
+Evaluation after episode 6300: Average score over 100 games = 129.6
+Episode 6300: Training score = 98.0, Epsilon = 0.509
+Evaluation after episode 6400: Average score over 100 games = 132.5
+Episode 6400: Training score = 81.0, Epsilon = 0.501
+Evaluation after episode 6500: Average score over 100 games = 125.0
+Episode 6500: Training score = 81.0, Epsilon = 0.493
+Evaluation after episode 6600: Average score over 100 games = 124.0
+Episode 6600: Training score = 56.0, Epsilon = 0.485
+Evaluation after episode 6700: Average score over 100 games = 131.2
+Episode 6700: Training score = 114.0, Epsilon = 0.477
+Evaluation after episode 6800: Average score over 100 games = 129.7
+Episode 6800: Training score = 138.0, Epsilon = 0.470
+Evaluation after episode 6900: Average score over 100 games = 124.9
+Episode 6900: Training score = 64.0, Epsilon = 0.462
+Evaluation after episode 7000: Average score over 100 games = 130.5
+Episode 7000: Training score = 122.0, Epsilon = 0.454
+Evaluation after episode 7100: Average score over 100 games = 130.5
+Episode 7100: Training score = 45.0, Epsilon = 0.446
+Evaluation after episode 7200: Average score over 100 games = 128.9
+Episode 7200: Training score = 75.0, Epsilon = 0.438
+Evaluation after episode 7300: Average score over 100 games = 126.1
+Episode 7300: Training score = 69.0, Epsilon = 0.431
+Evaluation after episode 7400: Average score over 100 games = 133.0
+Episode 7400: Training score = 49.0, Epsilon = 0.423
+Evaluation after episode 7500: Average score over 100 games = 126.6
+Episode 7500: Training score = 74.0, Epsilon = 0.415
+Evaluation after episode 7600: Average score over 100 games = 131.3
+Episode 7600: Training score = 81.0, Epsilon = 0.407
+Evaluation after episode 7700: Average score over 100 games = 127.2
+Episode 7700: Training score = 112.0, Epsilon = 0.399
+Evaluation after episode 7800: Average score over 100 games = 132.4
+Episode 7800: Training score = 90.0, Epsilon = 0.392
+Evaluation after episode 7900: Average score over 100 games = 128.8
+Episode 7900: Training score = 66.0, Epsilon = 0.384
+Evaluation after episode 8000: Average score over 100 games = 127.8
+Episode 8000: Training score = 87.0, Epsilon = 0.376
+Evaluation after episode 8100: Average score over 100 games = 129.3
+Episode 8100: Training score = 102.0, Epsilon = 0.368
+Evaluation after episode 8200: Average score over 100 games = 136.1
+Episode 8200: Training score = 158.0, Epsilon = 0.360
+Evaluation after episode 8300: Average score over 100 games = 131.1
+Episode 8300: Training score = 123.0, Epsilon = 0.353
+Evaluation after episode 8400: Average score over 100 games = 131.9
+Episode 8400: Training score = 117.0, Epsilon = 0.345
+Evaluation after episode 8500: Average score over 100 games = 131.2
+Episode 8500: Training score = 117.0, Epsilon = 0.337
+Evaluation after episode 8600: Average score over 100 games = 135.8
+Episode 8600: Training score = 62.0, Epsilon = 0.329
+Evaluation after episode 8700: Average score over 100 games = 133.8
+Episode 8700: Training score = 98.0, Epsilon = 0.321
+Evaluation after episode 8800: Average score over 100 games = 136.9
+Episode 8800: Training score = 88.0, Epsilon = 0.314
+Evaluation after episode 8900: Average score over 100 games = 131.8
+Episode 8900: Training score = 87.0, Epsilon = 0.306
+Evaluation after episode 9000: Average score over 100 games = 137.1
+Episode 9000: Training score = 94.0, Epsilon = 0.298
+Evaluation after episode 9100: Average score over 100 games = 134.1
+Episode 9100: Training score = 74.0, Epsilon = 0.290
+Evaluation after episode 9200: Average score over 100 games = 139.9
+Episode 9200: Training score = 103.0, Epsilon = 0.282
+Evaluation after episode 9300: Average score over 100 games = 138.0
+Episode 9300: Training score = 140.0, Epsilon = 0.275
+Evaluation after episode 9400: Average score over 100 games = 143.9
+Episode 9400: Training score = 147.0, Epsilon = 0.267
+Evaluation after episode 9500: Average score over 100 games = 134.5
+Episode 9500: Training score = 114.0, Epsilon = 0.259
+Evaluation after episode 9600: Average score over 100 games = 137.5
+Episode 9600: Training score = 65.0, Epsilon = 0.251
+Evaluation after episode 9700: Average score over 100 games = 137.1
+Episode 9700: Training score = 108.0, Epsilon = 0.243
+Evaluation after episode 9800: Average score over 100 games = 139.3
+Episode 9800: Training score = 121.0, Epsilon = 0.236
+Evaluation after episode 9900: Average score over 100 games = 132.8
+Episode 9900: Training score = 99.0, Epsilon = 0.228
+Evaluation after episode 10000: Average score over 100 games = 139.5
+Episode 10000: Training score = 117.0, Epsilon = 0.220
+Evaluation after episode 10100: Average score over 100 games = 134.8
+Episode 10100: Training score = 123.0, Epsilon = 0.212
+Evaluation after episode 10200: Average score over 100 games = 129.8
+Episode 10200: Training score = 119.0, Epsilon = 0.204
+Evaluation after episode 10300: Average score over 100 games = 138.5
+Episode 10300: Training score = 133.0, Epsilon = 0.197
+Evaluation after episode 10400: Average score over 100 games = 134.4
+Episode 10400: Training score = 144.0, Epsilon = 0.189
+Evaluation after episode 10500: Average score over 100 games = 138.4
+Episode 10500: Training score = 88.0, Epsilon = 0.181
+Evaluation after episode 10600: Average score over 100 games = 129.8
+Episode 10600: Training score = 137.0, Epsilon = 0.173
+Evaluation after episode 10700: Average score over 100 games = 135.7
+Episode 10700: Training score = 124.0, Epsilon = 0.165
+Evaluation after episode 10800: Average score over 100 games = 136.3
+Episode 10800: Training score = 113.0, Epsilon = 0.158
+Evaluation after episode 10900: Average score over 100 games = 137.8
+Episode 10900: Training score = 110.0, Epsilon = 0.150
+Evaluation after episode 11000: Average score over 100 games = 141.6
+Episode 11000: Training score = 129.0, Epsilon = 0.142
+Evaluation after episode 11100: Average score over 100 games = 134.2
+Episode 11100: Training score = 122.0, Epsilon = 0.134
+Evaluation after episode 11200: Average score over 100 games = 140.1
+Episode 11200: Training score = 102.0, Epsilon = 0.126
+Evaluation after episode 11300: Average score over 100 games = 143.1
+Episode 11300: Training score = 125.0, Epsilon = 0.119
+Evaluation after episode 11400: Average score over 100 games = 138.2
+Episode 11400: Training score = 145.0, Epsilon = 0.111
+Evaluation after episode 11500: Average score over 100 games = 138.7
+Episode 11500: Training score = 154.0, Epsilon = 0.103
+Evaluation after episode 11600: Average score over 100 games = 138.3
+Episode 11600: Training score = 144.0, Epsilon = 0.100
+Evaluation after episode 11700: Average score over 100 games = 139.6
+Episode 11700: Training score = 176.0, Epsilon = 0.100
+Evaluation after episode 11800: Average score over 100 games = 134.9
+Episode 11800: Training score = 161.0, Epsilon = 0.100
+Evaluation after episode 11900: Average score over 100 games = 139.8
+Episode 11900: Training score = 136.0, Epsilon = 0.100
+Evaluation after episode 12000: Average score over 100 games = 138.0
+Episode 12000: Training score = 91.0, Epsilon = 0.100
+Evaluation after episode 12100: Average score over 100 games = 138.3
+Episode 12100: Training score = 160.0, Epsilon = 0.100
+Evaluation after episode 12200: Average score over 100 games = 137.9
+Episode 12200: Training score = 136.0, Epsilon = 0.100
+Evaluation after episode 12300: Average score over 100 games = 135.7
+Episode 12300: Training score = 110.0, Epsilon = 0.100
+Evaluation after episode 12400: Average score over 100 games = 135.5
+Episode 12400: Training score = 114.0, Epsilon = 0.100
+Evaluation after episode 12500: Average score over 100 games = 132.6
+Episode 12500: Training score = 92.0, Epsilon = 0.100
+Evaluation after episode 12600: Average score over 100 games = 138.3
+Episode 12600: Training score = 160.0, Epsilon = 0.100
+Evaluation after episode 12700: Average score over 100 games = 143.3
+Episode 12700: Training score = 131.0, Epsilon = 0.100
+Evaluation after episode 12800: Average score over 100 games = 131.4
+Episode 12800: Training score = 153.0, Epsilon = 0.100
+Evaluation after episode 12900: Average score over 100 games = 141.0
+Episode 12900: Training score = 139.0, Epsilon = 0.100
+Evaluation after episode 13000: Average score over 100 games = 143.9
+Episode 13000: Training score = 141.0, Epsilon = 0.100
+Evaluation after episode 13100: Average score over 100 games = 141.1
+Episode 13100: Training score = 124.0, Epsilon = 0.100
+Evaluation after episode 13200: Average score over 100 games = 141.1
+Episode 13200: Training score = 139.0, Epsilon = 0.100
+Evaluation after episode 13300: Average score over 100 games = 140.2
+Episode 13300: Training score = 100.0, Epsilon = 0.100
+Evaluation after episode 13400: Average score over 100 games = 140.6
+Episode 13400: Training score = 95.0, Epsilon = 0.100
+Evaluation after episode 13500: Average score over 100 games = 139.7
+Episode 13500: Training score = 119.0, Epsilon = 0.100
+Evaluation after episode 13600: Average score over 100 games = 141.8
+Episode 13600: Training score = 134.0, Epsilon = 0.100
+Evaluation after episode 13700: Average score over 100 games = 140.1
+Episode 13700: Training score = 148.0, Epsilon = 0.100
+Evaluation after episode 13800: Average score over 100 games = 138.3
+Episode 13800: Training score = 139.0, Epsilon = 0.100
+Evaluation after episode 13900: Average score over 100 games = 143.5
+Episode 13900: Training score = 113.0, Epsilon = 0.100
+Evaluation after episode 14000: Average score over 100 games = 142.1
+Episode 14000: Training score = 142.0, Epsilon = 0.100
+Evaluation after episode 14100: Average score over 100 games = 144.3
+Episode 14100: Training score = 111.0, Epsilon = 0.100
+Evaluation after episode 14200: Average score over 100 games = 135.2
+Episode 14200: Training score = 161.0, Epsilon = 0.100
+Evaluation after episode 14300: Average score over 100 games = 133.3
+Episode 14300: Training score = 108.0, Epsilon = 0.100
+Evaluation after episode 14400: Average score over 100 games = 137.6
+Episode 14400: Training score = 134.0, Epsilon = 0.100
+Evaluation after episode 14500: Average score over 100 games = 138.8
+Episode 14500: Training score = 121.0, Epsilon = 0.100
+Evaluation after episode 14600: Average score over 100 games = 137.9
+Episode 14600: Training score = 136.0, Epsilon = 0.100
+Evaluation after episode 14700: Average score over 100 games = 139.8
+Episode 14700: Training score = 128.0, Epsilon = 0.100
+Evaluation after episode 14800: Average score over 100 games = 135.8
+Episode 14800: Training score = 148.0, Epsilon = 0.100
+Evaluation after episode 14900: Average score over 100 games = 143.1
+Episode 14900: Training score = 163.0, Epsilon = 0.100
+Evaluation after episode 15000: Average score over 100 games = 137.9
+Episode 15000: Training score = 147.0, Epsilon = 0.100
+Evaluation after episode 15100: Average score over 100 games = 136.5
+Episode 15100: Training score = 110.0, Epsilon = 0.100
+Evaluation after episode 15200: Average score over 100 games = 143.4
+Episode 15200: Training score = 122.0, Epsilon = 0.100
+Evaluation after episode 15300: Average score over 100 games = 142.1
+Episode 15300: Training score = 111.0, Epsilon = 0.100
+Evaluation after episode 15400: Average score over 100 games = 139.1
+Episode 15400: Training score = 149.0, Epsilon = 0.100
+Evaluation after episode 15500: Average score over 100 games = 139.5
+Episode 15500: Training score = 124.0, Epsilon = 0.100
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 230, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 213, in train_dqn
+    avg_score = evaluate_model(dqn, env_cls, num_episodes=eval_episodes)
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 37, in evaluate_model
+    action_idx = dqn_agent.select_action(model, state, valid_actions_mask, epsilon=0.0)
+  File "/home/mc5635/yahtzee/yahtzee_rl/dqn_agent.py", line 88, in select_action
+    q_values = dqn(state.unsqueeze(0))
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1743, in _call_impl
+    def _call_impl(self, *args, **kwargs):
+KeyboardInterrupt

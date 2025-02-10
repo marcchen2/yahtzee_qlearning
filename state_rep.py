@@ -33,7 +33,15 @@ def encode_categories(categories):
         else:
             category_scores[CATEGORY_INDEX[cat]] = score / 50.0  # Normalize score
     
-    return torch.cat([category_availability, category_scores])  # Shape: (13 + 13) = (26,)
+    # return torch.cat([category_availability, category_scores])  # Shape: (13 + 13) = (26,)
+    return torch.cat([category_availability])  # Shape: (13 + 13) = (26,)
+
+def encode_upper_sum(categories):
+    """sum of upper score sheet"""
+    upper_section = list(categories.items())[:6]
+    upper_total = sum(v for k, v in upper_section if v is not None)
+    normalized_sum = upper_total / 100
+    return torch.tensor([normalized_sum], dtype=torch.float32)
 
 def encode_upper_bonus(upper_bonus):
     """Binary flag for upper bonus."""
@@ -48,9 +56,10 @@ def encode_state(game_state):
     dice_encoded = encode_dice(game_state['dice'])
     rolls_encoded = encode_rolls_left(game_state['rolls_left'])
     categories_encoded = encode_categories(game_state['categories'])
+    upper_total_encoded = encode_upper_sum(game_state['categories'])
     upper_bonus_encoded = encode_upper_bonus(game_state['upper_bonus'])
     yahtzee_bonus_encoded = encode_yahtzee_bonus(game_state['yahtzee_bonuses'])
     
     return torch.cat([
-        dice_encoded, rolls_encoded, categories_encoded, upper_bonus_encoded, yahtzee_bonus_encoded
-    ])  # Final shape: (11 + 1 + 26 + 1 + 1) = (40,)
+        dice_encoded, rolls_encoded, categories_encoded, upper_total_encoded, upper_bonus_encoded, yahtzee_bonus_encoded
+    ])  

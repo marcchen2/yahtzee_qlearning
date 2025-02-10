@@ -1,0 +1,28 @@
+Evaluation after episode 100: Average score over 100 games = 57.7
+Episode 100: Training score = 51.0, Epsilon = 0.987
+Evaluation after episode 200: Average score over 100 games = 65.8
+Episode 200: Training score = 37.0, Epsilon = 0.974
+Evaluation after episode 300: Average score over 100 games = 56.2
+Episode 300: Training score = 35.0, Epsilon = 0.961
+Evaluation after episode 400: Average score over 100 games = 52.5
+Episode 400: Training score = 63.0, Epsilon = 0.949
+Evaluation after episode 500: Average score over 100 games = 50.7
+Episode 500: Training score = 42.0, Epsilon = 0.936
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 233, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 203, in train_dqn
+    optimizer.step()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 493, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 91, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/adam.py", line 244, in step
+    adam(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 154, in maybe_fallback
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/adam.py", line 876, in adam
+    func(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/adam.py", line 707, in _multi_tensor_adam
+    torch._foreach_addcdiv_(
+KeyboardInterrupt

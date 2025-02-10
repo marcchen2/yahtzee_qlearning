@@ -10,6 +10,7 @@ import numpy as np
 import random 
 import wandb
 
+from torchrl.data import ListStorage, PrioritizedReplayBuffer
 
 # Check for GPU availability
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -59,13 +60,13 @@ def evaluate_model(model, env_cls, num_episodes=100, epsilon=0):
     return avg_score
 
 def train_dqn(env_cls, num_episodes=10000,
-              buffer_capacity=1000,
+              buffer_capacity=2000,
               batch_size=256,
               gamma=0.99,
-              lr=1e-4,
+              lr=1e-5,
               epsilon_start=1.0,
               epsilon_end=0.1,
-              epsilon_decay=600000,
+              epsilon_decay_prop=0.7,  # % of total steps
               update_target_every=500,
               eval_interval=100,
               eval_episodes=100,
@@ -74,13 +75,19 @@ def train_dqn(env_cls, num_episodes=10000,
     Train DQN agent with periodic evaluation.
     """
     # Initialize networks
-    dqn = dqn_agent.DQN(state_dim=40, action_dim=len(ALL_ACTIONS)).to(device)
-    target_dqn = dqn_agent.DQN(state_dim=40, action_dim=len(ALL_ACTIONS)).to(device)
+    input_length = len(env_cls().get_encoded_state())
+    dqn = dqn_agent.DQN(state_dim=input_length, action_dim=len(ALL_ACTIONS)).to(device)
+    target_dqn = dqn_agent.DQN(state_dim=input_length, action_dim=len(ALL_ACTIONS)).to(device)
     target_dqn.load_state_dict(dqn.state_dict())
-    optimizer = optim.Adam(dqn.parameters(), lr=lr)
+    optimizer = optim.Adam(dqn.parameters(), lr=lr)    
     replay_buffer = dqn_agent.ReplayBuffer(buffer_capacity)
+    
+    # rb = PrioritizedReplayBuffer(alpha=0.7, beta=0.9, storage=ListStorage(buffer_capacity))
+   
 
     def get_epsilon(step):
+        est_total_steps = 52*num_episodes
+        epsilon_decay = est_total_steps * epsilon_decay_prop
         return max(epsilon_end, epsilon_start - (step / epsilon_decay)*(epsilon_start - epsilon_end))
 
     total_steps = 0
@@ -94,7 +101,7 @@ def train_dqn(env_cls, num_episodes=10000,
         config={
         "learning_rate": lr,
         "episodes": num_episodes,
-        "epsilon_decay": epsilon_decay, 
+        "epsilon_decay": epsilon_decay_prop, 
         "buffer_capacity": buffer_capacity, 
         "batch_size": batch_size,
         })
@@ -227,7 +234,7 @@ if __name__ == "__main__":
         return YahtzeeGame()
 
     dqn, target_dqn = train_dqn(make_env, 
-                               num_episodes=8000,
+                               num_episodes=10000,
                                eval_interval=100,
                                eval_episodes=100)
     
