@@ -1,17 +1,8 @@
-yahtzee_rl/
-│── main.py  # Entry point to run the agent
-│── yahtzee_env.py  # Game environment (your existing code)
-│── state_representation.py  # State encoding in PyTorch
-│── dqn_agent.py  # Deep Q-learning agent
-│── train.py  # Training loop for the agent
-│── utils.py  # Helper functions
-│── requirements.txt  # Dependencies
-
-
 
 
 whats next:
-- q values are exploding
-- medium toy example didnt learn
-- maybe try even smaller environment
-reward shaping
+- hovering around 180
+
+-noisy networks
+
+-multistep learning (n = 4?)

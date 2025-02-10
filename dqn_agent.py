@@ -21,95 +21,39 @@ class DQN(nn.Module):
     def forward(self, x):
         return self.net(x)  # [batch_size, action_dim]
 
-Transition = namedtuple('Transition', 
-                        ('state', 'action', 'reward', 'next_state', 'done', 'next_valid_mask'))
 
-class PrioritizedReplayBuffer:
-    """
-    A naive implementation of a Prioritized Experience Replay buffer.
-    """
-    def __init__(self, capacity, alpha=0.6):
-        """
-        Args:
-            capacity (int): Maximum size of the replay buffer.
-            alpha (float): How much prioritization is used 
-                           (0 = no prioritization, 1 = full prioritization).
-        """
-        self.capacity = capacity
-        self.alpha = alpha
+class DuelingDQN(nn.Module):
+    def __init__(self, state_dim, action_dim, hidden_dim=256):
+        super(DuelingDQN, self).__init__()
         
-        self.buffer = []
-        self.priorities = []
-        self.position = 0
-        self.max_priority = 1.0  # start all new transitions with max priority
-
-    def push(self, state, action, reward, next_state, done, next_valid_mask):
-        """
-        Adds a transition into the buffer with the maximum priority so that 
-        it will more likely be sampled soon.
-        """
-        if len(self.buffer) < self.capacity:
-            self.buffer.append(None)
-            self.priorities.append(None)
-
-        transition = Transition(state.cpu(), action, reward, next_state.cpu(), done, next_valid_mask)
+        # Shared feature extraction
+        self.feature_layer = nn.Sequential(
+            nn.Linear(state_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.ReLU()
+        )
         
-        self.buffer[self.position] = transition
-        # Use the max priority so that a new experience is likely to be sampled
-        self.priorities[self.position] = self.max_priority
-
-        self.position = (self.position + 1) % self.capacity
-
-    def sample(self, batch_size, beta=0.4):
-        """
-        Samples a batch of experiences, returning transitions, indices, and IS weights.
-
-        beta: controls to what degree we apply importance sampling correction
-              (0 = no corrections, 1 = full correction).
-        """
-        # Calculate the probabilities for each entry
-        # p_i = priorities_i ^ alpha
-        # P(i) = p_i / sum_j p_j
-        scaled_priorities = np.array(self.priorities)**self.alpha
-        probs = scaled_priorities / np.sum(scaled_priorities)
+        # Value stream (outputs a single value, V(s))
+        self.value_stream = nn.Linear(hidden_dim, 1)
         
-        # Sample indices according to their probabilities
-        indices = np.random.choice(len(self.buffer), batch_size, p=probs, replace=False)
-        
-        # Compute importance-sampling weights
-        # w_i = (1 / (N * P(i)))^beta
-        # normalized by max weight so that they scale to [0, 1]
-        total = len(self.buffer)
-        weights = (total * probs[indices])**(-beta)
-        weights = weights / weights.max()  # normalize for stability
-        
-        # Now collect transitions
-        transitions = [self.buffer[idx] for idx in indices]
-        
-        # Convert them to torch tensors
-        states = torch.stack([t.state if isinstance(t.state, torch.Tensor) 
-                              else torch.FloatTensor(t.state) for t in transitions])
-        actions = torch.LongTensor([t.action for t in transitions])
-        rewards = torch.FloatTensor([t.reward for t in transitions])
-        next_states = torch.stack([t.next_state if isinstance(t.next_state, torch.Tensor) 
-                                   else torch.FloatTensor(t.next_state) for t in transitions])
-        dones = torch.FloatTensor([t.done for t in transitions])
-        
-        # next_valid_masks is a list of Tensors or lists, stack them
-        next_valid_masks = torch.stack([t.next_valid_mask for t in transitions])
+        # Advantage stream (outputs advantage for each action, A(s,a))
+        self.advantage_stream = nn.Linear(hidden_dim, action_dim)
 
-        # Return everything along with the indices and weights
-        return (states, actions, rewards, next_states, dones, next_valid_masks), indices, torch.FloatTensor(weights)
-
-    def update_priorities(self, indices, priorities):
-        """
-        Update the priorities of the sampled transitions based on new TD-error.
-        """
-        for idx, priority in zip(indices, priorities):
-            # plus a small epsilon to avoid zero priority
-            self.priorities[idx] = float(priority)
-            # Update max priority
-            self.max_priority = max(self.max_priority, float(priority))
+    def forward(self, x):
+        # Extract shared features
+        features = self.feature_layer(x)
+        
+        # Compute the value and advantage
+        values = self.value_stream(features)              # shape: [batch_size, 1]
+        advantages = self.advantage_stream(features)      # shape: [batch_size, action_dim]
+        
+        # Subtract mean advantage to keep Q-values stable
+        # Q(s,a) = V(s) + A(s,a) - mean(A(s,a))
+        advantages_mean = advantages.mean(dim=1, keepdim=True)
+        Q = values + (advantages - advantages_mean)
+        
+        return Q
 
 
 class ReplayBuffer:

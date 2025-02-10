@@ -12,6 +12,8 @@ import wandb
 from tensordict import TensorDict
 from torchrl.data import ListStorage, PrioritizedReplayBuffer, LazyTensorStorage
 import os
+
+
 # Check for GPU availability
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -65,7 +67,6 @@ def save_checkpoint(
     dqn, 
     target_dqn, 
     optimizer, 
-    # replay_buffer,  # Removed from the arguments
     episode,
     total_steps
 ):
@@ -73,7 +74,6 @@ def save_checkpoint(
         'dqn_state_dict': dqn.state_dict(),
         'target_dqn_state_dict': target_dqn.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
-        # 'replay_buffer': replay_buffer, # Exclude from checkpoint
         'episode': episode,
         'total_steps': total_steps
     }
@@ -81,38 +81,21 @@ def save_checkpoint(
     print(f"Checkpoint saved to {filename}")
 
 
-
-def load_checkpoint(
-    filename, 
-    dqn, 
-    target_dqn, 
-    optimizer, 
-    replay_buffer
-):
-    """Load model, optimizer, replay buffer (optional), and training counters."""
+def load_checkpoint(filename, dqn, target_dqn, optimizer):
     if not os.path.isfile(filename):
         print(f"Checkpoint file '{filename}' does not exist. Starting fresh.")
-        return 0, 0  # default: episode=0, total_steps=0
-
+        return 0, 0
+    
     checkpoint = torch.load(filename, map_location=device)
     dqn.load_state_dict(checkpoint['dqn_state_dict'])
     target_dqn.load_state_dict(checkpoint['target_dqn_state_dict'])
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-
-    # If you want to load the replay buffer state:
-    #   - For a TorchRL PrioritizedReplayBuffer, you can directly assign it.
-    #   - Make sure the stored replay_buffer is compatible with the current code.
-    if 'replay_buffer' in checkpoint and checkpoint['replay_buffer'] is not None:
-        # This overrides the existing replay_buffer with the saved one:
-        rb_state = checkpoint['replay_buffer']
-        # If you stored the entire replay_buffer object:
-        replay_buffer.load_state_dict(rb_state.state_dict())
-        # Or if you saved it differently, adapt this line accordingly.
-
+    
     episode = checkpoint.get('episode', 0)
     total_steps = checkpoint.get('total_steps', 0)
     print(f"Loaded checkpoint from {filename} at episode={episode}, total_steps={total_steps}")
     return episode, total_steps
+
 
 def train_dqn(env_cls, num_episodes=10000,
               buffer_capacity=2000,
@@ -128,7 +111,7 @@ def train_dqn(env_cls, num_episodes=10000,
               max_grad_norm = 0.5,
               buffer_alpha = 0.7,
               buffer_beta = 0.9,
-              save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",     
+              save_checkpoint_dir=None,     
               load_checkpoint_path=None,     
               ):
     """
@@ -136,14 +119,14 @@ def train_dqn(env_cls, num_episodes=10000,
     """
     # Initialize networks
     input_length = len(env_cls().get_encoded_state())
-    dqn = dqn_agent.DQN(state_dim=input_length, action_dim=len(ALL_ACTIONS)).to(device)
-    target_dqn = dqn_agent.DQN(state_dim=input_length, action_dim=len(ALL_ACTIONS)).to(device)
+
+  # init dueling networks w target
+    dqn = dqn_agent.DuelingDQN(state_dim=input_length, action_dim=len(ALL_ACTIONS)).to(device)
+    target_dqn = dqn_agent.DuelingDQN(state_dim=input_length, action_dim=len(ALL_ACTIONS)).to(device)
     target_dqn.load_state_dict(dqn.state_dict())
-    optimizer = optim.Adam(dqn.parameters(), lr=lr)    
-    # replay_buffer = dqn_agent.ReplayBuffer(buffer_capacity)
     
-    # rb = PrioritizedReplayBuffer(alpha=0.7, beta=0.9, storage=ListStorage(buffer_capacity))
-   
+    optimizer = optim.Adam(dqn.parameters(), lr=lr)    
+    
    # Initialize the prioritized replay buffer
     storage = LazyTensorStorage(buffer_capacity)
     replay_buffer = PrioritizedReplayBuffer(
@@ -157,6 +140,17 @@ def train_dqn(env_cls, num_episodes=10000,
         epsilon_decay = est_total_steps * epsilon_decay_prop
         return max(epsilon_end, epsilon_start - (step / epsilon_decay)*(epsilon_start - epsilon_end))
 
+    # --- Optionally load from checkpoint ---
+    start_episode = 0
+    total_steps = 0
+    if load_checkpoint_path is not None:
+        start_episode, total_steps = load_checkpoint(
+            load_checkpoint_path,
+            dqn,
+            target_dqn,
+            optimizer
+        )
+    
     total_steps = 0
     debug = False
     
@@ -342,7 +336,10 @@ if __name__ == "__main__":
     dqn, target_dqn = train_dqn(make_env, 
                                num_episodes=20000,
                                eval_interval=100,
-                               eval_episodes=100)
+                               eval_episodes=100,
+                               save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",  
+                               load_checkpoint_path="/home/mc5635/yahtzee/yahtzee_rl/saved_models/balmy-armadillo-85",
+                               epsilon_start=0.5)
     
     # print(evaluate_model(dqn_agent.DQN(), make_env, num_episodes=1000, epsilon=1))
     
