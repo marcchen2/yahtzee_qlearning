@@ -29,17 +29,17 @@ class ReplayBuffer:
         # Check for GPU availability
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    def push(self, state, action, reward, next_state, done):
+    def push(self, state, action, reward, next_state, done, next_valid_mask):
         # Convert to CPU tensors if needed
         if isinstance(state, torch.Tensor):
             state = state.cpu()
         if isinstance(next_state, torch.Tensor):
             next_state = next_state.cpu()
-        self.buffer.append((state, action, reward, next_state, done))
+        self.buffer.append((state, action, reward, next_state, done, next_valid_mask))
     
     def sample(self, batch_size):
         batch = random.sample(self.buffer, batch_size)
-        states, actions, rewards, next_states, dones = zip(*batch)
+        states, actions, rewards, next_states, dones, next_valid_masks = zip(*batch)
         
         # Convert to tensors and move to GPU
         return (
@@ -47,7 +47,8 @@ class ReplayBuffer:
             torch.tensor(actions, dtype=torch.long).to(self.device),
             torch.tensor(rewards, dtype=torch.float32).to(self.device),
             torch.stack([ns if isinstance(ns, torch.Tensor) else torch.FloatTensor(ns) for ns in next_states]).to(self.device),
-            torch.tensor(dones, dtype=torch.float32).to(self.device)
+            torch.tensor(dones, dtype=torch.float32).to(self.device),
+            torch.stack(next_valid_masks)
         )
 
 

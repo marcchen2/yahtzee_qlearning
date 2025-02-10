@@ -96,7 +96,9 @@ class YahtzeeGame:
         return 0
 
     def apply_move(self, category):
+        
         score = self.calculate_score(category, self.dice)
+        bonuses = 0
         
         # Check if we're crossing 63 in the upper section for the first time
         if category in ['Ones', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']:
@@ -104,13 +106,15 @@ class YahtzeeGame:
             upper_total = sum(v for k, v in upper_section if v is not None)
             if upper_total + score >= 63 and self.upper_bonus == 0:
                 self.upper_bonus = 35
+                bonuses += 35
 
         # Extra Yahtzee bonus if we've already scored Yahtzee category previously
         if category == 'Yahtzee' and score == 50 and self.categories['Yahtzee'] is not None:
             self.yahtzee_bonuses += 100
+            bonuses += 100
 
         self.categories[category] = score
-        return score
+        return score, bonuses
 
     def step(self, action):
         """
@@ -138,10 +142,11 @@ class YahtzeeGame:
                 # Category used already
                 reward = 0
             else:
-                reward = self.apply_move(category)
+                score, bonuses = self.apply_move(category)
+                reward = score + bonuses
 
-            # Scoring ends the turn; set rolls_left to 0
-            self.rolls_left = 0
+            # Scoring ends the turn; set rolls_left to 3
+            self.rolls_left = 3
 
             # Check if game ended (all categories filled)
             if all(v is not None for v in self.categories.values()):
@@ -154,7 +159,11 @@ class YahtzeeGame:
         """Returns boolean mask for all 45 actions (32 reroll patterns + 13 categories)"""
         mask = [False] * 45
         
-        if self.rolls_left > 0:
+        # if at the beginning of a turn, must roll all dice. 
+        if self.rolls_left == 3:
+            mask[0] = True
+            
+        elif self.rolls_left > 0:
             # Rolling phase: can reroll (first 32 actions)
             mask[:32] = [True] * 32
         else:

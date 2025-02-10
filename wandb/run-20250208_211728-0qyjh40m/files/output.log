@@ -1,0 +1,18 @@
+Episode 1000, avg_score over 100 games = 0.00
+Episode 2000, avg_score over 100 games = 14.60
+Episode 3000, avg_score over 100 games = 14.90
+Episode 4000, avg_score over 100 games = 15.45
+Episode 5000, avg_score over 100 games = 14.72
+Episode 6000, avg_score over 100 games = 15.00
+Episode 7000, avg_score over 100 games = 15.33
+Episode 8000, avg_score over 100 games = 15.38
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_train.py", line 172, in <module>
+    dqn, target_dqn = train_dqn(
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_train.py", line 139, in train_dqn
+    s_batch, a_batch, r_batch, s2_batch, d_batch = replay_buffer.sample(batch_size)
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_dqn.py", line 37, in sample
+    batch = random.sample(self.buffer, batch_size)
+  File "/usr/lib/python3.10/random.py", line 503, in sample
+    result[i] = population[j]
+KeyboardInterrupt

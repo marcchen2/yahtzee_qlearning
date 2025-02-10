@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 318, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 257, in train_dqn
+    next_state, reward, done, _ = env.step(action)
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_yahtzee.py", line 126, in step
+    self.roll_dice(keep_mask)
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_yahtzee.py", line 71, in roll_dice
+    self.dice = np.where(keep_mask, self.dice, new_values)
+ValueError: operands could not be broadcast together with shapes (4,) (3,) (3,)

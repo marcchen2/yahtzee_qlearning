@@ -1,0 +1,25 @@
+Episode 1000, avg_score over 100 games = 0.00
+Episode 2000, avg_score over 100 games = 14.30
+Episode 3000, avg_score over 100 games = 14.76
+Episode 4000, avg_score over 100 games = 15.30
+Episode 5000, avg_score over 100 games = 14.99
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_train.py", line 172, in <module>
+    dqn, target_dqn = train_dqn(
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_train.py", line 153, in train_dqn
+    optimizer.step()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 493, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 91, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/adam.py", line 244, in step
+    adam(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 154, in maybe_fallback
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/adam.py", line 876, in adam
+    func(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/adam.py", line 545, in _multi_tensor_adam
+    grouped_tensors = Optimizer._group_tensors_by_device_and_dtype(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 507, in _group_tensors_by_device_and_dtype
+    @staticmethod
+KeyboardInterrupt

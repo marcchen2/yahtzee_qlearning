@@ -1,0 +1,18 @@
+Episode 100: Training score = 44.0, Epsilon = 0.986
+Episode 200: Training score = 28.0, Epsilon = 0.971
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 321, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 295, in train_dqn
+    optimizer.zero_grad()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_compile.py", line 32, in inner
+    return disable_fn(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 970, in zero_grad
+    with torch.autograd.profiler.record_function(self._zero_grad_profile_name):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/autograd/profiler.py", line 752, in __enter__
+    self.record = torch.ops.profiler._record_function_enter_new(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_ops.py", line 1112, in __call__
+    def __call__(self, /, *args, **kwargs):
+KeyboardInterrupt

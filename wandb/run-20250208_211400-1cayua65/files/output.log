@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_train.py", line 170, in <module>
+    dqn, target_dqn = train_dqn(
+  File "/home/mc5635/yahtzee/yahtzee_rl/toy_train.py", line 107, in train_dqn
+    action_idx = dqn_agent.select_action(dqn, state, valid_actions_mask, epsilon)
+  File "/home/mc5635/yahtzee/yahtzee_rl/dqn_agent.py", line 79, in select_action
+    state = state.to(next(dqn.parameters()).device)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2630, in parameters
+    for _name, param in self.named_parameters(recurse=recurse):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2663, in named_parameters
+    yield from gen
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2598, in _named_members
+    for module_prefix, module in modules:
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2816, in named_modules
+    for name, module in self._modules.items():
+KeyboardInterrupt

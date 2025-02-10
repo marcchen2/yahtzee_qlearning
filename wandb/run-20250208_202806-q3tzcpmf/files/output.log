@@ -1,0 +1,14 @@
+Episode 100: Training score = 30.0, Epsilon = 0.998
+Episode 200: Training score = 30.0, Epsilon = 0.996
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 314, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 289, in train_dqn
+    loss.backward()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 340, in backward
+    grad_tensors_ = _make_grads(tensors, grad_tensors_, is_grads_batched=False)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 121, in _make_grads
+    if isinstance(grad, torch.Tensor):
+KeyboardInterrupt

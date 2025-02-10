@@ -6,3 +6,12 @@ yahtzee_rl/
 │── train.py  # Training loop for the agent
 │── utils.py  # Helper functions
 │── requirements.txt  # Dependencies
+
+
+
+
+whats next:
+- q values are exploding
+- medium toy example didnt learn
+- maybe try even smaller environment
+reward shaping
