@@ -1,0 +1,8 @@
+Evaluation after episode 100: Average score over 100 games = 83.2
+Episode 100: Training score = 80.0, Epsilon = 0.997
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 342, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 211, in train_dqn
+    next_state = torch.FloatTensor(next_state).to(device)
+KeyboardInterrupt

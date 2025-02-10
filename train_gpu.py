@@ -116,12 +116,12 @@ def load_checkpoint(
 
 def train_dqn(env_cls, num_episodes=10000,
               buffer_capacity=2000,
-              batch_size=256,
+              batch_size=64,
               gamma=0.99,
               lr=1e-4,
               epsilon_start=1.0,
               epsilon_end=0.1,
-              epsilon_decay_prop=0.7,  # % of total steps
+              epsilon_decay_prop=0.8,  # % of total steps
               update_target_every=500,
               eval_interval=100,
               eval_episodes=100,
@@ -340,7 +340,7 @@ if __name__ == "__main__":
         return YahtzeeGame()
 
     dqn, target_dqn = train_dqn(make_env, 
-                               num_episodes=20,
+                               num_episodes=20000,
                                eval_interval=100,
                                eval_episodes=100)
     
