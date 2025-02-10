@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 345, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 329, in train_dqn
+    save_checkpoint(
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 83, in save_checkpoint
+    torch.save(checkpoint, filename)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/serialization.py", line 944, in save
+    _save(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/serialization.py", line 1190, in _save
+    pickler.dump(obj)
+  File "/usr/lib/python3.10/multiprocessing/sharedctypes.py", line 199, in __reduce__
+    assert_spawning(self)
+  File "/usr/lib/python3.10/multiprocessing/context.py", line 373, in assert_spawning
+    raise RuntimeError(
+RuntimeError: Synchronized objects should only be shared between processes through inheritance

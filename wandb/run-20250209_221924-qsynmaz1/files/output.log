@@ -1,0 +1,44 @@
+Evaluation after episode 100: Average score over 100 games = 72.2
+Episode 100: Training score = 48.0, Epsilon = 0.987
+Evaluation after episode 200: Average score over 100 games = 81.6
+Episode 200: Training score = 40.0, Epsilon = 0.974
+Evaluation after episode 300: Average score over 100 games = 78.0
+Episode 300: Training score = 24.0, Epsilon = 0.961
+Evaluation after episode 400: Average score over 100 games = 89.0
+Episode 400: Training score = 31.0, Epsilon = 0.949
+Evaluation after episode 500: Average score over 100 games = 72.2
+Episode 500: Training score = 44.0, Epsilon = 0.936
+Evaluation after episode 600: Average score over 100 games = 62.1
+Episode 600: Training score = 45.0, Epsilon = 0.923
+Evaluation after episode 700: Average score over 100 games = 62.0
+Episode 700: Training score = 56.0, Epsilon = 0.910
+Evaluation after episode 800: Average score over 100 games = 51.8
+Episode 800: Training score = 25.0, Epsilon = 0.897
+Evaluation after episode 900: Average score over 100 games = 59.5
+Episode 900: Training score = 59.0, Epsilon = 0.884
+Evaluation after episode 1000: Average score over 100 games = 60.2
+Episode 1000: Training score = 21.0, Epsilon = 0.871
+Evaluation after episode 1100: Average score over 100 games = 50.5
+Episode 1100: Training score = 52.0, Epsilon = 0.859
+Evaluation after episode 1200: Average score over 100 games = 45.0
+Episode 1200: Training score = 46.0, Epsilon = 0.846
+Evaluation after episode 1300: Average score over 100 games = 59.7
+Episode 1300: Training score = 43.0, Epsilon = 0.833
+Evaluation after episode 1400: Average score over 100 games = 58.4
+Episode 1400: Training score = 50.0, Epsilon = 0.820
+Evaluation after episode 1500: Average score over 100 games = 60.3
+Episode 1500: Training score = 76.0, Epsilon = 0.807
+Evaluation after episode 1600: Average score over 100 games = 53.6
+Episode 1600: Training score = 57.0, Epsilon = 0.794
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 270, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 236, in train_dqn
+    loss.backward()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

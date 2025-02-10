@@ -1,0 +1,24 @@
+Evaluation after episode 100: Average score over 100 games = 47.9
+Episode 100: Training score = 34.0, Epsilon = 0.987
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 236, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 201, in train_dqn
+    optimizer.zero_grad()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_compile.py", line 32, in inner
+    return disable_fn(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 970, in zero_grad
+    with torch.autograd.profiler.record_function(self._zero_grad_profile_name):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/autograd/profiler.py", line 769, in __exit__
+    torch.ops.profiler._record_function_exit._RecordFunction(record)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_ops.py", line 947, in __call__
+    if _must_dispatch_in_python(args, kwargs):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_ops.py", line 1001, in _must_dispatch_in_python
+    return pytree.tree_any(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/utils/_pytree.py", line 1230, in tree_any
+    return any(map(pred, flat_args))
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_ops.py", line 1002, in <lambda>
+    lambda obj: isinstance(
+KeyboardInterrupt

@@ -1,0 +1,66 @@
+Evaluation after episode 100: Average score over 100 games = 75.1
+Episode 100: Training score = 48.0, Epsilon = 0.987
+Evaluation after episode 200: Average score over 100 games = 83.2
+Episode 200: Training score = 40.0, Epsilon = 0.974
+Evaluation after episode 300: Average score over 100 games = 82.4
+Episode 300: Training score = 51.0, Epsilon = 0.961
+Evaluation after episode 400: Average score over 100 games = 91.4
+Episode 400: Training score = 35.0, Epsilon = 0.949
+Evaluation after episode 500: Average score over 100 games = 108.6
+Episode 500: Training score = 60.0, Epsilon = 0.936
+Evaluation after episode 600: Average score over 100 games = 107.5
+Episode 600: Training score = 45.0, Epsilon = 0.923
+Evaluation after episode 700: Average score over 100 games = 101.1
+Episode 700: Training score = 56.0, Epsilon = 0.910
+Evaluation after episode 800: Average score over 100 games = 107.5
+Episode 800: Training score = 56.0, Epsilon = 0.897
+Evaluation after episode 900: Average score over 100 games = 104.5
+Episode 900: Training score = 70.0, Epsilon = 0.884
+Evaluation after episode 1000: Average score over 100 games = 112.0
+Episode 1000: Training score = 23.0, Epsilon = 0.871
+Evaluation after episode 1100: Average score over 100 games = 109.3
+Episode 1100: Training score = 58.0, Epsilon = 0.859
+Evaluation after episode 1200: Average score over 100 games = 107.2
+Episode 1200: Training score = 47.0, Epsilon = 0.846
+Evaluation after episode 1300: Average score over 100 games = 108.4
+Episode 1300: Training score = 43.0, Epsilon = 0.833
+Evaluation after episode 1400: Average score over 100 games = 111.3
+Episode 1400: Training score = 45.0, Epsilon = 0.820
+Evaluation after episode 1500: Average score over 100 games = 110.6
+Episode 1500: Training score = 59.0, Epsilon = 0.807
+Evaluation after episode 1600: Average score over 100 games = 118.3
+Episode 1600: Training score = 70.0, Epsilon = 0.794
+Evaluation after episode 1700: Average score over 100 games = 117.5
+Episode 1700: Training score = 28.0, Epsilon = 0.781
+Evaluation after episode 1800: Average score over 100 games = 115.3
+Episode 1800: Training score = 49.0, Epsilon = 0.769
+Evaluation after episode 1900: Average score over 100 games = 114.8
+Episode 1900: Training score = 84.0, Epsilon = 0.756
+Evaluation after episode 2000: Average score over 100 games = 118.8
+Episode 2000: Training score = 59.0, Epsilon = 0.743
+Evaluation after episode 2100: Average score over 100 games = 122.5
+Episode 2100: Training score = 112.0, Epsilon = 0.730
+Evaluation after episode 2200: Average score over 100 games = 124.1
+Episode 2200: Training score = 137.0, Epsilon = 0.717
+Evaluation after episode 2300: Average score over 100 games = 121.3
+Episode 2300: Training score = 64.0, Epsilon = 0.704
+Evaluation after episode 2400: Average score over 100 games = 125.9
+Episode 2400: Training score = 79.0, Epsilon = 0.691
+Evaluation after episode 2500: Average score over 100 games = 120.9
+Episode 2500: Training score = 62.0, Epsilon = 0.679
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 269, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 197, in train_dqn
+    q_values = dqn(states)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mc5635/yahtzee/yahtzee_rl/dqn_agent.py", line 22, in forward
+    return self.net(x)  # [batch_size, action_dim]
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1744, in _call_impl
+    forward_call = (self._slow_forward if torch._C._get_tracing_state() else self.forward)
+KeyboardInterrupt

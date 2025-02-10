@@ -1,0 +1,12 @@
+/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py:194: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  weights = torch.tensor(info['_weight'], dtype=torch.float32).to(device)
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 270, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 216, in train_dqn
+    q_target = rewards + gamma * max_q_next * (1 - dones)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_tensor.py", line 39, in wrapped
+    return f(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/_tensor.py", line 1073, in __rsub__
+    return _C._VariableFunctions.rsub(self, other)
+RuntimeError: Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead.

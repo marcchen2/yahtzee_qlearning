@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 345, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 212, in train_dqn
+    next_state, reward, done, _ = env.step(action)
+  File "/home/mc5635/yahtzee/yahtzee_rl/yahtzee.py", line 155, in step
+    next_state = self.get_encoded_state()
+  File "/home/mc5635/yahtzee/yahtzee_rl/yahtzee.py", line 46, in get_encoded_state
+    return encode_state(self.get_state())
+  File "/home/mc5635/yahtzee/yahtzee_rl/state_rep.py", line 63, in encode_state
+    return torch.cat([
+KeyboardInterrupt

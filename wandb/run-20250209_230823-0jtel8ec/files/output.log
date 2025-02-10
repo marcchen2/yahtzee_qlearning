@@ -1,0 +1,17 @@
+Evaluation after episode 100: Average score over 100 games = 72.3
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 308, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 293, in train_dqn
+    save_checkpoint(dqn, target_dqn, optimizer, total_steps, episode + 1, replay_buffer)
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 76, in save_checkpoint
+    torch.save(checkpoint, CHECKPOINT_PATH)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/serialization.py", line 944, in save
+    _save(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/serialization.py", line 1190, in _save
+    pickler.dump(obj)
+  File "/usr/lib/python3.10/multiprocessing/sharedctypes.py", line 199, in __reduce__
+    assert_spawning(self)
+  File "/usr/lib/python3.10/multiprocessing/context.py", line 373, in assert_spawning
+    raise RuntimeError(
+RuntimeError: Synchronized objects should only be shared between processes through inheritance
