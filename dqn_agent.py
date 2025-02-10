@@ -23,7 +23,7 @@ class DQN(nn.Module):
 
 
 class DuelingDQN(nn.Module):
-    def __init__(self, state_dim, action_dim, hidden_dim=256):
+    def __init__(self, state_dim, action_dim, hidden_dim=512):
         super(DuelingDQN, self).__init__()
         
         # Shared feature extraction

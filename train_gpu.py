@@ -12,8 +12,6 @@ import wandb
 from tensordict import TensorDict
 from torchrl.data import ListStorage, PrioritizedReplayBuffer, LazyTensorStorage
 import os
-
-
 # Check for GPU availability
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -165,11 +163,11 @@ def train_dqn(env_cls, num_episodes=10000,
         "epsilon_decay": epsilon_decay_prop, 
         "buffer_capacity": buffer_capacity, 
         "batch_size": batch_size,
+        "state_space_size": input_length,
         })
         
     #set model name for saving
     save_checkpoint_path = save_checkpoint_dir + wandb.run.name
-
 
     for episode in range(num_episodes):
         env = env_cls()
@@ -209,14 +207,11 @@ def train_dqn(env_cls, num_episodes=10000,
             if debug and action_idx >=32:
                 print("scored: ")
                 print(env.get_state()['categories'][category])
-                
-                print("Dice after action:", env.dice)
                 print("\n")
             
             
             # Store experience in replay buffer
-            # replay_buffer.push(state.cpu(), action_idx, reward, next_state.cpu(), done, torch.tensor(next_valid_mask))
-            
+        
             experience = TensorDict({
                 'state': state.cpu(),
                 'action': torch.tensor(action_idx),
@@ -255,11 +250,6 @@ def train_dqn(env_cls, num_episodes=10000,
                 if (episode + 1) % eval_interval == 0:
                     if not debug:
                         wandb.log({"q_val_mean": torch.mean(q_values), "q_val_max":torch.max(q_values)}, step=episode+1)
-
-                
-                #debug
-                # if total_steps % 1000 == 0:
-                #     print(q_values[0])
                 
                 with torch.no_grad():
                     q_next = target_dqn(next_states)
@@ -338,8 +328,8 @@ if __name__ == "__main__":
                                eval_interval=100,
                                eval_episodes=100,
                                save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",  
-                               load_checkpoint_path="/home/mc5635/yahtzee/yahtzee_rl/saved_models/balmy-armadillo-85",
-                               epsilon_start=0.5)
+                               load_checkpoint_path= None, #"/home/mc5635/yahtzee/yahtzee_rl/saved_models/balmy-armadillo-85",
+                               epsilon_start=1)
     
     # print(evaluate_model(dqn_agent.DQN(), make_env, num_episodes=1000, epsilon=1))
     

@@ -19,7 +19,7 @@ class YahtzeeGame:
         ])
         self.upper_bonus = 0
         self.yahtzee_bonuses = 0
-        self.dice = [0]*5
+        self.dice = [0]*5   
         # Start with 0 rolls_left; it will be set to 3 internally 
         # whenever the first reroll is requested each turn:
         self.rolls_left = 0
