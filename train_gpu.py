@@ -12,6 +12,7 @@ import wandb
 from tensordict import TensorDict
 from torchrl.data import ListStorage, PrioritizedReplayBuffer, LazyTensorStorage
 import os
+import itertools
 # Check for GPU availability
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -57,7 +58,7 @@ def evaluate_model(model, env_cls, num_episodes=100, epsilon=0):
     
     avg_score = total_scores / num_episodes
     model.train()  # Set model back to training mode
-    return avg_score
+    return avg_score, env.categories
 
 
 def save_checkpoint(
@@ -96,7 +97,7 @@ def load_checkpoint(filename, dqn, target_dqn, optimizer):
 
 
 def train_dqn(env_cls, num_episodes=10000,
-              buffer_capacity=2000,
+              buffer_capacity=5000,
               batch_size=64,
               gamma=0.99,
               lr=1e-4,
@@ -107,10 +108,11 @@ def train_dqn(env_cls, num_episodes=10000,
               eval_interval=100,
               eval_episodes=100,
               max_grad_norm = 0.5,
-              buffer_alpha = 0.7,
+              buffer_alpha = 0.6,
               buffer_beta = 0.9,
               save_checkpoint_dir=None,     
-              load_checkpoint_path=None,     
+              load_checkpoint_path=None,
+              debug = False     
               ):
     """
     Train DQN agent with periodic evaluation.
@@ -150,7 +152,6 @@ def train_dqn(env_cls, num_episodes=10000,
         )
     
     total_steps = 0
-    debug = False
     
     if not debug:
         wandb.init(
@@ -179,21 +180,32 @@ def train_dqn(env_cls, num_episodes=10000,
         valid_actions_mask = env.get_valid_actions_mask()
         
         while not done:
-        
-            epsilon = get_epsilon(total_steps)
-            action_idx = dqn_agent.select_action(dqn, state, valid_actions_mask, epsilon)
-            
+            # Ensure the network is in training mode to enable noise
+            dqn.train()
+            target_dqn.eval()
+
+            # Get Q-values (they include noise due to NoisyLinear)
+            with torch.no_grad():
+                q_values = dqn(state.unsqueeze(0))  # Shape: [1, action_dim]
+            q_values = q_values.squeeze(0)  # Shape: [action_dim]
+
+            # Mask invalid actions by setting their Q-values to -inf
+            invalid_actions = ~torch.tensor(valid_actions_mask, dtype=torch.bool).to(device)
+            q_values[invalid_actions] = -float('inf')
+
+            # Select the action with the highest Q-value
+            action_idx = torch.argmax(q_values).item()
+
             # Convert action index to game action
             if action_idx < 32:
                 keep_mask = [bool(int(bit)) for bit in f"{action_idx:05b}"]
                 action = ('reroll', keep_mask)               
-                
             else:
                 cat_idx = action_idx - 32
                 category = list(env.categories.keys())[cat_idx]
                 action = ('score', category)
                     
-            #debug
+            # Debugging statements
             if debug:
                 print("Dice before step: ", env.dice)
                 print("Taking action:", action)
@@ -203,15 +215,13 @@ def train_dqn(env_cls, num_episodes=10000,
             next_state = torch.FloatTensor(next_state).to(device)
             next_valid_mask = env.get_valid_actions_mask()
             
-            #debug
+            # Debugging statements
             if debug and action_idx >=32:
                 print("scored: ")
                 print(env.get_state()['categories'][category])
                 print("\n")
             
-            
             # Store experience in replay buffer
-        
             experience = TensorDict({
                 'state': state.cpu(),
                 'action': torch.tensor(action_idx),
@@ -227,7 +237,7 @@ def train_dqn(env_cls, num_episodes=10000,
             valid_actions_mask = next_valid_mask
             total_steps += 1
 
-            # Sample a batch of experiences
+            # Sample a batch of experiences and perform training
             if len(replay_buffer) >= batch_size:
                 batch, info = replay_buffer.sample(batch_size, return_info=True)
 
@@ -243,31 +253,42 @@ def train_dqn(env_cls, num_episodes=10000,
                 weights = info['_weight'].clone().detach().to(dtype=torch.float32, device=device)
                 indices = info['index']
 
-                # Compute Q-values and loss
-                q_values = dqn(states)
-                q_selected = q_values.gather(1, actions.unsqueeze(1)).squeeze(1)
-                
-                if (episode + 1) % eval_interval == 0:
-                    if not debug:
-                        wandb.log({"q_val_mean": torch.mean(q_values), "q_val_max":torch.max(q_values)}, step=episode+1)
-                
+                # Compute Q-values and gather the Q-values for taken actions
+                q_values = dqn(states)  # Shape: [batch_size, action_dim]
+                q_selected = q_values.gather(1, actions.unsqueeze(1)).squeeze(1)  # Shape: [batch_size]
+
+                if (episode + 1) % eval_interval == 0 and not debug:
+                    wandb.log({
+                        "q_val_mean": torch.mean(q_values).item(),
+                        "q_val_max": torch.max(q_values).item()
+                    }, step=episode+1)
+
                 with torch.no_grad():
-                    q_next = target_dqn(next_states)
-                    # Mask invalid actions by setting their Q-values to -inf
-                    q_next[~next_valid_masks.to(device).bool()] = -torch.inf
-                    max_q_next = q_next.max(dim=1)[0]
-                
-                q_target = rewards + gamma * max_q_next * (1 - dones.float())
+                    # Compute target Q-values using the target network
+                    q_next = target_dqn(next_states)  # Shape: [batch_size, action_dim]
+                    
+                    # Mask invalid actions in next states
+                    invalid_next_actions = ~next_valid_masks.to(device).bool()
+                    q_next[invalid_next_actions] = -float('inf')
+
+                    # Compute max Q-value for next states
+                    max_q_next = q_next.max(dim=1)[0]  # Shape: [batch_size]
+
+                    # Compute target: r + gamma * max(Q') * (1 - done)
+                    q_target = rewards + gamma * max_q_next * (1 - dones.float())
+
+                # Compute loss using Huber loss (Smooth L1)
                 loss_function = nn.SmoothL1Loss(reduction='none')
                 loss = loss_function(q_selected, q_target)
-                
-                
+
                 # Apply importance sampling weights
                 loss = (loss * weights).mean()
-                
-                if (episode + 1) % eval_interval == 0:
-                    if not debug:
-                        wandb.log({"reward_avg": torch.mean(rewards)}, step=episode+1)
+
+                if (episode + 1) % eval_interval == 0 and not debug:
+                    wandb.log({
+                        "reward_avg": torch.mean(rewards).item()
+                    }, step=episode+1)
+
                 # Compute TD-errors for priority update
                 with torch.no_grad():
                     td_errors = torch.abs(q_target - q_selected).cpu()
@@ -275,15 +296,19 @@ def train_dqn(env_cls, num_episodes=10000,
                 # Update priorities in the replay buffer
                 replay_buffer.update_priority(indices, td_errors)
 
-                #optimizer step
+                # Backpropagation
                 optimizer.zero_grad()
                 loss.backward()
-                
+
                 # Apply gradient clipping
-                torch.nn.utils.clip_grad_norm_(dqn.parameters(), max_norm=max_grad_norm)  # Adjust max_norm as needed
+                torch.nn.utils.clip_grad_norm_(dqn.parameters(), max_norm=max_grad_norm)
                 optimizer.step()
 
-            # Update target network
+                # Reset noise in both online and target networks
+                dqn.reset_noise()
+                target_dqn.reset_noise()
+
+            # Update target network periodically
             if total_steps % update_target_every == 0:
                 target_dqn.load_state_dict(dqn.state_dict())
         
@@ -293,21 +318,20 @@ def train_dqn(env_cls, num_episodes=10000,
             print("end state: ", env.get_state())
 
         # Periodic evaluation
-        if (episode + 1) % eval_interval == 0:
-            avg_score = evaluate_model(dqn, env_cls, num_episodes=eval_episodes)
+        if (episode + 1) % eval_interval == 0 and not debug:
+            avg_score, categories = evaluate_model(dqn, env_cls, num_episodes=eval_episodes)
             print(f"Evaluation after episode {episode+1}: Average score over {eval_episodes} games = {avg_score:.1f}")
-            if not debug:
-                wandb.log({"avg_score": avg_score, "loss": loss, "epsilon": epsilon}, step=episode+1)
+            wandb.log({"avg_score": avg_score, "loss": loss.item()}, step=episode+1)
+            
 
         # Episode statistics
         if (episode + 1) % 100 == 0:
             final_score = sum(v for v in env.categories.values() if v is not None)
             final_score += env.upper_bonus + env.yahtzee_bonuses
-            print(f"Episode {episode+1}: Training score = {final_score:.1f}, Epsilon = {epsilon:.3f}")
+            print(f"Episode {episode+1}: Training score = {final_score:.1f}")
 
-    
     # Final save at the end of training
-    if save_checkpoint_path is not None:
+    if save_checkpoint_dir is not None:
         save_checkpoint(
             save_checkpoint_path, 
             dqn,
@@ -319,18 +343,221 @@ def train_dqn(env_cls, num_episodes=10000,
         
     return dqn, target_dqn
 
-if __name__ == "__main__":
-    def make_env():
-        return YahtzeeGame()
 
-    dqn, target_dqn = train_dqn(make_env, 
-                               num_episodes=20000,
-                               eval_interval=100,
-                               eval_episodes=100,
-                               save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",  
-                               load_checkpoint_path= None, #"/home/mc5635/yahtzee/yahtzee_rl/saved_models/balmy-armadillo-85",
-                               epsilon_start=1)
+    #         epsilon = get_epsilon(total_steps)
+    #         action_idx = dqn_agent.select_action(dqn, state, valid_actions_mask, epsilon)
+            
+    #         # Convert action index to game action
+    #         if action_idx < 32:
+    #             keep_mask = [bool(int(bit)) for bit in f"{action_idx:05b}"]
+    #             action = ('reroll', keep_mask)               
+                
+    #         else:
+    #             cat_idx = action_idx - 32
+    #             category = list(env.categories.keys())[cat_idx]
+    #             action = ('score', category)
+                    
+    #         #debug
+    #         if debug:
+    #             print("Dice before step: ", env.dice)
+    #             print("Taking action:", action)
+            
+    #         # Execute action
+    #         next_state, reward, done, _ = env.step(action)
+    #         next_state = torch.FloatTensor(next_state).to(device)
+    #         next_valid_mask = env.get_valid_actions_mask()
+            
+    #         #debug
+    #         if debug and action_idx >=32:
+    #             print("scored: ")
+    #             print(env.get_state()['categories'][category])
+    #             print("\n")
+            
+            
+    #         # Store experience in replay buffer
+        
+    #         experience = TensorDict({
+    #             'state': state.cpu(),
+    #             'action': torch.tensor(action_idx),
+    #             'reward': torch.tensor(reward),
+    #             'next_state': next_state.cpu(),
+    #             'done': torch.tensor(done),
+    #             'next_valid_mask': torch.tensor(next_valid_mask)
+    #         }, batch_size=[])
+            
+    #         replay_buffer.add(experience)
+            
+    #         state = next_state
+    #         valid_actions_mask = next_valid_mask
+    #         total_steps += 1
+
+    #         # Sample a batch of experiences
+    #         if len(replay_buffer) >= batch_size:
+    #             batch, info = replay_buffer.sample(batch_size, return_info=True)
+
+    #             # Extract experiences
+    #             states = batch['state'].to(device)
+    #             actions = batch['action'].to(device)
+    #             rewards = batch['reward'].to(device)
+    #             next_states = batch['next_state'].to(device)
+    #             dones = batch['done'].to(device)
+    #             next_valid_masks = batch['next_valid_mask'].to(device)
+
+    #             # Extract sampling weights and indices
+    #             weights = info['_weight'].clone().detach().to(dtype=torch.float32, device=device)
+    #             indices = info['index']
+
+    #             # Compute Q-values and loss
+    #             q_values = dqn(states)
+    #             q_selected = q_values.gather(1, actions.unsqueeze(1)).squeeze(1)
+                
+    #             if (episode + 1) % eval_interval == 0:
+    #                 if not debug:
+    #                     wandb.log({"q_val_mean": torch.mean(q_values), "q_val_max":torch.max(q_values)}, step=episode+1)
+                
+    #             with torch.no_grad():
+    #                 q_next = target_dqn(next_states)
+    #                 # Mask invalid actions by setting their Q-values to -inf
+    #                 q_next[~next_valid_masks.to(device).bool()] = -torch.inf
+    #                 max_q_next = q_next.max(dim=1)[0]
+                
+    #             q_target = rewards + gamma * max_q_next * (1 - dones.float())
+    #             loss_function = nn.SmoothL1Loss(reduction='none')
+    #             loss = loss_function(q_selected, q_target)
+                
+                
+    #             # Apply importance sampling weights
+    #             loss = (loss * weights).mean()
+                
+    #             if (episode + 1) % eval_interval == 0:
+    #                 if not debug:
+    #                     wandb.log({"reward_avg": torch.mean(rewards)}, step=episode+1)
+    #             # Compute TD-errors for priority update
+    #             with torch.no_grad():
+    #                 td_errors = torch.abs(q_target - q_selected).cpu()
+
+    #             # Update priorities in the replay buffer
+    #             replay_buffer.update_priority(indices, td_errors)
+
+    #             #optimizer step
+    #             optimizer.zero_grad()
+    #             loss.backward()
+                
+    #             # Apply gradient clipping
+    #             torch.nn.utils.clip_grad_norm_(dqn.parameters(), max_norm=max_grad_norm)  # Adjust max_norm as needed
+    #             optimizer.step()
+
+    #         # Update target network
+    #         if total_steps % update_target_every == 0:
+    #             target_dqn.load_state_dict(dqn.state_dict())
+        
+    #     if debug:
+    #         final_score = sum(v for v in env.categories.values() if v is not None)
+    #         print("final_score: ", final_score)
+    #         print("end state: ", env.get_state())
+
+    #     # Periodic evaluation
+    #     if (episode + 1) % eval_interval == 0:
+    #         avg_score = evaluate_model(dqn, env_cls, num_episodes=eval_episodes)
+    #         print(f"Evaluation after episode {episode+1}: Average score over {eval_episodes} games = {avg_score:.1f}")
+    #         if not debug:
+    #             wandb.log({"avg_score": avg_score, "loss": loss, "epsilon": epsilon}, step=episode+1)
+
+    #     # Episode statistics
+    #     if (episode + 1) % 100 == 0:
+    #         final_score = sum(v for v in env.categories.values() if v is not None)
+    #         final_score += env.upper_bonus + env.yahtzee_bonuses
+    #         print(f"Episode {episode+1}: Training score = {final_score:.1f}, Epsilon = {epsilon:.3f}")
+
     
+    # # Final save at the end of training
+    # if save_checkpoint_path is not None:
+    #     save_checkpoint(
+    #         save_checkpoint_path, 
+    #         dqn,
+    #         target_dqn,
+    #         optimizer,
+    #         num_episodes,
+    #         total_steps
+    #     )
+        
+    # return dqn, target_dqn
+
+# if __name__ == "__main__":
+#     def make_env():
+#         return YahtzeeGame()
+
+#     dqn, target_dqn = train_dqn(make_env, 
+#                                num_episodes=20000,
+#                                eval_interval=100,
+#                                eval_episodes=100,
+#                                save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",  
+#                                load_checkpoint_path= None, #"/home/mc5635/yahtzee/yahtzee_rl/saved_models/balmy-armadillo-85",
+#                                )
+    
+    
+    
+    
+    
+    # check random agent score
     # print(evaluate_model(dqn_agent.DQN(), make_env, num_episodes=1000, epsilon=1))
     
     
+    
+    
+    
+    
+    
+    
+    
+def hyperparam_sweep():
+    # Define possible values for hyperparameters
+    batch_size_list = [128]
+    buffer_capacity_list = [5000]
+    update_target_every = [100]
+
+    # You can add more or fewer hyperparams to sweep over, e.g.:
+    # epsilon_decay_props = [0.5, 0.8]
+
+    # Create a simple combinatorial grid
+    for (batch_size, buffer_capacity, update_target_every) in itertools.product(
+        batch_size_list,
+        buffer_capacity_list,
+        update_target_every
+    ):
+        # Optionally create a config dict
+        config = {
+            "batch_size": batch_size,
+            "buffer_capacity": buffer_capacity,
+            "update_target_every": update_target_every,
+            
+        }
+        
+        # --- Start a new W&B run for each hyperparam combo ---
+        wandb.init(
+            project="yahtzee-hyperparam-sweep2",
+            config=config,
+            reinit=True  # Ensures each loop iteration is a fresh run
+        )
+
+        # Optionally, you can pass these directly to train_dqn as kwargs
+        def make_env():
+            return YahtzeeGame()  # Or whatever your environment constructor is
+
+        dqn, target_dqn = train_dqn(
+            env_cls=make_env,
+            num_episodes=5000,      # You can reduce for quick testing
+            eval_interval=100,
+            eval_episodes=100,
+            save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/param_sweep_models/",  # or your directory
+            load_checkpoint_path=None,
+            update_target_every=update_target_every,
+            batch_size=batch_size,
+            buffer_capacity=buffer_capacity
+        )
+
+        # Mark the run finished so a new one starts in the next iteration
+        wandb.finish()
+
+if __name__ == "__main__":
+    hyperparam_sweep()
