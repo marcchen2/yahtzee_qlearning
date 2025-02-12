@@ -11,7 +11,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 ALL_ACTIONS = utils.generate_all_actions()
 
 # Load trained model
-def load_trained_model(checkpoint_path, model_class, device='cpu'):
+def load_trained_model(checkpoint_path, model_class, device=device):
     """
     Loads a trained DuelingDQN model from a checkpoint file.
 
@@ -205,6 +205,7 @@ def get_q_values(dice, categories, rolls_left):
         q_values = trained_model(state).cpu().numpy()
         q_values = q_values.flatten()
     
+
     # Apply action masking
     if rolls_left == 0:
         # Disable all reroll actions
