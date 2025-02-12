@@ -15,6 +15,7 @@ Used ChatGPT and/or DeepSeek to:
 - Help me understand and create snippets of code for specific training loop techniques (i.e. Prioritized Experience Replay)
 - Debug the training pipeline.
 - Make suggestions on NN architecture and Q Learning techniques.
+- Help me write the Gradio UI elements. 
 
 
 Weights and Biases to track performance of Models
