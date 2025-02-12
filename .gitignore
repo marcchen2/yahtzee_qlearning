@@ -7,3 +7,5 @@
 /home/mc5635/yahtzee/yahtzee_rl/saved_models/
 /home/mc5635/yahtzee/yahtzee_rl/param_sweep_models/
 param_sweep_models/
+/home/mc5635/yahtzee/yahtzee_rl/.gradio/
+output.log

@@ -5,7 +5,7 @@
 
 `python3 main_ui.py`
 
-Note: If I run the performance mode over 1000 games, I get ~203 median. 
+Note: If I run the performance mode over 1000 games, I get ~210 median, ~211 mean. 
 
 
 

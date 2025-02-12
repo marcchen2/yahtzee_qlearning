@@ -6,6 +6,8 @@ from yahtzee import YahtzeeGame
 import utils
 import dqn_agent
 import pandas as pd
+import os
+from pathlib import Path
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 ALL_ACTIONS = utils.generate_all_actions()
@@ -49,7 +51,10 @@ def load_trained_model(checkpoint_path, model_class, device=device):
     print(f"Loaded trained model from {checkpoint_path}")
     return model
 
-trained_model = load_trained_model("/home/mc5635/yahtzee/yahtzee_rl/saved_models/jumping-deluge-153_218.18", dqn_agent.DuelingDQN)
+# load model
+script_dir = Path(__file__).parent
+checkpoint_path = script_dir / "saved_models" / "wise-armadillo-155_225.72"
+trained_model = load_trained_model(checkpoint_path, dqn_agent.DuelingDQN)
 
 
 ### simulation mode functions ###
