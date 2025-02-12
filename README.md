@@ -1,8 +1,9 @@
 
 # To Run Demo:
 
-'pip install -r requirements'
-'python3 main_ui.py'
+`pip install -r requirements`
+
+`python3 main_ui.py`
 
 Note: If I run the performance mode over 1000 games, I get ~203 median. 
 
