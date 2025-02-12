@@ -1,8 +1,0 @@
-
-
-whats next:
-- hovering around 180
-
--noisy networks
-
--multistep learning (n = 4?)

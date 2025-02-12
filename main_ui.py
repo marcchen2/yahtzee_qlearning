@@ -277,16 +277,19 @@ def yahtzee_q_learning_app():
     
     return iface
 
-# Replace other apps as needed
 def performance_mode():
     # Gradio UI
-    iface = gr.Interface(
-        fn=simulate_games,
-        inputs=gr.Number(label="Number of Games", value=100, precision=0),
-        outputs=gr.Textbox(label="Performance Metrics"),
-        title="Agent Performance Calculator",
-        description="Enter the number of games to simulate and evaluate the trained Yahtzee agent's performance."
-    )
+    iface = gr.Blocks()
+
+    with iface:
+        gr.Markdown("<h1 style='color: orange;'>Agent Performance Calculator</h1>")
+        gr.Interface(
+            fn=simulate_games,
+            inputs=gr.Number(label="Number of Games", value=100, precision=0),
+            outputs=gr.Textbox(label="Performance Metrics"),
+            description="Enter the number of games to simulate and evaluate the trained Yahtzee agent's performance."
+        )
+
     return iface
 
 def calc_mode():
@@ -338,4 +341,4 @@ with gr.Blocks() as demo:
         with gr.Tab("Calculation Mode"):
             calc_mode()
 
-demo.launch()
+demo.launch(share=True)
