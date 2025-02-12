@@ -1,91 +1,144 @@
+import gradio as gr
 import torch
-import torch.nn.functional as F
-import matplotlib.pyplot as plt
-import numpy as np
-import gym  # Assuming your Yahtzee environment follows OpenAI Gym API
-import seaborn as sns
-import yahtzee
+import time
+from yahtzee import YahtzeeGame
+import utils
 import dqn_agent
-# Load your environment
-env = yahtzee.YahtzeeGame()  # Adjust this to your actual environment
+import pandas as pd
 
-# Load the trained model
-class AgentModel(torch.nn.Module):
-    def __init__(self, input_dim, output_dim):
-        super(AgentModel, self).__init__()
-        self.fc1 = torch.nn.Linear(input_dim, 128)
-        self.fc2 = dqn_agent.NoisyLinear(128, 128)  # Using your NoisyLinear layer
-        self.fc3 = torch.nn.Linear(128, output_dim)
 
-    def forward(self, x):
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        return self.fc3(x)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+ALL_ACTIONS = utils.generate_all_actions()
 
-# Define input and output sizes based on your environment
-input_dim = env.observation_space.shape[0]
-output_dim = env.action_space.n
+# Load trained model
+def load_trained_model(checkpoint_path, model_class, device='cpu'):
+    """
+    Loads a trained DuelingDQN model from a checkpoint file.
 
-# Instantiate and load model
-model = dqn_agent.DuelingDQN()
-model.load_state_dict(torch.load("model.pth", map_location=torch.device("cpu")))
-model.eval()
+    Args:
+        checkpoint_path (str): Path to the saved checkpoint file.
+        model_class: The DuelingDQN model class.
+        device (str): Device to load the model onto ('cpu' or 'cuda').
 
-# Function to visualize episode
-def visualize_episode(env, model, num_episodes=1):
-    rewards_per_step = []
-    actions_taken = []
-    state_values = []
+    Returns:
+        model: The loaded DuelingDQN model.
+    """
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    dqn_state_dict = checkpoint['dqn_state_dict']
 
-    for episode in range(num_episodes):
-        state = env.reset()
-        done = False
-        episode_rewards = 0
-        step = 0
+    # Extract dimensions dynamically
+    state_dim, hidden_dim, action_dim = None, None, None
 
-        while not done:
-            state_tensor = torch.FloatTensor(state).unsqueeze(0)
-            action_probs = model(state_tensor)
-            action = torch.argmax(action_probs, dim=1).item()
+    for key, tensor in dqn_state_dict.items():
+        if "feature_layer.0.weight" in key:  # First Linear layer in feature extraction
+            state_dim = tensor.shape[1]  # Input dimension
+            hidden_dim = tensor.shape[0]  # First hidden layer size
+        elif "advantage_stream.weight" in key:  # Last Linear layer in advantage stream
+            action_dim = tensor.shape[0]  # Output dimension (number of actions)
 
-            next_state, reward, done, _ = env.step(action)
+    if state_dim is None or hidden_dim is None or action_dim is None:
+        raise ValueError("Failed to extract model dimensions from checkpoint. Please check the saved model.")
 
-            # Store data for visualization
-            rewards_per_step.append(reward)
-            actions_taken.append(action)
-            state_values.append(state)
+    print(f"Detected model architecture: state_dim={state_dim}, action_dim={action_dim}, hidden_dim={hidden_dim}")
 
-            state = next_state
-            episode_rewards += reward
-            step += 1
+    # Initialize model with correct dimensions
+    model = model_class(state_dim=state_dim, action_dim=action_dim, hidden_dim=hidden_dim).to(device)
+    model.load_state_dict(dqn_state_dict)
+    model.eval()  # Set model to evaluation mode
 
-    # Plot rewards per step
-    plt.figure(figsize=(12, 6))
-    plt.plot(rewards_per_step, label="Reward per Step")
-    plt.xlabel("Step")
-    plt.ylabel("Reward")
-    plt.title("Agent Rewards Over Time")
-    plt.legend()
-    plt.show()
+    print(f"Loaded trained model from {checkpoint_path}")
+    return model
 
-    # Plot action distribution
-    plt.figure(figsize=(12, 6))
-    sns.histplot(actions_taken, bins=env.action_space.n, kde=False)
-    plt.xlabel("Action")
-    plt.ylabel("Frequency")
-    plt.title("Distribution of Actions Taken")
-    plt.show()
+trained_model = load_trained_model("/home/mc5635/yahtzee/yahtzee_rl/saved_models/firm-breeze-148", dqn_agent.DuelingDQN)
 
-    # Visualizing state space evolution (if low-dimensional)
-    if len(state_values[0]) <= 2:  # Only plot if state space is small (2D)
-        states_np = np.array(state_values)
-        plt.figure(figsize=(8, 8))
-        plt.scatter(states_np[:, 0], states_np[:, 1], c=np.arange(len(states_np)), cmap="viridis")
-        plt.xlabel("State Dimension 1")
-        plt.ylabel("State Dimension 2")
-        plt.title("State Transitions Over Time")
-        plt.colorbar(label="Time Step")
-        plt.show()
 
-# Run visualization
-visualize_episode(env, model)
+# Initialize game
+env = YahtzeeGame()
+state_dict = env.reset()
+state = torch.FloatTensor(env.get_encoded_state()).to(device)
+done = False
+turn = 0
+rolls_this_turn = 0
+log_history = ""
+
+def format_log(log):
+    return f"<div style='height: 500px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; font-family: monospace; white-space: pre-wrap;'>{log}</div>"
+
+def format_turn_indicator(turn_text):
+    return f"<span style='color: orange; font-weight: bold;'>{turn_text}</span>"
+
+def format_score_sheet(categories):
+    df = pd.DataFrame(list(categories.items()), columns=["Category", "Score"])
+    return df
+
+def step_game():
+    global state, done, turn, rolls_this_turn, log_history
+    if done:
+        return format_log(log_history + "\nGame Over. Reset to play again."), format_score_sheet(env.categories)
+    
+    if rolls_this_turn == 0:
+        turn += 1
+        display = format_turn_indicator(f"\n===== TURN {turn} =====\n")
+    else:
+        display = ""
+    
+    rolls_this_turn += 1
+    display += f"Roll {rolls_this_turn}: Dice = {env.dice}\n"
+    
+    # Get valid actions
+    valid_actions_mask = env.get_valid_actions_mask()
+    action_idx = dqn_agent.select_action(trained_model, state, valid_actions_mask, epsilon=0.0)
+    
+    if action_idx < 32:  # Reroll action
+        keep_mask = [bool(int(bit)) for bit in f"{action_idx:05b}"]
+        action = ('reroll', keep_mask)
+        display += f"Action: Rerolling, keeping: {keep_mask}\n"
+    else:  # Scoring action
+        category = list(env.categories.keys())[action_idx - 32]
+        action = ('score', category)
+        display += f"Action: Scoring in category: {category}\n"
+    
+    prev_categories = env.categories.copy()
+    next_state, reward, done, _ = env.step(action)
+    state = torch.FloatTensor(next_state).to(device)
+    
+    if action[0] == "score":
+        scored_value = env.categories[category] if env.categories[category] is not None else 0
+        prev_value = prev_categories[category] if prev_categories[category] is not None else 0
+        score_earned = scored_value - prev_value
+        display += f"→ Scored {score_earned} points in {category}\n"
+        rolls_this_turn = 0
+    
+    if done:
+        final_score = sum(v for v in env.categories.values() if v is not None) + env.upper_bonus + env.yahtzee_bonuses
+        display += format_turn_indicator(f"\n===== FINAL SCORE: {final_score} =====\n")
+    
+    log_history += display
+    return format_log(log_history), format_score_sheet(env.categories)
+
+def reset_game():
+    global env, state, done, turn, rolls_this_turn, log_history
+    env = YahtzeeGame()
+    state_dict = env.reset()
+    state = torch.FloatTensor(env.get_encoded_state()).to(device)
+    done = False
+    turn = 0
+    rolls_this_turn = 0
+    log_history = "Game Reset. Click 'Next Move' to start.\n"
+    return format_log(log_history), format_score_sheet(env.categories)
+
+# Gradio UI
+iface = gr.Blocks()
+
+with iface:
+    gr.Markdown("# Yahtzee Q Learning Simulator")
+    with gr.Row():
+        game_log = gr.HTML(label="Game Log")
+        score_sheet = gr.Dataframe(label="Scoring Sheet")
+    next_move_button = gr.Button("Next Move")
+    reset_button = gr.Button("Reset Game")
+    
+    next_move_button.click(fn=step_game, inputs=[], outputs=[game_log, score_sheet])
+    reset_button.click(fn=reset_game, inputs=[], outputs=[game_log, score_sheet])
+
+iface.launch()

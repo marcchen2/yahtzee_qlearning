@@ -19,7 +19,8 @@ class YahtzeeGame:
         ])
         self.upper_bonus = 0
         self.yahtzee_bonuses = 0
-        self.dice = [0]*5   
+        self.dice = [0]*5  
+        self.roll_dice() 
         # Start with 0 rolls_left; it will be set to 3 internally 
         # whenever the first reroll is requested each turn:
         self.rolls_left = 0
@@ -30,7 +31,8 @@ class YahtzeeGame:
         self.upper_bonus = 0
         self.yahtzee_bonuses = 0
         self.dice = [0]*5
-        self.rolls_left = 3
+        self.roll_dice() 
+        self.rolls_left = 2
         return self.get_encoded_state()
 
     def get_state(self):
@@ -116,6 +118,11 @@ class YahtzeeGame:
         self.categories[category] = score
         return score, bonuses
 
+    def get_total_score(self):
+        final_score = sum(v for v in self.categories.values() if v is not None)
+        final_score += self.upper_bonus + self.yahtzee_bonuses
+        return final_score
+
     def step(self, action):
         """
         action is either:
@@ -130,7 +137,7 @@ class YahtzeeGame:
             # If rolls_left == 0, treat this as the start of a brand-new turn
             # (i.e. allow up to 3 rolls this turn).
             if self.rolls_left == 0:
-                self.rolls_left = 3
+                self.rolls_left = 2
 
             if self.rolls_left > 0:
                 self.roll_dice(keep_mask)
@@ -144,12 +151,32 @@ class YahtzeeGame:
             else:
                 score, bonuses = self.apply_move(category)
                 reward = score + bonuses
+                
+                # #penalize agent for getting <4 dice in upper categories
+                # if category in ['Ones', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']:
+                #     number_map = {
+                #         'Ones':   1,
+                #         'Twos':   2,
+                #         'Threes': 3,
+                #         'Fours':  4,
+                #         'Fives':  5,
+                #         'Sixes':  6
+                #     }
+                #     num = number_map[category]
+                #     if score <= 3 * num:
+                #         reward -= 2
+                # else:
+                #     score = 0
+                #     reward -= 10
+                        
 
             # Scoring ends the turn; set rolls_left to 3
-            self.rolls_left = 3
+            self.roll_dice()
+            self.rolls_left = 2
 
             # Check if game ended (all categories filled)
             if all(v is not None for v in self.categories.values()):
+                reward += self.get_total_score()
                 done = True
 
         next_state = self.get_encoded_state()
@@ -160,10 +187,8 @@ class YahtzeeGame:
         mask = [False] * 45
         
         # if at the beginning of a turn, must roll all dice. 
-        if self.rolls_left == 3:
-            mask[0] = True
-            
-        elif self.rolls_left > 0:
+
+        if self.rolls_left > 0:
             # Rolling phase: can reroll (first 32 actions)
             mask[:32] = [True] * 32
         else:
