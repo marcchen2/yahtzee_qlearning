@@ -52,27 +52,40 @@ def load_trained_model(checkpoint_path, model_class, device='cpu'):
 trained_model = load_trained_model("/home/mc5635/yahtzee/yahtzee_rl/saved_models/firm-breeze-148", dqn_agent.DuelingDQN)
 
 
+
+
 # Initialize game
-env = YahtzeeGame()
-state_dict = env.reset()
-state = torch.FloatTensor(env.get_encoded_state()).to(device)
-done = False
-turn = 0
-rolls_this_turn = 0
-log_history = ""
+def initialize_game():
+    global env, state, done, turn, rolls_this_turn, log_history
+    env = YahtzeeGame()
+    state_dict = env.reset()
+    state = torch.FloatTensor(env.get_encoded_state()).to(device)
+    done = False
+    turn = 0
+    rolls_this_turn = 0
+    log_history = "Game Reset. Click 'Next Move' to start.\n"
+
+initialize_game()
 
 def format_log(log):
-    return f"<div style='height: 500px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; font-family: monospace; white-space: pre-wrap;'>{log}</div>"
+    return f"<div style='height: 700px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; font-family: monospace; white-space: pre-wrap;'>{log}</div>"
 
 def format_turn_indicator(turn_text):
     return f"<span style='color: orange; font-weight: bold;'>{turn_text}</span>"
 
-def format_score_sheet(categories):
+def format_score_sheet(categories, upper_bonus=0, yahtzee_bonuses=0):
     df = pd.DataFrame(list(categories.items()), columns=["Category", "Score"])
+    df.loc[len(df)] = ["Upper Bonus", upper_bonus]
+    df.loc[len(df)] = ["Yahtzee Bonuses", yahtzee_bonuses]
     return df
+       
 
 def step_game():
     global state, done, turn, rolls_this_turn, log_history
+
+    prev_upper_bonus = env.upper_bonus  # Ensure these are assigned before usage
+    prev_yahtzee_bonuses = env.yahtzee_bonuses
+
     if done:
         return format_log(log_history + "\nGame Over. Reset to play again."), format_score_sheet(env.categories)
     
@@ -99,6 +112,7 @@ def step_game():
         display += f"Action: Scoring in category: {category}\n"
     
     prev_categories = env.categories.copy()
+
     next_state, reward, done, _ = env.step(action)
     state = torch.FloatTensor(next_state).to(device)
     
@@ -109,36 +123,44 @@ def step_game():
         display += f"→ Scored {score_earned} points in {category}\n"
         rolls_this_turn = 0
     
+    if env.upper_bonus > prev_upper_bonus:
+        display += f"→ Upper Bonus Scored: {env.upper_bonus} points!\n"
+    if env.yahtzee_bonuses > prev_yahtzee_bonuses:
+        display += f"→ Yahtzee Bonus Scored: {env.yahtzee_bonuses} points!\n"
+
     if done:
         final_score = sum(v for v in env.categories.values() if v is not None) + env.upper_bonus + env.yahtzee_bonuses
         display += format_turn_indicator(f"\n===== FINAL SCORE: {final_score} =====\n")
     
     log_history += display
-    return format_log(log_history), format_score_sheet(env.categories)
+    return format_log(log_history), format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses)
 
 def reset_game():
-    global env, state, done, turn, rolls_this_turn, log_history
-    env = YahtzeeGame()
-    state_dict = env.reset()
-    state = torch.FloatTensor(env.get_encoded_state()).to(device)
-    done = False
-    turn = 0
-    rolls_this_turn = 0
-    log_history = "Game Reset. Click 'Next Move' to start.\n"
-    return format_log(log_history), format_score_sheet(env.categories)
+    initialize_game()
+    return format_log(log_history), format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses)
 
 # Gradio UI
 iface = gr.Blocks()
 
 with iface:
+    initialize_game()  # Ensure the game is reset upon loading
     gr.Markdown("# Yahtzee Q Learning Simulator")
     with gr.Row():
-        game_log = gr.HTML(label="Game Log")
-        score_sheet = gr.Dataframe(label="Scoring Sheet")
+        game_log = gr.HTML(label="Game Log", value=format_log(log_history))
+        score_sheet = gr.Dataframe(
+    label="Scoring Sheet",
+    value=format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses),
+    elem_id='score-sheet',
+    max_height=700
+)
+
     next_move_button = gr.Button("Next Move")
     reset_button = gr.Button("Reset Game")
     
     next_move_button.click(fn=step_game, inputs=[], outputs=[game_log, score_sheet])
     reset_button.click(fn=reset_game, inputs=[], outputs=[game_log, score_sheet])
+
+# Ensure the game is reset upon loading
+
 
 iface.launch()
