@@ -6,7 +6,6 @@ import utils
 import dqn_agent
 import pandas as pd
 
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 ALL_ACTIONS = utils.generate_all_actions()
 
@@ -49,10 +48,7 @@ def load_trained_model(checkpoint_path, model_class, device='cpu'):
     print(f"Loaded trained model from {checkpoint_path}")
     return model
 
-trained_model = load_trained_model("/home/mc5635/yahtzee/yahtzee_rl/saved_models/firm-breeze-148", dqn_agent.DuelingDQN)
-
-
-
+trained_model = load_trained_model("/home/mc5635/yahtzee/yahtzee_rl/saved_models/jumping-deluge-153_218.18", dqn_agent.DuelingDQN)
 
 # Initialize game
 def initialize_game():
@@ -68,7 +64,11 @@ def initialize_game():
 initialize_game()
 
 def format_log(log):
-    return f"<div style='height: 700px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; font-family: monospace; white-space: pre-wrap;'>{log}</div>"
+    return f"""
+    <div id="game-log" style="height: 700px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; font-family: monospace; white-space: pre-wrap;">
+        {log}
+    </div>
+    """
 
 def format_turn_indicator(turn_text):
     return f"<span style='color: orange; font-weight: bold;'>{turn_text}</span>"
@@ -104,12 +104,14 @@ def step_game():
     
     if action_idx < 32:  # Reroll action
         keep_mask = [bool(int(bit)) for bit in f"{action_idx:05b}"]
+        formatted_keep_mask = "[" + "".join("K" if keep else "_" for keep in keep_mask) + "]"
         action = ('reroll', keep_mask)
-        display += f"Action: Rerolling, keeping: {keep_mask}\n"
+        display += f"Rerolling, keeping: {formatted_keep_mask}\n"
+
     else:  # Scoring action
         category = list(env.categories.keys())[action_idx - 32]
         action = ('score', category)
-        display += f"Action: Scoring in category: {category}\n"
+        display += f"Scoring in category: {category}\n"
     
     prev_categories = env.categories.copy()
 
@@ -140,27 +142,41 @@ def reset_game():
     return format_log(log_history), format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses)
 
 # Gradio UI
+
 iface = gr.Blocks()
 
 with iface:
     initialize_game()  # Ensure the game is reset upon loading
-    gr.Markdown("# Yahtzee Q Learning Simulator")
+    gr.Markdown("<h1 style='color: orange;'>Marc's Yahtzee Q Learning Simulator</h1>")
+
     with gr.Row():
-        game_log = gr.HTML(label="Game Log", value=format_log(log_history))
+        game_log = gr.HTML(label="Game Log", value=format_log(log_history), elem_id="game-log-container")
         score_sheet = gr.Dataframe(
-    label="Scoring Sheet",
-    value=format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses),
-    elem_id='score-sheet',
-    max_height=700
-)
+            label="Scoring Sheet",
+            value=format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses),
+            max_height=700
+        )
 
     next_move_button = gr.Button("Next Move")
     reset_button = gr.Button("Reset Game")
     
-    next_move_button.click(fn=step_game, inputs=[], outputs=[game_log, score_sheet])
-    reset_button.click(fn=reset_game, inputs=[], outputs=[game_log, score_sheet])
+    # Attach JavaScript to scroll down after each update
+    js_scroll = """
+    function scrollLog() {
+        let log = document.getElementById('game-log-container');
+        if (log) {
+            log.scrollTop = log.scrollHeight;
+        }
+    }
+    setTimeout(scrollLog, 100);
+    """
 
-# Ensure the game is reset upon loading
+    next_move_button.click(fn=step_game, inputs=[], outputs=[game_log, score_sheet]).then(
+        lambda: None, None, None, js=js_scroll
+    )
 
+    reset_button.click(fn=reset_game, inputs=[], outputs=[game_log, score_sheet]).then(
+        lambda: None, None, None, js=js_scroll
+    )
 
 iface.launch()

@@ -152,22 +152,6 @@ class YahtzeeGame:
                 score, bonuses = self.apply_move(category)
                 reward = score + bonuses
                 
-                # #penalize agent for getting <4 dice in upper categories
-                # if category in ['Ones', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']:
-                #     number_map = {
-                #         'Ones':   1,
-                #         'Twos':   2,
-                #         'Threes': 3,
-                #         'Fours':  4,
-                #         'Fives':  5,
-                #         'Sixes':  6
-                #     }
-                #     num = number_map[category]
-                #     if score <= 3 * num:
-                #         reward -= 2
-                # else:
-                #     score = 0
-                #     reward -= 10
                         
 
             # Scoring ends the turn; set rolls_left to 3

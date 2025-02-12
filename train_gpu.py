@@ -193,24 +193,6 @@ def train_dqn(env_cls, num_episodes=10000,
             #selection action, eps greedy
             epsilon = get_epsilon(total_steps)
             action_idx = dqn_agent.select_action(dqn, state, valid_actions_mask, epsilon)      
-            
-            # #noisy network stuff;--------
-            # # Ensure the network is in training mode to enable noise
-            # dqn.train()
-            # target_dqn.eval()
-
-            # # Get Q-values (they include noise due to NoisyLinear)
-            # with torch.no_grad():
-            #     q_values = dqn(state.unsqueeze(0))  # Shape: [1, action_dim]
-            # q_values = q_values.squeeze(0)  # Shape: [action_dim]
-
-            # # Mask invalid actions by setting their Q-values to -inf
-            # invalid_actions = ~torch.tensor(valid_actions_mask, dtype=torch.bool).to(device)
-            # q_values[invalid_actions] = -float('inf')
-
-            # # Select the action with the highest Q-value
-            # action_idx = torch.argmax(q_values).item()
-            #------------------------------
 
             # Convert action index to game action
             if action_idx < 32:
@@ -392,14 +374,14 @@ if __name__ == "__main__":
 
 
     dqn, target_dqn = train_dqn(make_env, 
-                               num_episodes=25000,
+                               num_episodes=100000,
                                eval_interval=100,
                                eval_episodes=100,
                                save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",  
-                               load_checkpoint_path= "/home/mc5635/yahtzee/yahtzee_rl/saved_models/firm-breeze-148",
+                               load_checkpoint_path= "/home/mc5635/yahtzee/yahtzee_rl/saved_models/jumping-deluge-153_216.37",
                                lr= 0.00001,
                                epsilon_start=0.15,
-                               buffer_beta=0.4, 
+                               buffer_beta=0.3, 
                                buffer_capacity=10000,
                                batch_size=512,
                                )
