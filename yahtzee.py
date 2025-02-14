@@ -78,6 +78,9 @@ class YahtzeeGame:
             'Fives':  5,
             'Sixes':  6
         }
+        # joker rule flag: bonus yahtzee can be scored as anything
+        bonus_yahtzee = all(d == self.dice[0] for d in self.dice) and self.categories['Yahtzee'] == 50
+        
         if category in number_map:
             value = number_map[category]
             return sum(d for d in dice if d == value)
@@ -86,11 +89,11 @@ class YahtzeeGame:
         elif category == 'Four of a Kind':
             return sum(dice) if max(counts) >= 4 else 0
         elif category == 'Full House':
-            return 25 if (3 in counts and 2 in counts) else 0
+            return 25 if (3 in counts and 2 in counts) or bonus_yahtzee else 0
         elif category == 'Small Straight':
-            return 30 if any(all(x in dice for x in [i,i+1,i+2,i+3]) for i in [1,2,3]) else 0
+            return 30 if any(all(x in dice for x in [i,i+1,i+2,i+3]) for i in [1,2,3]) or bonus_yahtzee else 0
         elif category == 'Large Straight':
-            return 40 if any(all(x in dice for x in [i,i+1,i+2,i+3,i+4]) for i in [1,2]) else 0
+            return 40 if any(all(x in dice for x in [i,i+1,i+2,i+3,i+4]) for i in [1,2]) or bonus_yahtzee else 0
         elif category == 'Yahtzee':
             return 50 if all(d == dice[0] for d in dice) else 0
         elif category == 'Chance':

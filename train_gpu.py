@@ -14,18 +14,23 @@ from torchrl.data import ListStorage, PrioritizedReplayBuffer, LazyTensorStorage
 import os
 import itertools
 from torch.optim.lr_scheduler import LambdaLR
-
+import statistics
 
 ALL_ACTIONS = utils.generate_all_actions()
 torch.manual_seed(1)
 np.random.seed(1)
 random.seed(1)
 
-def evaluate_model(model, env_cls, num_episodes=100, epsilon=0):
+import torch
+import statistics
+
+def evaluate_model(model, env_cls, num_episodes=500, epsilon=0):
     """Evaluate the model's performance over multiple episodes without exploration."""
     model.eval()  # Set model to evaluation mode
-    total_scores = 0.0
     
+    total_scores = 0.0
+    scores = []
+
     with torch.no_grad():  # Disable gradient computation
         for _ in range(num_episodes):
             env = env_cls()
@@ -55,10 +60,14 @@ def evaluate_model(model, env_cls, num_episodes=100, epsilon=0):
             final_score = sum(v for v in env.categories.values() if v is not None)
             final_score += env.upper_bonus + env.yahtzee_bonuses
             total_scores += final_score
+            scores.append(final_score)
     
     avg_score = total_scores / num_episodes
+    median_score = statistics.median(scores)
+
     model.train()  # Set model back to training mode
-    return avg_score, env.categories
+    return avg_score, env.categories, median_score
+
 
 
 def save_checkpoint(
@@ -104,7 +113,7 @@ def train_dqn(env_cls, num_episodes=10000,
               epsilon_start=1.0,
               epsilon_end=0.1,
               epsilon_decay_prop=0.7,  # % of total steps
-              update_target_every=500,
+              update_target_every=1000,
               eval_interval=100,
               eval_episodes=100,
               max_grad_norm = 0.5,
@@ -174,10 +183,12 @@ def train_dqn(env_cls, num_episodes=10000,
         "buffer_beta": buffer_beta
         })
         
+        # config = wandb.config
+        
         #set model name for saving
         save_checkpoint_path = save_checkpoint_dir + wandb.run.name
     
-    max_score_avg = 0
+    max_med_score = 0
 
     for episode in range(num_episodes):
         env = env_cls()
@@ -313,9 +324,17 @@ def train_dqn(env_cls, num_episodes=10000,
                 # dqn.reset_noise()
                 # target_dqn.reset_noise()
 
-            # Update target network periodically
-            if total_steps % update_target_every == 0:
-                target_dqn.load_state_dict(dqn.state_dict())
+            # # Update target network periodically -- hard update
+            # if total_steps % update_target_every == 0:
+            #     target_dqn.load_state_dict(dqn.state_dict())
+            
+            # soft update
+            tau = 0.01  # or 0.001, 0.005, etc.
+            for target_param, online_param in zip(target_dqn.parameters(), dqn.parameters()):
+                target_param.data.copy_(
+                    tau * online_param.data + (1.0 - tau) * target_param.data
+    )
+
         
         # update lr
         scheduler.step()
@@ -327,15 +346,15 @@ def train_dqn(env_cls, num_episodes=10000,
 
         # Periodic evaluation
         if (episode + 1) % eval_interval == 0 and not debug:
-            avg_score, categories = evaluate_model(dqn, env_cls, num_episodes=eval_episodes)
-            print(f"Evaluation after episode {episode+1}: Average score over {eval_episodes} games = {avg_score:.1f}")
-            wandb.log({"avg_score": avg_score, "loss": loss.item(),"epsilon": epsilon}, step=episode+1)
+            avg_score, categories, med_score = evaluate_model(dqn, env_cls, num_episodes=eval_episodes)
+            print(f"Evaluation after episode {episode+1}: Score over {eval_episodes} games = Avg: {avg_score:.1f}, Med: {med_score:.1f}")
+            wandb.log({"avg_score": avg_score, "med_score": med_score, "loss": loss.item(),"epsilon": epsilon}, step=episode+1)
             
-            if avg_score > max_score_avg:
-                max_score_avg = avg_score
+            if med_score > max_med_score and episode > 5000:
+                max_med_score = med_score
                 if save_checkpoint_dir is not None:
                     save_checkpoint(
-                        save_checkpoint_path + "_" + str(avg_score), 
+                        save_checkpoint_path + "_med_" + str(med_score), 
                         dqn,
                         target_dqn,
                         optimizer,
@@ -370,20 +389,25 @@ if __name__ == "__main__":
         return YahtzeeGame()
     
     # Check for GPU availability
-    device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:3" if torch.cuda.is_available() else "cpu")
+    
+    pid = os.getpid()
+    print(f"My process ID is: {pid}")
+    print("device: ", device)
+    
 
 
     dqn, target_dqn = train_dqn(make_env, 
                                num_episodes=100000,
                                eval_interval=100,
-                               eval_episodes=100,
+                               eval_episodes=500,
                                save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",  
-                               load_checkpoint_path= "/home/mc5635/yahtzee/yahtzee_rl/saved_models/jumping-deluge-153_216.37",
-                               lr= 0.00001,
-                               epsilon_start=0.15,
-                               buffer_beta=0.3, 
-                               buffer_capacity=10000,
-                               batch_size=512,
+                               load_checkpoint_path= None, #"/home/mc5635/yahtzee/yahtzee_rl/saved_models/jumping-deluge-153_216.37",
+                               lr= 0.0001,
+                               epsilon_start=1.0,
+                               buffer_beta=0.6, 
+                               buffer_capacity=20000,
+                               batch_size=256,
                                )
     
     
@@ -435,7 +459,7 @@ def hyperparam_sweep():
             env_cls=make_env,
             num_episodes=5000,      # You can reduce for quick testing
             eval_interval=100,
-            eval_episodes=100,
+            eval_episodes=500,
             save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/param_sweep_models/",  # or your directory
             load_checkpoint_path=None,
             buffer_alpha=buffer_alpha, 

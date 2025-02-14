@@ -1,0 +1,43 @@
+My process ID is: 3444452
+device:  cuda:3
+this is the run with onluy final reward
+wandb: Currently logged in as: mc5635 (mc5635-columbia-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.6
+wandb: Run data is saved locally in /home/mc5635/yahtzee/yahtzee_rl/wandb/run-20250213_193011-txj01t4e
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run enthusiastic-smooch-186
+wandb: ⭐️ View project at https://wandb.ai/mc5635-columbia-university/yahtzee
+wandb: 🚀 View run at https://wandb.ai/mc5635-columbia-university/yahtzee/runs/txj01t4e
+/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:227: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+Evaluation after episode 100: Score over 500 games = Avg: 58.4, Med: 54.0
+Episode 100: Training score = 55.0, Epsilon = 0.999, lr = 0.0000999
+Evaluation after episode 200: Score over 500 games = Avg: 71.2, Med: 68.0
+Episode 200: Training score = 41.0, Epsilon = 0.998, lr = 0.0000998
+Evaluation after episode 300: Score over 500 games = Avg: 76.4, Med: 75.0
+Episode 300: Training score = 77.0, Epsilon = 0.997, lr = 0.0000996
+Evaluation after episode 400: Score over 500 games = Avg: 77.4, Med: 72.0
+Episode 400: Training score = 95.0, Epsilon = 0.996, lr = 0.0000995
+Evaluation after episode 500: Score over 500 games = Avg: 82.9, Med: 79.0
+Episode 500: Training score = 47.0, Epsilon = 0.995, lr = 0.0000994
+Evaluation after episode 600: Score over 500 games = Avg: 82.5, Med: 79.0
+Episode 600: Training score = 41.0, Epsilon = 0.994, lr = 0.0000993
+Evaluation after episode 700: Score over 500 games = Avg: 83.8, Med: 79.0
+Episode 700: Training score = 52.0, Epsilon = 0.993, lr = 0.0000991
+Evaluation after episode 800: Score over 500 games = Avg: 86.6, Med: 82.0
+Episode 800: Training score = 33.0, Epsilon = 0.992, lr = 0.0000990
+Evaluation after episode 900: Score over 500 games = Avg: 84.3, Med: 80.0
+Episode 900: Training score = 35.0, Epsilon = 0.991, lr = 0.0000989
+Evaluation after episode 1000: Score over 500 games = Avg: 88.0, Med: 86.0
+Episode 1000: Training score = 23.0, Epsilon = 0.990, lr = 0.0000988
+Evaluation after episode 1100: Score over 500 games = Avg: 90.0, Med: 88.0
+Episode 1100: Training score = 32.0, Epsilon = 0.989, lr = 0.0000986
+Evaluation after episode 1200: Score over 500 games = Avg: 86.1, Med: 81.0
+Episode 1200: Training score = 64.0, Epsilon = 0.988, lr = 0.0000985
+Evaluation after episode 1300: Score over 500 games = Avg: 89.3, Med: 87.0
+Episode 1300: Training score = 53.0, Epsilon = 0.987, lr = 0.0000984
+Evaluation after episode 1400: Score over 500 games = Avg: 99.1, Med: 95.0
+Episode 1400: Training score = 68.0, Epsilon = 0.987, lr = 0.0000983
+Evaluation after episode 1500: Score over 500 games = Avg: 96.7, Med: 94.0
+Episode 1500: Training score = 91.0, Epsilon = 0.986, lr = 0.0000981

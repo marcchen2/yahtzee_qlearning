@@ -1,0 +1,22 @@
+# sweep_config.yaml
+
+method: bayes          # or "random", "bayes"
+metric:
+  name: avg_score     # the metric you want to maximize/minimize
+  goal: maximize
+
+parameters:
+  lr:
+    values: [1e-3, 1e-4, 1e-5]    # three possibilities for the learning rate
+  buffer_alpha:
+    values: [0.7, 0.5]
+  buffer_beta:
+    values: [0.9, 0.3]
+  buffer_capacity:
+    values: [5000, 10000]
+
+# You can add more parameters if you'd like:
+#  episodes:
+#    values: [5000, 10000]
+#  epsilon_decay:
+#    values: [0.5, 0.8]

@@ -1,0 +1,22 @@
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_setup.py:_flush():68] Current SDK version is 0.19.6
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_setup.py:_flush():68] Configure stats pid to 3444452
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_setup.py:_flush():68] Loading settings from /home/mc5635/.config/wandb/settings
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_setup.py:_flush():68] Loading settings from /home/mc5635/yahtzee/yahtzee_rl/wandb/settings
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_init.py:setup_run_log_directory():637] Logging user logs to /home/mc5635/yahtzee/yahtzee_rl/wandb/run-20250213_193011-txj01t4e/logs/debug.log
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_init.py:setup_run_log_directory():638] Logging internal logs to /home/mc5635/yahtzee/yahtzee_rl/wandb/run-20250213_193011-txj01t4e/logs/debug-internal.log
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_init.py:init():756] calling init triggers
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_init.py:init():761] wandb.init called with sweep_config: {}
+config: {'learning_rate': 0.0001, 'episodes': 100000, 'epsilon_decay': 0.7, 'buffer_capacity': 20000, 'batch_size': 256, 'state_space_size': 28, 'update_target_every': 1000, 'buffer_alpha': 0.7, 'buffer_beta': 0.6, '_wandb': {}}
+2025-02-13 19:30:11,891 INFO    MainThread:3444452 [wandb_init.py:init():789] starting backend
+2025-02-13 19:30:12,096 INFO    MainThread:3444452 [wandb_init.py:init():793] sending inform_init request
+2025-02-13 19:30:12,099 INFO    MainThread:3444452 [backend.py:_multiprocessing_setup():97] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-02-13 19:30:12,100 INFO    MainThread:3444452 [wandb_init.py:init():808] backend started and connected
+2025-02-13 19:30:12,100 INFO    MainThread:3444452 [wandb_init.py:init():901] updated telemetry
+2025-02-13 19:30:12,105 INFO    MainThread:3444452 [wandb_init.py:init():936] communicating run to backend with 90.0 second timeout
+2025-02-13 19:30:12,356 INFO    MainThread:3444452 [wandb_init.py:init():994] starting run threads in backend
+2025-02-13 19:30:12,409 INFO    MainThread:3444452 [wandb_run.py:_console_start():2385] atexit reg
+2025-02-13 19:30:12,409 INFO    MainThread:3444452 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2025-02-13 19:30:12,409 INFO    MainThread:3444452 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2025-02-13 19:30:12,409 INFO    MainThread:3444452 [wandb_run.py:_redirect():2325] Redirects installed.
+2025-02-13 19:30:12,411 INFO    MainThread:3444452 [wandb_init.py:init():1036] run started, returning control to user process
