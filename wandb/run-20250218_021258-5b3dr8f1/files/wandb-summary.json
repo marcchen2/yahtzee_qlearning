@@ -1,0 +1,1 @@
+{"avg_score":185.634,"epsilon":0.1,"_wandb":{"runtime":45082},"med_score":183,"_timestamp":1.73990786154594e+09,"_step":200000,"loss":2.041991949081421,"_runtime":45082.866276303,"q_val_max":246.39422607421875,"q_val_mean":162.88345336914062,"reward_avg":6.8046875}

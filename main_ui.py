@@ -53,9 +53,8 @@ def load_trained_model(checkpoint_path, model_class, device=device):
 
 # load model
 script_dir = Path(__file__).parent
-checkpoint_path = script_dir / "saved_models" / "wise-armadillo-155_225.72"
+checkpoint_path = script_dir / "saved_models" / "wise-armadillo-155_228.27"
 trained_model = load_trained_model(checkpoint_path, dqn_agent.DuelingDQN)
-
 
 ### simulation mode functions ###
 
@@ -92,25 +91,30 @@ def format_score_sheet(categories, upper_bonus=0, yahtzee_bonuses=0):
 def step_game():
     global state, done, turn, rolls_this_turn, log_history
 
-    prev_upper_bonus = env.upper_bonus  # Ensure these are assigned before usage
+    prev_upper_bonus = env.upper_bonus
     prev_yahtzee_bonuses = env.yahtzee_bonuses
 
     if done:
-        return format_log(log_history + "\nGame Over. Reset to play again."), format_score_sheet(env.categories)
-    
+        return format_log(log_history + "\nGame Over. Reset to play again."), format_score_sheet(env.categories), pd.DataFrame()
+
     if rolls_this_turn == 0:
         turn += 1
         display = format_turn_indicator(f"\n===== TURN {turn} =====\n")
     else:
         display = ""
-    
+
     rolls_this_turn += 1
     display += f"Roll {rolls_this_turn}: Dice = {env.dice}\n"
-    
+
     # Get valid actions
     valid_actions_mask = env.get_valid_actions_mask()
     action_idx = dqn_agent.select_action(trained_model, state, valid_actions_mask, epsilon=0.0)
-    
+
+    # Calculate Q-values for display
+    q_values = get_q_values(env.dice, env.categories, env.rolls_left)
+    q_values_df = pd.DataFrame(q_values.items(), columns=["Action", "Expected Value"])
+    q_values_df = q_values_df.sort_values(by="Expected Value", ascending=False)
+
     if action_idx < 32:  # Reroll action
         keep_mask = [bool(int(bit)) for bit in f"{action_idx:05b}"]
         formatted_keep_mask = "[" + "".join("K" if keep else "_" for keep in keep_mask) + "]"
@@ -121,19 +125,19 @@ def step_game():
         category = list(env.categories.keys())[action_idx - 32]
         action = ('score', category)
         display += f"Scoring in category: {category}\n"
-    
+
     prev_categories = env.categories.copy()
 
     next_state, reward, done, _ = env.step(action)
     state = torch.FloatTensor(next_state).to(device)
-    
+
     if action[0] == "score":
         scored_value = env.categories[category] if env.categories[category] is not None else 0
         prev_value = prev_categories[category] if prev_categories[category] is not None else 0
         score_earned = scored_value - prev_value
         display += f"→ Scored {score_earned} points in {category}\n"
         rolls_this_turn = 0
-    
+
     if env.upper_bonus > prev_upper_bonus:
         display += f"→ Upper Bonus Scored: {env.upper_bonus} points!\n"
     if env.yahtzee_bonuses > prev_yahtzee_bonuses:
@@ -142,13 +146,13 @@ def step_game():
     if done:
         final_score = sum(v for v in env.categories.values() if v is not None) + env.upper_bonus + env.yahtzee_bonuses
         display += format_turn_indicator(f"\n===== FINAL SCORE: {final_score} =====\n")
-    
+
     log_history += display
-    return format_log(log_history), format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses)
+    return format_log(log_history), format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses), q_values_df
 
 def reset_game():
     initialize_game()
-    return format_log(log_history), format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses)
+    return format_log(log_history), format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses), pd.DataFrame()
 
 ####
 
@@ -156,10 +160,14 @@ def reset_game():
 ### performance mode functions ###
 
 def simulate_games(num_games):
+    env = YahtzeeGame()  # Initialize the environment
     scores = []
+    category_scores = {category: [] for category in env.categories.keys()}
+    upper_bonus_scores = []
+    yahtzee_bonus_scores = []
     
     for _ in range(num_games):
-        env = YahtzeeGame()
+        env = YahtzeeGame()  # Re-initialize the environment for each game
         state = torch.FloatTensor(env.get_encoded_state()).to(device)
         done = False
 
@@ -179,11 +187,31 @@ def simulate_games(num_games):
 
         final_score = sum(v for v in env.categories.values() if v is not None) + env.upper_bonus + env.yahtzee_bonuses
         scores.append(final_score)
+        
+        # Collect category scores and bonuses
+        for category, score in env.categories.items():
+            if score is not None:
+                category_scores[category].append(score)
+        upper_bonus_scores.append(env.upper_bonus)
+        yahtzee_bonus_scores.append(env.yahtzee_bonuses)
     
     mean_score = np.mean(scores)
     median_score = np.median(scores)
     
-    return f"Mean Score: {mean_score:.2f}\nMedian Score: {median_score:.2f}"
+    # Calculate average scores for each category and bonuses
+    avg_category_scores = {category: np.mean(scores) if scores else 0 for category, scores in category_scores.items()}
+    avg_upper_bonus = np.mean(upper_bonus_scores)
+    avg_yahtzee_bonus = np.mean(yahtzee_bonus_scores)
+    
+    # Format the output
+    category_scores_str = "\n".join([f"{category}: {avg_score:.2f}" for category, avg_score in avg_category_scores.items()])
+    return (
+        f"Mean Score: {mean_score:.2f}\n"
+        f"Median Score: {median_score:.2f}\n"
+        f"Average Category Scores:\n{category_scores_str}\n"
+        f"Average Upper Bonus: {avg_upper_bonus:.2f}\n"
+        f"Average Yahtzee Bonus: {avg_yahtzee_bonus:.2f}"
+    )
 
 ####
 
@@ -258,6 +286,7 @@ def yahtzee_q_learning_app():
                 value=format_score_sheet(env.categories, env.upper_bonus, env.yahtzee_bonuses),
                 max_height=700
             )
+            q_values_table = gr.Dataframe(label="Q-Values", value=pd.DataFrame(), max_height=700)
 
         next_move_button = gr.Button("Next Move")
         reset_button = gr.Button("Reset Game")
@@ -273,11 +302,11 @@ def yahtzee_q_learning_app():
         setTimeout(scrollLog, 100);
         """
 
-        next_move_button.click(fn=step_game, inputs=[], outputs=[game_log, score_sheet]).then(
+        next_move_button.click(fn=step_game, inputs=[], outputs=[game_log, score_sheet, q_values_table]).then(
             lambda: None, None, None, js=js_scroll
         )
 
-        reset_button.click(fn=reset_game, inputs=[], outputs=[game_log, score_sheet]).then(
+        reset_button.click(fn=reset_game, inputs=[], outputs=[game_log, score_sheet, q_values_table]).then(
             lambda: None, None, None, js=js_scroll
         )
     
@@ -347,4 +376,4 @@ with gr.Blocks() as demo:
         with gr.Tab("Calculation Mode"):
             calc_mode()
 
-demo.launch(share=True)
+demo.launch(share=False)

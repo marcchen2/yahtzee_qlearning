@@ -1,0 +1,106 @@
+nohup: ignoring input
+My process ID is: 2811840
+device:  cuda:0
+{'num_episodes': 200000, 'eval_interval': 100, 'eval_episodes': 500, 'save_checkpoint_dir': '/home/mc5635/yahtzee/yahtzee_rl/saved_models/', 'load_checkpoint_path': None, 'lr': 0.0001, 'epsilon_start': 1.0, 'epsilon_decay_prop': 0.7, 'buffer_beta': 0.6, 'buffer_alpha': 0.7, 'buffer_capacity': 10000, 'batch_size': 256, 'soft_tau': 0.001, 'hidden_dim': 256, 'update_target_every': 2000}
+wandb: Currently logged in as: mc5635 (mc5635-columbia-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.6
+wandb: Run data is saved locally in /home/mc5635/yahtzee/yahtzee_rl/wandb/run-20250218_015241-m6xuz5bb
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run frosty-durian-205
+wandb: ⭐️ View project at https://wandb.ai/mc5635-columbia-university/yahtzee
+wandb: 🚀 View run at https://wandb.ai/mc5635-columbia-university/yahtzee/runs/m6xuz5bb
+/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:227: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+Evaluation after episode 100: Score over 500 games = Avg: 77.9, Med: 76.0
+Episode 100: Training score = 55.0, Epsilon = 1.000, lr = 0.0000999
+Evaluation after episode 200: Score over 500 games = Avg: 81.1, Med: 78.0
+Episode 200: Training score = 41.0, Epsilon = 0.999, lr = 0.0000999
+Evaluation after episode 300: Score over 500 games = Avg: 85.9, Med: 85.0
+Episode 300: Training score = 77.0, Epsilon = 0.999, lr = 0.0000998
+Evaluation after episode 400: Score over 500 games = Avg: 93.6, Med: 90.0
+Episode 400: Training score = 96.0, Epsilon = 0.998, lr = 0.0000998
+Evaluation after episode 500: Score over 500 games = Avg: 99.4, Med: 96.0
+Episode 500: Training score = 47.0, Epsilon = 0.998, lr = 0.0000997
+Evaluation after episode 600: Score over 500 games = Avg: 105.6, Med: 100.0
+Episode 600: Training score = 41.0, Epsilon = 0.997, lr = 0.0000996
+Evaluation after episode 700: Score over 500 games = Avg: 108.9, Med: 108.0
+Episode 700: Training score = 52.0, Epsilon = 0.997, lr = 0.0000996
+Evaluation after episode 800: Score over 500 games = Avg: 113.1, Med: 114.0
+Episode 800: Training score = 76.0, Epsilon = 0.996, lr = 0.0000995
+Evaluation after episode 900: Score over 500 games = Avg: 113.7, Med: 115.0
+Episode 900: Training score = 39.0, Epsilon = 0.996, lr = 0.0000994
+Evaluation after episode 1000: Score over 500 games = Avg: 109.4, Med: 108.0
+Episode 1000: Training score = 82.0, Epsilon = 0.995, lr = 0.0000994
+Evaluation after episode 1100: Score over 500 games = Avg: 111.8, Med: 111.0
+Episode 1100: Training score = 27.0, Epsilon = 0.995, lr = 0.0000993
+Evaluation after episode 1200: Score over 500 games = Avg: 112.3, Med: 110.0
+Episode 1200: Training score = 37.0, Epsilon = 0.994, lr = 0.0000993
+Evaluation after episode 1300: Score over 500 games = Avg: 116.0, Med: 117.0
+Episode 1300: Training score = 48.0, Epsilon = 0.994, lr = 0.0000992
+Evaluation after episode 1400: Score over 500 games = Avg: 115.2, Med: 117.0
+Episode 1400: Training score = 60.0, Epsilon = 0.993, lr = 0.0000991
+Evaluation after episode 1500: Score over 500 games = Avg: 117.7, Med: 117.5
+Episode 1500: Training score = 52.0, Epsilon = 0.993, lr = 0.0000991
+Evaluation after episode 1600: Score over 500 games = Avg: 118.5, Med: 118.0
+Episode 1600: Training score = 85.0, Epsilon = 0.992, lr = 0.0000990
+Evaluation after episode 1700: Score over 500 games = Avg: 114.5, Med: 117.0
+Episode 1700: Training score = 77.0, Epsilon = 0.992, lr = 0.0000989
+Evaluation after episode 1800: Score over 500 games = Avg: 116.5, Med: 117.0
+Episode 1800: Training score = 43.0, Epsilon = 0.991, lr = 0.0000989
+Evaluation after episode 1900: Score over 500 games = Avg: 115.5, Med: 117.0
+Episode 1900: Training score = 57.0, Epsilon = 0.991, lr = 0.0000988
+Evaluation after episode 2000: Score over 500 games = Avg: 115.9, Med: 116.0
+Episode 2000: Training score = 46.0, Epsilon = 0.990, lr = 0.0000988
+Evaluation after episode 2100: Score over 500 games = Avg: 119.1, Med: 119.0
+Episode 2100: Training score = 33.0, Epsilon = 0.990, lr = 0.0000987
+Evaluation after episode 2200: Score over 500 games = Avg: 120.5, Med: 120.0
+Episode 2200: Training score = 26.0, Epsilon = 0.989, lr = 0.0000986
+Evaluation after episode 2300: Score over 500 games = Avg: 118.4, Med: 119.0
+Episode 2300: Training score = 64.0, Epsilon = 0.989, lr = 0.0000986
+Evaluation after episode 2400: Score over 500 games = Avg: 119.4, Med: 119.5
+Episode 2400: Training score = 23.0, Epsilon = 0.988, lr = 0.0000985
+Evaluation after episode 2500: Score over 500 games = Avg: 123.8, Med: 123.0
+Episode 2500: Training score = 45.0, Epsilon = 0.988, lr = 0.0000984
+Evaluation after episode 2600: Score over 500 games = Avg: 124.3, Med: 124.0
+Episode 2600: Training score = 34.0, Epsilon = 0.987, lr = 0.0000984
+Evaluation after episode 2700: Score over 500 games = Avg: 126.8, Med: 124.0
+Episode 2700: Training score = 26.0, Epsilon = 0.987, lr = 0.0000983
+Evaluation after episode 2800: Score over 500 games = Avg: 122.8, Med: 123.0
+Episode 2800: Training score = 52.0, Epsilon = 0.987, lr = 0.0000983
+Evaluation after episode 2900: Score over 500 games = Avg: 120.2, Med: 120.0
+Episode 2900: Training score = 31.0, Epsilon = 0.986, lr = 0.0000982
+Evaluation after episode 3000: Score over 500 games = Avg: 125.0, Med: 124.5
+Episode 3000: Training score = 33.0, Epsilon = 0.986, lr = 0.0000981
+Evaluation after episode 3100: Score over 500 games = Avg: 124.0, Med: 125.0
+Episode 3100: Training score = 30.0, Epsilon = 0.985, lr = 0.0000981
+Evaluation after episode 3200: Score over 500 games = Avg: 126.7, Med: 125.0
+Episode 3200: Training score = 44.0, Epsilon = 0.985, lr = 0.0000980
+Evaluation after episode 3300: Score over 500 games = Avg: 128.6, Med: 126.0
+Episode 3300: Training score = 57.0, Epsilon = 0.984, lr = 0.0000979
+Evaluation after episode 3400: Score over 500 games = Avg: 127.3, Med: 127.0
+Episode 3400: Training score = 67.0, Epsilon = 0.984, lr = 0.0000979
+Evaluation after episode 3500: Score over 500 games = Avg: 129.1, Med: 127.0
+Episode 3500: Training score = 62.0, Epsilon = 0.983, lr = 0.0000978
+Evaluation after episode 3600: Score over 500 games = Avg: 131.8, Med: 129.0
+Episode 3600: Training score = 19.0, Epsilon = 0.983, lr = 0.0000978
+Evaluation after episode 3700: Score over 500 games = Avg: 132.3, Med: 130.0
+Episode 3700: Training score = 56.0, Epsilon = 0.982, lr = 0.0000977
+Evaluation after episode 3800: Score over 500 games = Avg: 124.9, Med: 125.0
+Episode 3800: Training score = 40.0, Epsilon = 0.982, lr = 0.0000976
+Evaluation after episode 3900: Score over 500 games = Avg: 126.8, Med: 126.0
+Episode 3900: Training score = 27.0, Epsilon = 0.981, lr = 0.0000976
+Evaluation after episode 4000: Score over 500 games = Avg: 130.4, Med: 129.0
+Episode 4000: Training score = 74.0, Epsilon = 0.981, lr = 0.0000975
+Evaluation after episode 4100: Score over 500 games = Avg: 130.7, Med: 126.5
+Episode 4100: Training score = 28.0, Epsilon = 0.980, lr = 0.0000974
+Evaluation after episode 4200: Score over 500 games = Avg: 131.0, Med: 128.0
+Episode 4200: Training score = 41.0, Epsilon = 0.980, lr = 0.0000974
+Evaluation after episode 4300: Score over 500 games = Avg: 132.4, Med: 128.0
+Episode 4300: Training score = 73.0, Epsilon = 0.979, lr = 0.0000973
+Evaluation after episode 4400: Score over 500 games = Avg: 129.3, Med: 126.5
+Episode 4400: Training score = 44.0, Epsilon = 0.979, lr = 0.0000973
+Evaluation after episode 4500: Score over 500 games = Avg: 134.2, Med: 129.0
+Episode 4500: Training score = 66.0, Epsilon = 0.978, lr = 0.0000972
+/usr/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 3 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

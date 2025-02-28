@@ -1,0 +1,7 @@
+{"time":"2025-02-13T23:04:01.59867605-05:00","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/home/mc5635/yahtzee/yahtzee_rl/wandb/run-20250213_230401-lmvptlmh/logs/debug-core.log"}
+{"time":"2025-02-13T23:04:01.70502024-05:00","level":"INFO","msg":"created new stream","id":"lmvptlmh"}
+{"time":"2025-02-13T23:04:01.705050389-05:00","level":"INFO","msg":"stream: started","id":"lmvptlmh"}
+{"time":"2025-02-13T23:04:01.70508131-05:00","level":"INFO","msg":"handler: started","stream_id":"lmvptlmh"}
+{"time":"2025-02-13T23:04:01.705081369-05:00","level":"INFO","msg":"writer: Do: started","stream_id":"lmvptlmh"}
+{"time":"2025-02-13T23:04:01.705118272-05:00","level":"INFO","msg":"sender: started","stream_id":"lmvptlmh"}
+{"time":"2025-02-13T23:04:01.922052283-05:00","level":"INFO","msg":"Starting system monitor"}

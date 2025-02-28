@@ -7,6 +7,8 @@ CATEGORY_INDEX = {
     'Small Straight': 9, 'Large Straight': 10, 'Yahtzee': 11, 'Chance': 12
 }
 
+# try one-hot encoding dice
+
 def encode_dice(dice):
     """Encode dice as sorted values and counts."""
     sorted_dice = sorted(dice)

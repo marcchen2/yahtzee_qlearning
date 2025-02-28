@@ -1,0 +1,20 @@
+wandb_version: 1
+
+batch_size:
+  value: 256
+buffer_alpha:
+  value: 0.4
+buffer_beta:
+  value: 0.8
+buffer_capacity:
+  value: 30000
+epsilon_decay_prop:
+  value: 0.9
+gamma:
+  value: 0.99
+lr:
+  value: 1.0e-05
+max_grad_norm:
+  value: 0.5
+soft_tau:
+  value: 0.01

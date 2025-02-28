@@ -1,0 +1,242 @@
+2025-02-13 20:29:44 ERROR Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 25, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3305, in upsert_sweep
+    config = self._validate_config_and_fill_distribution(config)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3186, in _validate_config_and_fill_distribution
+    raise ValueError(
+ValueError: Parameter lr is ambiguous, please specify bounds as both floats (for a float_uniform distribution) or ints (for an int_uniform distribution).
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/cli/cli.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/cli/cli.py", line 897, in sweep
+    sweep_id, warnings = api.upsert_sweep(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/internal.py", line 137, in upsert_sweep
+    return self.api.upsert_sweep(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 79, in wrapper
+    raise CommError(message, err).with_traceback(sys.exc_info()[2])
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 25, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3305, in upsert_sweep
+    config = self._validate_config_and_fill_distribution(config)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3186, in _validate_config_and_fill_distribution
+    raise ValueError(
+wandb.errors.errors.CommError: Parameter lr is ambiguous, please specify bounds as both floats (for a float_uniform distribution) or ints (for an int_uniform distribution).
+
+2025-02-13 20:32:27 ERROR 400 response executing GraphQL.
+2025-02-13 20:32:27 ERROR {"errors":[{"message":"Invalid sweep config: invalid hyperparameter configuration: buffer_alpha","path":["upsertSweep"]}],"data":{"upsertSweep":null}}
+2025-02-13 20:32:27 ERROR Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py", line 134, in __call__
+    result = self._call_fn(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 396, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/gql_request.py", line 59, in execute
+    request.raise_for_status()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.wandb.ai/graphql
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/cli/cli.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/cli/cli.py", line 897, in sweep
+    sweep_id, warnings = api.upsert_sweep(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/internal.py", line 137, in upsert_sweep
+    return self.api.upsert_sweep(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 65, in wrapper
+    raise err
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 25, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3340, in upsert_sweep
+    raise e
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3334, in upsert_sweep
+    response = self.gql(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 368, in gql
+    ret = self._retry_gql(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py", line 150, in __call__
+    retry_timedelta_triggered = check_retry_fn(e)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/util.py", line 853, in no_retry_4xx
+    raise UsageError(body["errors"][0]["message"])
+wandb.errors.errors.UsageError: Invalid sweep config: invalid hyperparameter configuration: buffer_alpha
+
+2025-02-13 20:33:16 ERROR 400 response executing GraphQL.
+2025-02-13 20:33:16 ERROR {"errors":[{"message":"Invalid sweep config: invalid hyperparameter configuration: buffer_alpha","path":["upsertSweep"]}],"data":{"upsertSweep":null}}
+2025-02-13 20:33:16 ERROR Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py", line 134, in __call__
+    result = self._call_fn(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 396, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/gql_request.py", line 59, in execute
+    request.raise_for_status()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.wandb.ai/graphql
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/cli/cli.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/cli/cli.py", line 897, in sweep
+    sweep_id, warnings = api.upsert_sweep(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/internal.py", line 137, in upsert_sweep
+    return self.api.upsert_sweep(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 65, in wrapper
+    raise err
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 25, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3340, in upsert_sweep
+    raise e
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3334, in upsert_sweep
+    response = self.gql(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 368, in gql
+    ret = self._retry_gql(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py", line 150, in __call__
+    retry_timedelta_triggered = check_retry_fn(e)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/util.py", line 853, in no_retry_4xx
+    raise UsageError(body["errors"][0]["message"])
+wandb.errors.errors.UsageError: Invalid sweep config: invalid hyperparameter configuration: buffer_alpha
+
+2025-02-13 20:36:28 ERROR 400 response executing GraphQL.
+2025-02-13 20:36:28 ERROR {"errors":[{"message":"Invalid sweep config: invalid hyperparameter configuration: buffer_alpha","path":["upsertSweep"]}],"data":{"upsertSweep":null}}
+2025-02-13 20:36:28 ERROR Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py", line 134, in __call__
+    result = self._call_fn(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 396, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/gql_request.py", line 59, in execute
+    request.raise_for_status()
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.wandb.ai/graphql
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/cli/cli.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/cli/cli.py", line 897, in sweep
+    sweep_id, warnings = api.upsert_sweep(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/internal.py", line 137, in upsert_sweep
+    return self.api.upsert_sweep(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 65, in wrapper
+    raise err
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 25, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3340, in upsert_sweep
+    raise e
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 3334, in upsert_sweep
+    response = self.gql(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 368, in gql
+    ret = self._retry_gql(
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py", line 150, in __call__
+    retry_timedelta_triggered = check_retry_fn(e)
+  File "/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/wandb/util.py", line 853, in no_retry_4xx
+    raise UsageError(body["errors"][0]["message"])
+wandb.errors.errors.UsageError: Invalid sweep config: invalid hyperparameter configuration: buffer_alpha
+
+2025-02-13 20:38:44 INFO Running runs: []
+2025-02-13 20:38:44 INFO Agent received command: run
+2025-02-13 20:38:44 INFO Agent starting run with config:
+	batch_size: 256
+	buffer_alpha: 0.4
+	buffer_beta: 0.8
+	buffer_capacity: 30000
+	epsilon_decay_prop: 0.9
+	gamma: 0.99
+	lr: 1e-05
+	max_grad_norm: 0.5
+	soft_tau: 0.01
+2025-02-13 20:38:44 INFO About to run command: /usr/bin/env python  --batch_size=256 --buffer_alpha=0.4 --buffer_beta=0.8 --buffer_capacity=30000 --epsilon_decay_prop=0.9 --gamma=0.99 --lr=1e-05 --max_grad_norm=0.5 --soft_tau=0.01
+2025-02-13 20:38:49 INFO Running runs: ['c0vmvb21']
+2025-02-13 20:38:49 INFO Cleaning up finished run: c0vmvb21
+2025-02-13 20:38:49 INFO Agent received command: run
+2025-02-13 20:38:49 INFO Agent starting run with config:
+	batch_size: 512
+	buffer_alpha: 0.5
+	buffer_beta: 0.6
+	buffer_capacity: 5000
+	epsilon_decay_prop: 0.9
+	gamma: 0.995
+	lr: 0.0001
+	max_grad_norm: 1
+	soft_tau: 0.01
+2025-02-13 20:38:49 INFO About to run command: /usr/bin/env python  --batch_size=512 --buffer_alpha=0.5 --buffer_beta=0.6 --buffer_capacity=5000 --epsilon_decay_prop=0.9 --gamma=0.995 --lr=0.0001 --max_grad_norm=1 --soft_tau=0.01
+2025-02-13 20:38:54 INFO Running runs: ['oxp4htsg']
+2025-02-13 20:38:54 INFO Cleaning up finished run: oxp4htsg
+2025-02-13 20:38:55 INFO Agent received command: run
+2025-02-13 20:38:55 INFO Agent starting run with config:
+	batch_size: 256
+	buffer_alpha: 0.7
+	buffer_beta: 0.8
+	buffer_capacity: 20000
+	epsilon_decay_prop: 0.7
+	gamma: 0.98
+	lr: 1e-05
+	max_grad_norm: 1
+	soft_tau: 0.1
+2025-02-13 20:38:55 INFO About to run command: /usr/bin/env python  --batch_size=256 --buffer_alpha=0.7 --buffer_beta=0.8 --buffer_capacity=20000 --epsilon_decay_prop=0.7 --gamma=0.98 --lr=1e-05 --max_grad_norm=1 --soft_tau=0.1
+2025-02-13 20:39:00 INFO Running runs: ['vzaop5sl']
+2025-02-13 20:39:00 ERROR Detected 3 failed runs in the first 60 seconds, shutting down.
+2025-02-13 20:39:00 INFO To disable this check set WANDB_AGENT_DISABLE_FLAPPING=true
+2025-02-13 20:49:30 INFO Running runs: []
+2025-02-13 20:49:30 INFO Agent received command: run
+2025-02-13 20:49:30 INFO Agent starting run with config:
+	batch_size: 512
+	buffer_alpha: 0.3
+	buffer_beta: 0.7
+	buffer_capacity: 5000
+	epsilon_decay_prop: 0.7
+	gamma: 0.995
+	lr: 1e-05
+	max_grad_norm: 0.5
+	soft_tau: 0.01
+2025-02-13 20:49:30 INFO About to run command: /usr/bin/env python  --batch_size=512 --buffer_alpha=0.3 --buffer_beta=0.7 --buffer_capacity=5000 --epsilon_decay_prop=0.7 --gamma=0.995 --lr=1e-05 --max_grad_norm=0.5 --soft_tau=0.01
+2025-02-13 20:49:35 INFO Running runs: ['kpe8mff3']
+2025-02-13 20:49:35 INFO Cleaning up finished run: kpe8mff3
+2025-02-13 20:49:35 INFO Agent received command: run
+2025-02-13 20:49:35 INFO Agent starting run with config:
+	batch_size: 512
+	buffer_alpha: 0.7
+	buffer_beta: 0.8
+	buffer_capacity: 5000
+	epsilon_decay_prop: 0.9
+	gamma: 0.99
+	lr: 1e-05
+	max_grad_norm: 0.5
+	soft_tau: 0.01
+2025-02-13 20:49:35 INFO About to run command: /usr/bin/env python  --batch_size=512 --buffer_alpha=0.7 --buffer_beta=0.8 --buffer_capacity=5000 --epsilon_decay_prop=0.9 --gamma=0.99 --lr=1e-05 --max_grad_norm=0.5 --soft_tau=0.01
+2025-02-13 20:49:40 INFO Running runs: ['s5r8m4fr']
+2025-02-13 20:49:40 INFO Cleaning up finished run: s5r8m4fr
+2025-02-13 20:49:41 INFO Agent received command: run
+2025-02-13 20:49:41 INFO Agent starting run with config:
+	batch_size: 256
+	buffer_alpha: 0.3
+	buffer_beta: 0.8
+	buffer_capacity: 30000
+	epsilon_decay_prop: 0.7
+	gamma: 0.99
+	lr: 0.0001
+	max_grad_norm: 1
+	soft_tau: 0.1
+2025-02-13 20:49:41 INFO About to run command: /usr/bin/env python  --batch_size=256 --buffer_alpha=0.3 --buffer_beta=0.8 --buffer_capacity=30000 --epsilon_decay_prop=0.7 --gamma=0.99 --lr=0.0001 --max_grad_norm=1 --soft_tau=0.1
+2025-02-13 20:49:46 INFO Running runs: ['1zlfrgnw']
+2025-02-13 20:49:46 ERROR Detected 3 failed runs in the first 60 seconds, shutting down.
+2025-02-13 20:49:46 INFO To disable this check set WANDB_AGENT_DISABLE_FLAPPING=true

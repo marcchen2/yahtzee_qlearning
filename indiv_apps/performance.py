@@ -32,7 +32,7 @@ def load_trained_model(checkpoint_path, model_class, device='cpu'):
     
     return model
 
-trained_model = load_trained_model("/home/mc5635/yahtzee/yahtzee_rl/saved_models/wise-armadillo-155_219.77", dqn_agent.DuelingDQN)
+trained_model = load_trained_model("/home/mc5635/yahtzee/yahtzee_rl/saved_models/riveting-valentine-200_med_211.0", dqn_agent.DuelingDQN)
 
 
 def simulate_games(num_games):

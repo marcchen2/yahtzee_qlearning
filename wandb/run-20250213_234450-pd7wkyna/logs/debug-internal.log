@@ -1,0 +1,7 @@
+{"time":"2025-02-13T23:44:50.837180176-05:00","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/home/mc5635/yahtzee/yahtzee_rl/wandb/run-20250213_234450-pd7wkyna/logs/debug-core.log"}
+{"time":"2025-02-13T23:44:51.060272211-05:00","level":"INFO","msg":"created new stream","id":"pd7wkyna"}
+{"time":"2025-02-13T23:44:51.060304028-05:00","level":"INFO","msg":"stream: started","id":"pd7wkyna"}
+{"time":"2025-02-13T23:44:51.060919096-05:00","level":"INFO","msg":"handler: started","stream_id":"pd7wkyna"}
+{"time":"2025-02-13T23:44:51.060938429-05:00","level":"INFO","msg":"sender: started","stream_id":"pd7wkyna"}
+{"time":"2025-02-13T23:44:51.060971926-05:00","level":"INFO","msg":"writer: Do: started","stream_id":"pd7wkyna"}
+{"time":"2025-02-13T23:44:51.212339988-05:00","level":"INFO","msg":"Starting system monitor"}

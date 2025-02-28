@@ -163,7 +163,7 @@ class YahtzeeGame:
 
             # Check if game ended (all categories filled)
             if all(v is not None for v in self.categories.values()):
-                reward += self.get_total_score()
+                reward += self.get_total_score() 
                 done = True
 
         next_state = self.get_encoded_state()

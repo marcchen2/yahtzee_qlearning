@@ -15,6 +15,7 @@ import os
 import itertools
 from torch.optim.lr_scheduler import LambdaLR
 import statistics
+import yaml
 
 ALL_ACTIONS = utils.generate_all_actions()
 torch.manual_seed(1)
@@ -121,17 +122,22 @@ def train_dqn(env_cls, num_episodes=10000,
               buffer_beta = 0.9,
               save_checkpoint_dir=None,     
               load_checkpoint_path=None,
-              debug = False
+              debug = False,
+              soft_tau = 0.01,  # or 0.001, 0.005, etc.
+              hidden_dim = 256,
               ):
     """
     Train DQN agent with periodic evaluation.
     """
     # Initialize networks
     input_length = len(env_cls().get_encoded_state())
+    
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
 
   # init dueling networks w target
-    dqn = dqn_agent.DuelingDQN(state_dim=input_length, action_dim=len(ALL_ACTIONS)).to(device)
-    target_dqn = dqn_agent.DuelingDQN(state_dim=input_length, action_dim=len(ALL_ACTIONS)).to(device)
+    dqn = dqn_agent.DuelingDQN(state_dim=input_length, action_dim=len(ALL_ACTIONS), hidden_dim=hidden_dim).to(device)
+    target_dqn = dqn_agent.DuelingDQN(state_dim=input_length, action_dim=len(ALL_ACTIONS), hidden_dim=hidden_dim).to(device)
     target_dqn.load_state_dict(dqn.state_dict())
     
     optimizer = optim.Adam(dqn.parameters(), lr=lr)    
@@ -147,6 +153,8 @@ def train_dqn(env_cls, num_episodes=10000,
         beta=buffer_beta,   # Controls the amount of importance sampling correction
         storage=storage
     )
+    
+
 
     def get_epsilon(step):
         est_total_steps = 52*num_episodes
@@ -180,10 +188,10 @@ def train_dqn(env_cls, num_episodes=10000,
         "state_space_size": input_length,
         "update_target_every": update_target_every,
         "buffer_alpha": buffer_alpha,
-        "buffer_beta": buffer_beta
+        "buffer_beta": buffer_beta,
+        "hidden_dim": hidden_dim, 
         })
         
-        # config = wandb.config
         
         #set model name for saving
         save_checkpoint_path = save_checkpoint_dir + wandb.run.name
@@ -324,16 +332,15 @@ def train_dqn(env_cls, num_episodes=10000,
                 # dqn.reset_noise()
                 # target_dqn.reset_noise()
 
-            # # Update target network periodically -- hard update
-            # if total_steps % update_target_every == 0:
-            #     target_dqn.load_state_dict(dqn.state_dict())
+            # Update target network periodically -- hard update
+            if total_steps % update_target_every == 0:
+                target_dqn.load_state_dict(dqn.state_dict())
             
-            # soft update
-            tau = 0.01  # or 0.001, 0.005, etc.
-            for target_param, online_param in zip(target_dqn.parameters(), dqn.parameters()):
-                target_param.data.copy_(
-                    tau * online_param.data + (1.0 - tau) * target_param.data
-    )
+            # # soft update
+            # for target_param, online_param in zip(target_dqn.parameters(), dqn.parameters()):
+            #     target_param.data.copy_(
+            #         soft_tau * online_param.data + (1.0 - soft_tau) * target_param.data)
+    
 
         
         # update lr
@@ -350,7 +357,7 @@ def train_dqn(env_cls, num_episodes=10000,
             print(f"Evaluation after episode {episode+1}: Score over {eval_episodes} games = Avg: {avg_score:.1f}, Med: {med_score:.1f}")
             wandb.log({"avg_score": avg_score, "med_score": med_score, "loss": loss.item(),"epsilon": epsilon}, step=episode+1)
             
-            if med_score > max_med_score and episode > 5000:
+            if med_score > max_med_score and episode > 10000:
                 max_med_score = med_score
                 if save_checkpoint_dir is not None:
                     save_checkpoint(
@@ -389,90 +396,100 @@ if __name__ == "__main__":
         return YahtzeeGame()
     
     # Check for GPU availability
-    device = torch.device("cuda:3" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     
     pid = os.getpid()
     print(f"My process ID is: {pid}")
     print("device: ", device)
     
+    params = {
+    "num_episodes": 200000,
+    "eval_interval": 100,
+    "eval_episodes": 500,
+    "save_checkpoint_dir": "/home/mc5635/yahtzee/yahtzee_rl/saved_models/",
+    "load_checkpoint_path": None,  # "/home/mc5635/yahtzee/yahtzee_rl/saved_models/jumping-deluge-153_216.37"
+    "lr": 0.0001,
+    "epsilon_start": 1.0,
+    "epsilon_decay_prop": 0.7,
+    "buffer_beta": 0.7,
+    "buffer_alpha": 0.7,
+    "buffer_capacity": 10000,
+    "batch_size": 256,
+    "soft_tau": 0.001,
+    "hidden_dim": 128,
+    "update_target_every": 2000
+}
 
-
-    dqn, target_dqn = train_dqn(make_env, 
-                               num_episodes=100000,
-                               eval_interval=100,
-                               eval_episodes=500,
-                               save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",  
-                               load_checkpoint_path= None, #"/home/mc5635/yahtzee/yahtzee_rl/saved_models/jumping-deluge-153_216.37",
-                               lr= 0.0001,
-                               epsilon_start=1.0,
-                               buffer_beta=0.6, 
-                               buffer_capacity=20000,
-                               batch_size=256,
-                               )
+    print(params)
     
+    dqn, target_dqn = train_dqn(make_env, **params)
+                               
+
+
+# sweep call
+
+
     
+def param_sweep():
     
+    def make_env():
+        return YahtzeeGame()
     
+    # Check for GPU availability
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    # check random agent score
-    # print(evaluate_model(dqn_agent.DQN(), make_env, num_episodes=1000, epsilon=1))
+    run = wandb.init()
+    config = wandb.config
     
+    pid = os.getpid()
+    print(f"My process ID is: {pid}")
+    print("device: ", device)
+    
+    config = wandb.config
+    
+    lr = config.lr
+    epsilon_decay_prop = config.epsilon_decay_prop
+    buffer_capacity = config.buffer_capacity
+    batch_size = config.batch_size
+    buffer_alpha = config.buffer_alpha
+    buffer_beta = config.buffer_beta
+    soft_tau = config.soft_tau
+    max_grad_norm = config.max_grad_norm
+
+    dqn, target_dqn = train_dqn(
+                                make_env, 
+                                num_episodes=12000,
+                                eval_interval=100,
+                                eval_episodes=500,
+                                save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/saved_models/",  
+                                load_checkpoint_path=None, #"/home/mc5635/yahtzee/yahtzee_rl/saved_models/jumping-deluge-153_216.37",
+                                lr=config.lr,
+                                epsilon_decay_prop = 0.7,
+                                buffer_capacity=config.buffer_capacity,
+                                batch_size=config.batch_size,
+                                buffer_alpha=config.buffer_alpha,
+                                buffer_beta=config.buffer_beta, 
+                                max_grad_norm=config.max_grad_norm,
+                            
+                            )
     
 
     
-    
-    
-def hyperparam_sweep():
-    # Define possible values for hyperparameters
-
-    buffer_alpha = [0.7,0.5]
-    buffer_beta = [0.9,0.5]
-    buffer_capacity = [5000, 10000]
-
-    # You can add more or fewer hyperparams to sweep over, e.g.:
-    # epsilon_decay_props = [0.5, 0.8]
-
-    # Create a simple combinatorial grid
-    for (buffer_alpha, buffer_beta, buffer_capacity) in itertools.product(buffer_alpha, buffer_beta, buffer_capacity
-
-    ):
-        # Optionally create a config dict
-        config = {
-            "buffer_alpha": buffer_alpha,
-            "buffer_beta": buffer_beta,
-            "buffer_capacity": buffer_capacity,
-            
-        }
-        
-        # --- Start a new W&B run for each hyperparam combo ---
-        wandb.init(
-            project="yahtzee-hyperparam-sweep3",
-            config=config,
-            reinit=True  # Ensures each loop iteration is a fresh run
-        )
-
-        # Optionally, you can pass these directly to train_dqn as kwargs
-        def make_env():
-            return YahtzeeGame()  # Or whatever your environment constructor is
-
-        dqn, target_dqn = train_dqn(
-            env_cls=make_env,
-            num_episodes=5000,      # You can reduce for quick testing
-            eval_interval=100,
-            eval_episodes=500,
-            save_checkpoint_dir="/home/mc5635/yahtzee/yahtzee_rl/param_sweep_models/",  # or your directory
-            load_checkpoint_path=None,
-            buffer_alpha=buffer_alpha, 
-            buffer_beta=buffer_beta,
-            buffer_capacity=buffer_capacity,
-            
-        )
-
-        # Mark the run finished so a new one starts in the next iteration
-        wandb.finish()
-
 # if __name__ == "__main__":
-#     # Check for GPU availability
-#     device = torch.device(f"cuda:0" if torch.cuda.is_available() else "cpu")
-
-#     hyperparam_sweep()
+#     # 1. Load your sweep configuration from a YAML file
+#     with open("sweep_config.yaml", "r") as f:
+#         sweep_config = yaml.safe_load(f)
+    
+#     # 2. Create the sweep on Weights & Biases
+#     sweep_id = wandb.sweep(
+#         sweep=sweep_config, 
+#         project="my_yahtzee_dqn_project"  # Update with your project name
+#     )
+    
+#     # 3. Start running the sweep agent
+#     wandb.agent(
+#         sweep_id=sweep_id, 
+#         function=param_sweep, 
+#         count=10  # Adjust for however many runs you want
+#     )
+    

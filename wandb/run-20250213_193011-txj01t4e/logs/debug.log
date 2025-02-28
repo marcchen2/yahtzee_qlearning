@@ -20,3 +20,4 @@ config: {'learning_rate': 0.0001, 'episodes': 100000, 'epsilon_decay': 0.7, 'buf
 2025-02-13 19:30:12,409 INFO    MainThread:3444452 [wandb_run.py:_redirect():2300] Wrapping output streams.
 2025-02-13 19:30:12,409 INFO    MainThread:3444452 [wandb_run.py:_redirect():2325] Redirects installed.
 2025-02-13 19:30:12,411 INFO    MainThread:3444452 [wandb_init.py:init():1036] run started, returning control to user process
+2025-02-13 19:45:13,126 WARNING MsgRouterThr:3444452 [router.py:message_loop():75] message_loop has been closed

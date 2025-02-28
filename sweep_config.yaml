@@ -1,22 +1,29 @@
 # sweep_config.yaml
 
-method: bayes          # or "random", "bayes"
+method: bayes  # Can also be "random" or "bayes" for smarter search
 metric:
-  name: avg_score     # the metric you want to maximize/minimize
+  name: med_score  # Change this if you want to optimize a different metric
   goal: maximize
 
 parameters:
-  lr:
-    values: [1e-3, 1e-4, 1e-5]    # three possibilities for the learning rate
-  buffer_alpha:
-    values: [0.7, 0.5]
-  buffer_beta:
-    values: [0.9, 0.3]
-  buffer_capacity:
-    values: [5000, 10000]
 
-# You can add more parameters if you'd like:
-#  episodes:
-#    values: [5000, 10000]
-#  epsilon_decay:
-#    values: [0.5, 0.8]
+  buffer_capacity:
+    values: [5000, 10000, 20000, 30000]
+  batch_size:
+    values: [256, 512]
+  gamma:
+    values: [0.98, 0.99, 0.995]
+  lr:
+    values: [1e-4, 1e-5]
+  epsilon_decay_prop:
+    values: [0.7, 0.9]
+  # update_target_every:
+  #   values: [500, 1000, 2000]
+  max_grad_norm:
+    values: [0.5, 1.0]
+  buffer_alpha:
+    values: [0.3, 0.4, 0.5, 0.7]
+  buffer_beta:
+    values: [0.3, 0.5,0.6, 0.7, 0.8, 0.9]
+  soft_tau:
+    values: [0.1, 0.01]

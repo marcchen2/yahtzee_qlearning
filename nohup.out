@@ -41,3 +41,512 @@ Evaluation after episode 1400: Score over 500 games = Avg: 99.1, Med: 95.0
 Episode 1400: Training score = 68.0, Epsilon = 0.987, lr = 0.0000983
 Evaluation after episode 1500: Score over 500 games = Avg: 96.7, Med: 94.0
 Episode 1500: Training score = 91.0, Epsilon = 0.986, lr = 0.0000981
+Evaluation after episode 1600: Score over 500 games = Avg: 96.5, Med: 95.0
+Episode 1600: Training score = 27.0, Epsilon = 0.985, lr = 0.0000980
+Evaluation after episode 1700: Score over 500 games = Avg: 97.3, Med: 95.0
+Episode 1700: Training score = 44.0, Epsilon = 0.984, lr = 0.0000979
+Evaluation after episode 1800: Score over 500 games = Avg: 94.1, Med: 93.0
+Episode 1800: Training score = 47.0, Epsilon = 0.983, lr = 0.0000978
+Evaluation after episode 1900: Score over 500 games = Avg: 93.6, Med: 92.0
+Episode 1900: Training score = 35.0, Epsilon = 0.982, lr = 0.0000976
+Evaluation after episode 2000: Score over 500 games = Avg: 94.3, Med: 92.0
+Episode 2000: Training score = 38.0, Epsilon = 0.981, lr = 0.0000975
+Evaluation after episode 2100: Score over 500 games = Avg: 90.8, Med: 89.5
+Episode 2100: Training score = 22.0, Epsilon = 0.980, lr = 0.0000974
+Evaluation after episode 2200: Score over 500 games = Avg: 94.2, Med: 90.0
+Episode 2200: Training score = 59.0, Epsilon = 0.979, lr = 0.0000973
+Evaluation after episode 2300: Score over 500 games = Avg: 95.0, Med: 94.0
+Episode 2300: Training score = 35.0, Epsilon = 0.978, lr = 0.0000971
+Evaluation after episode 2400: Score over 500 games = Avg: 91.8, Med: 87.0
+Episode 2400: Training score = 20.0, Epsilon = 0.977, lr = 0.0000970
+Evaluation after episode 2500: Score over 500 games = Avg: 92.6, Med: 87.0
+Episode 2500: Training score = 67.0, Epsilon = 0.976, lr = 0.0000969
+Evaluation after episode 2600: Score over 500 games = Avg: 96.4, Med: 94.0
+Episode 2600: Training score = 38.0, Epsilon = 0.975, lr = 0.0000968
+Evaluation after episode 2700: Score over 500 games = Avg: 96.6, Med: 93.0
+Episode 2700: Training score = 27.0, Epsilon = 0.974, lr = 0.0000966
+Evaluation after episode 2800: Score over 500 games = Avg: 90.8, Med: 87.5
+Episode 2800: Training score = 27.0, Epsilon = 0.973, lr = 0.0000965
+Evaluation after episode 2900: Score over 500 games = Avg: 89.9, Med: 84.0
+Episode 2900: Training score = 50.0, Epsilon = 0.972, lr = 0.0000964
+Evaluation after episode 3000: Score over 500 games = Avg: 87.9, Med: 80.0
+Episode 3000: Training score = 105.0, Epsilon = 0.971, lr = 0.0000963
+Evaluation after episode 3100: Score over 500 games = Avg: 87.1, Med: 80.5
+Episode 3100: Training score = 29.0, Epsilon = 0.970, lr = 0.0000961
+Evaluation after episode 3200: Score over 500 games = Avg: 87.4, Med: 80.0
+Episode 3200: Training score = 31.0, Epsilon = 0.969, lr = 0.0000960
+Evaluation after episode 3300: Score over 500 games = Avg: 86.1, Med: 80.0
+Episode 3300: Training score = 83.0, Epsilon = 0.968, lr = 0.0000959
+Evaluation after episode 3400: Score over 500 games = Avg: 82.8, Med: 76.0
+Episode 3400: Training score = 87.0, Epsilon = 0.967, lr = 0.0000958
+Evaluation after episode 3500: Score over 500 games = Avg: 85.5, Med: 79.0
+Episode 3500: Training score = 61.0, Epsilon = 0.966, lr = 0.0000956
+Evaluation after episode 3600: Score over 500 games = Avg: 89.9, Med: 85.5
+Episode 3600: Training score = 30.0, Epsilon = 0.965, lr = 0.0000955
+Evaluation after episode 3700: Score over 500 games = Avg: 85.4, Med: 79.0
+Episode 3700: Training score = 40.0, Epsilon = 0.964, lr = 0.0000954
+Evaluation after episode 3800: Score over 500 games = Avg: 91.6, Med: 84.5
+Episode 3800: Training score = 34.0, Epsilon = 0.963, lr = 0.0000953
+Evaluation after episode 3900: Score over 500 games = Avg: 95.0, Med: 91.0
+Episode 3900: Training score = 50.0, Epsilon = 0.962, lr = 0.0000951
+Evaluation after episode 4000: Score over 500 games = Avg: 89.1, Med: 81.0
+Episode 4000: Training score = 49.0, Epsilon = 0.961, lr = 0.0000950
+Evaluation after episode 4100: Score over 500 games = Avg: 82.9, Med: 76.0
+Episode 4100: Training score = 87.0, Epsilon = 0.960, lr = 0.0000949
+Evaluation after episode 4200: Score over 500 games = Avg: 88.4, Med: 81.0
+Episode 4200: Training score = 69.0, Epsilon = 0.960, lr = 0.0000947
+Evaluation after episode 4300: Score over 500 games = Avg: 85.4, Med: 80.0
+Episode 4300: Training score = 44.0, Epsilon = 0.959, lr = 0.0000946
+Evaluation after episode 4400: Score over 500 games = Avg: 86.3, Med: 79.0
+Episode 4400: Training score = 36.0, Epsilon = 0.958, lr = 0.0000945
+Evaluation after episode 4500: Score over 500 games = Avg: 85.3, Med: 79.0
+Episode 4500: Training score = 28.0, Epsilon = 0.957, lr = 0.0000944
+Evaluation after episode 4600: Score over 500 games = Avg: 82.6, Med: 77.0
+Episode 4600: Training score = 64.0, Epsilon = 0.956, lr = 0.0000943
+Evaluation after episode 4700: Score over 500 games = Avg: 82.4, Med: 77.0
+Episode 4700: Training score = 72.0, Epsilon = 0.955, lr = 0.0000941
+Evaluation after episode 4800: Score over 500 games = Avg: 81.6, Med: 77.0
+Episode 4800: Training score = 74.0, Epsilon = 0.954, lr = 0.0000940
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 399, in <module>
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 258, in train_dqn
+    actions = batch['action'].to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 399, in <module>
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 258, in train_dqn
+    actions = batch['action'].to(device)
+KeyboardInterrupt
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33menthusiastic-smooch-186[0m at: [34mhttps://wandb.ai/mc5635-columbia-university/yahtzee/runs/txj01t4e[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250213_193011-txj01t4e/logs[0m
+My process ID is: 4036746
+device:  cuda:3
+desc:  200k standard
+Traceback (most recent call last):
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 402, in <module>
+    dqn, target_dqn = train_dqn(make_env,
+  File "/home/mc5635/yahtzee/yahtzee_rl/train_gpu.py", line 193, in train_dqn
+    save_checkpoint_path = save_checkpoint_dir + wandb.run.name
+AttributeError: 'NoneType' object has no attribute 'name'
+My process ID is: 4041060
+device:  cuda:3
+desc:  200k standard
+wandb: Currently logged in as: mc5635 (mc5635-columbia-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.6
+wandb: Run data is saved locally in /home/mc5635/yahtzee/yahtzee_rl/wandb/run-20250213_215505-51uv7ez1
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run euphoric-heartthrob-189
+wandb: ⭐️ View project at https://wandb.ai/mc5635-columbia-university/yahtzee
+wandb: 🚀 View run at https://wandb.ai/mc5635-columbia-university/yahtzee/runs/51uv7ez1
+/home/mc5635/yahtzee/venv/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:227: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+Evaluation after episode 100: Score over 500 games = Avg: 84.4, Med: 84.0
+Episode 100: Training score = 55.0, Epsilon = 1.000, lr = 0.0000999
+Evaluation after episode 200: Score over 500 games = Avg: 92.7, Med: 90.0
+Episode 200: Training score = 41.0, Epsilon = 0.999, lr = 0.0000999
+Evaluation after episode 300: Score over 500 games = Avg: 97.1, Med: 94.0
+Episode 300: Training score = 77.0, Epsilon = 0.999, lr = 0.0000998
+Evaluation after episode 400: Score over 500 games = Avg: 108.2, Med: 105.0
+Episode 400: Training score = 96.0, Epsilon = 0.998, lr = 0.0000998
+Evaluation after episode 500: Score over 500 games = Avg: 115.8, Med: 117.0
+Episode 500: Training score = 47.0, Epsilon = 0.998, lr = 0.0000997
+Evaluation after episode 600: Score over 500 games = Avg: 120.1, Med: 121.0
+Episode 600: Training score = 41.0, Epsilon = 0.997, lr = 0.0000996
+Evaluation after episode 700: Score over 500 games = Avg: 122.0, Med: 124.0
+Episode 700: Training score = 52.0, Epsilon = 0.997, lr = 0.0000996
+Evaluation after episode 800: Score over 500 games = Avg: 118.1, Med: 119.0
+Episode 800: Training score = 76.0, Epsilon = 0.996, lr = 0.0000995
+Evaluation after episode 900: Score over 500 games = Avg: 119.2, Med: 121.0
+Episode 900: Training score = 39.0, Epsilon = 0.996, lr = 0.0000994
+Evaluation after episode 1000: Score over 500 games = Avg: 121.9, Med: 123.0
+Episode 1000: Training score = 82.0, Epsilon = 0.995, lr = 0.0000994
+Evaluation after episode 1100: Score over 500 games = Avg: 118.8, Med: 121.0
+Episode 1100: Training score = 27.0, Epsilon = 0.995, lr = 0.0000993
+Evaluation after episode 1200: Score over 500 games = Avg: 122.0, Med: 123.0
+Episode 1200: Training score = 37.0, Epsilon = 0.994, lr = 0.0000993
+Evaluation after episode 1300: Score over 500 games = Avg: 119.5, Med: 121.0
+Episode 1300: Training score = 48.0, Epsilon = 0.994, lr = 0.0000992
+Evaluation after episode 1400: Score over 500 games = Avg: 121.8, Med: 122.0
+Episode 1400: Training score = 60.0, Epsilon = 0.993, lr = 0.0000991
+Evaluation after episode 1500: Score over 500 games = Avg: 127.1, Med: 126.0
+Episode 1500: Training score = 52.0, Epsilon = 0.993, lr = 0.0000991
+Evaluation after episode 1600: Score over 500 games = Avg: 123.5, Med: 124.0
+Episode 1600: Training score = 85.0, Epsilon = 0.992, lr = 0.0000990
+Evaluation after episode 1700: Score over 500 games = Avg: 125.7, Med: 126.0
+Episode 1700: Training score = 77.0, Epsilon = 0.992, lr = 0.0000989
+Evaluation after episode 1800: Score over 500 games = Avg: 126.0, Med: 125.0
+Episode 1800: Training score = 43.0, Epsilon = 0.991, lr = 0.0000989
+Evaluation after episode 1900: Score over 500 games = Avg: 124.1, Med: 124.5
+Episode 1900: Training score = 57.0, Epsilon = 0.991, lr = 0.0000988
+Evaluation after episode 2000: Score over 500 games = Avg: 125.7, Med: 125.0
+Episode 2000: Training score = 46.0, Epsilon = 0.990, lr = 0.0000988
+Evaluation after episode 2100: Score over 500 games = Avg: 129.9, Med: 128.0
+Episode 2100: Training score = 33.0, Epsilon = 0.990, lr = 0.0000987
+Evaluation after episode 2200: Score over 500 games = Avg: 132.1, Med: 129.0
+Episode 2200: Training score = 26.0, Epsilon = 0.989, lr = 0.0000986
+Evaluation after episode 2300: Score over 500 games = Avg: 130.5, Med: 128.0
+Episode 2300: Training score = 64.0, Epsilon = 0.989, lr = 0.0000986
+Evaluation after episode 2400: Score over 500 games = Avg: 132.9, Med: 130.0
+Episode 2400: Training score = 51.0, Epsilon = 0.988, lr = 0.0000985
+Evaluation after episode 2500: Score over 500 games = Avg: 133.4, Med: 129.0
+Episode 2500: Training score = 36.0, Epsilon = 0.988, lr = 0.0000984
+Evaluation after episode 2600: Score over 500 games = Avg: 134.9, Med: 130.0
+Episode 2600: Training score = 34.0, Epsilon = 0.987, lr = 0.0000984
+Evaluation after episode 2700: Score over 500 games = Avg: 134.6, Med: 129.0
+Episode 2700: Training score = 24.0, Epsilon = 0.987, lr = 0.0000983
+Evaluation after episode 2800: Score over 500 games = Avg: 131.0, Med: 129.0
+Episode 2800: Training score = 52.0, Epsilon = 0.987, lr = 0.0000983
+Evaluation after episode 2900: Score over 500 games = Avg: 134.6, Med: 131.0
+Episode 2900: Training score = 31.0, Epsilon = 0.986, lr = 0.0000982
+Evaluation after episode 3000: Score over 500 games = Avg: 135.0, Med: 130.0
+Episode 3000: Training score = 33.0, Epsilon = 0.986, lr = 0.0000981
+Evaluation after episode 3100: Score over 500 games = Avg: 132.6, Med: 128.0
+Episode 3100: Training score = 30.0, Epsilon = 0.985, lr = 0.0000981
+Evaluation after episode 3200: Score over 500 games = Avg: 137.6, Med: 132.0
+Episode 3200: Training score = 44.0, Epsilon = 0.985, lr = 0.0000980
+Evaluation after episode 3300: Score over 500 games = Avg: 138.5, Med: 131.0
+Episode 3300: Training score = 57.0, Epsilon = 0.984, lr = 0.0000979
+Evaluation after episode 3400: Score over 500 games = Avg: 138.3, Med: 132.0
+Episode 3400: Training score = 67.0, Epsilon = 0.984, lr = 0.0000979
+Evaluation after episode 3500: Score over 500 games = Avg: 135.3, Med: 131.0
+Episode 3500: Training score = 62.0, Epsilon = 0.983, lr = 0.0000978
+Evaluation after episode 3600: Score over 500 games = Avg: 132.9, Med: 130.0
+Episode 3600: Training score = 19.0, Epsilon = 0.983, lr = 0.0000978
+Evaluation after episode 3700: Score over 500 games = Avg: 138.1, Med: 132.0
+Episode 3700: Training score = 56.0, Epsilon = 0.982, lr = 0.0000977
+Evaluation after episode 3800: Score over 500 games = Avg: 139.4, Med: 133.0
+Episode 3800: Training score = 40.0, Epsilon = 0.982, lr = 0.0000976
+Evaluation after episode 3900: Score over 500 games = Avg: 141.7, Med: 135.0
+Episode 3900: Training score = 27.0, Epsilon = 0.981, lr = 0.0000976
+Evaluation after episode 4000: Score over 500 games = Avg: 139.2, Med: 133.5
+Episode 4000: Training score = 74.0, Epsilon = 0.981, lr = 0.0000975
+Evaluation after episode 4100: Score over 500 games = Avg: 139.1, Med: 133.0
+Episode 4100: Training score = 28.0, Epsilon = 0.980, lr = 0.0000974
+Evaluation after episode 4200: Score over 500 games = Avg: 139.6, Med: 132.0
+Episode 4200: Training score = 41.0, Epsilon = 0.980, lr = 0.0000974
+Evaluation after episode 4300: Score over 500 games = Avg: 138.2, Med: 132.0
+Episode 4300: Training score = 73.0, Epsilon = 0.979, lr = 0.0000973
+Evaluation after episode 4400: Score over 500 games = Avg: 135.7, Med: 132.0
+Episode 4400: Training score = 44.0, Epsilon = 0.979, lr = 0.0000973
+Evaluation after episode 4500: Score over 500 games = Avg: 136.3, Med: 130.0
+Episode 4500: Training score = 66.0, Epsilon = 0.978, lr = 0.0000972
+Evaluation after episode 4600: Score over 500 games = Avg: 137.1, Med: 131.0
+Episode 4600: Training score = 36.0, Epsilon = 0.978, lr = 0.0000971
+Evaluation after episode 4700: Score over 500 games = Avg: 133.6, Med: 130.0
+Episode 4700: Training score = 66.0, Epsilon = 0.977, lr = 0.0000971
+Evaluation after episode 4800: Score over 500 games = Avg: 139.0, Med: 133.0
+Episode 4800: Training score = 38.0, Epsilon = 0.977, lr = 0.0000970
+Evaluation after episode 4900: Score over 500 games = Avg: 137.8, Med: 132.0
+Episode 4900: Training score = 65.0, Epsilon = 0.976, lr = 0.0000969
+Evaluation after episode 5000: Score over 500 games = Avg: 139.7, Med: 133.0
+Episode 5000: Training score = 93.0, Epsilon = 0.976, lr = 0.0000969
+Evaluation after episode 5100: Score over 500 games = Avg: 138.6, Med: 132.0
+Episode 5100: Training score = 39.0, Epsilon = 0.975, lr = 0.0000968
+Evaluation after episode 5200: Score over 500 games = Avg: 136.9, Med: 132.0
+Episode 5200: Training score = 58.0, Epsilon = 0.975, lr = 0.0000968
+Evaluation after episode 5300: Score over 500 games = Avg: 138.4, Med: 132.0
+Episode 5300: Training score = 72.0, Epsilon = 0.974, lr = 0.0000967
+Evaluation after episode 5400: Score over 500 games = Avg: 136.2, Med: 132.0
+Episode 5400: Training score = 43.0, Epsilon = 0.974, lr = 0.0000966
+Evaluation after episode 5500: Score over 500 games = Avg: 143.8, Med: 137.5
+Episode 5500: Training score = 23.0, Epsilon = 0.973, lr = 0.0000966
+Evaluation after episode 5600: Score over 500 games = Avg: 143.8, Med: 138.5
+Episode 5600: Training score = 47.0, Epsilon = 0.973, lr = 0.0000965
+Evaluation after episode 5700: Score over 500 games = Avg: 142.0, Med: 136.0
+Episode 5700: Training score = 32.0, Epsilon = 0.973, lr = 0.0000964
+Evaluation after episode 5800: Score over 500 games = Avg: 146.8, Med: 139.0
+Episode 5800: Training score = 32.0, Epsilon = 0.972, lr = 0.0000964
+Evaluation after episode 5900: Score over 500 games = Avg: 144.1, Med: 138.0
+Episode 5900: Training score = 33.0, Epsilon = 0.972, lr = 0.0000963
+Evaluation after episode 6000: Score over 500 games = Avg: 144.8, Med: 136.0
+Episode 6000: Training score = 32.0, Epsilon = 0.971, lr = 0.0000963
+Evaluation after episode 6100: Score over 500 games = Avg: 143.2, Med: 136.0
+Episode 6100: Training score = 50.0, Epsilon = 0.971, lr = 0.0000962
+Evaluation after episode 6200: Score over 500 games = Avg: 144.2, Med: 137.0
+Episode 6200: Training score = 46.0, Epsilon = 0.970, lr = 0.0000961
+Evaluation after episode 6300: Score over 500 games = Avg: 140.9, Med: 134.0
+Episode 6300: Training score = 65.0, Epsilon = 0.970, lr = 0.0000961
+Evaluation after episode 6400: Score over 500 games = Avg: 148.4, Med: 140.0
+Episode 6400: Training score = 59.0, Epsilon = 0.969, lr = 0.0000960
+Evaluation after episode 6500: Score over 500 games = Avg: 146.6, Med: 137.0
+Episode 6500: Training score = 35.0, Epsilon = 0.969, lr = 0.0000959
+Evaluation after episode 6600: Score over 500 games = Avg: 146.7, Med: 139.0
+Episode 6600: Training score = 44.0, Epsilon = 0.968, lr = 0.0000959
+Evaluation after episode 6700: Score over 500 games = Avg: 140.8, Med: 133.0
+Episode 6700: Training score = 60.0, Epsilon = 0.968, lr = 0.0000958
+Evaluation after episode 6800: Score over 500 games = Avg: 143.9, Med: 136.0
+Episode 6800: Training score = 34.0, Epsilon = 0.967, lr = 0.0000958
+Evaluation after episode 6900: Score over 500 games = Avg: 143.9, Med: 136.0
+Episode 6900: Training score = 34.0, Epsilon = 0.967, lr = 0.0000957
+Evaluation after episode 7000: Score over 500 games = Avg: 145.6, Med: 136.5
+Episode 7000: Training score = 25.0, Epsilon = 0.966, lr = 0.0000956
+Evaluation after episode 7100: Score over 500 games = Avg: 144.3, Med: 136.0
+Episode 7100: Training score = 59.0, Epsilon = 0.966, lr = 0.0000956
+Evaluation after episode 7200: Score over 500 games = Avg: 142.2, Med: 135.0
+Episode 7200: Training score = 30.0, Epsilon = 0.965, lr = 0.0000955
+Evaluation after episode 7300: Score over 500 games = Avg: 140.7, Med: 134.0
+Episode 7300: Training score = 40.0, Epsilon = 0.965, lr = 0.0000954
+Evaluation after episode 7400: Score over 500 games = Avg: 140.6, Med: 134.0
+Episode 7400: Training score = 31.0, Epsilon = 0.964, lr = 0.0000954
+Evaluation after episode 7500: Score over 500 games = Avg: 141.4, Med: 132.5
+Episode 7500: Training score = 32.0, Epsilon = 0.964, lr = 0.0000953
+Evaluation after episode 7600: Score over 500 games = Avg: 139.6, Med: 134.5
+Episode 7600: Training score = 50.0, Epsilon = 0.963, lr = 0.0000953
+Evaluation after episode 7700: Score over 500 games = Avg: 148.3, Med: 143.0
+Episode 7700: Training score = 69.0, Epsilon = 0.963, lr = 0.0000952
+Evaluation after episode 7800: Score over 500 games = Avg: 144.9, Med: 138.0
+Episode 7800: Training score = 67.0, Epsilon = 0.962, lr = 0.0000951
+Evaluation after episode 7900: Score over 500 games = Avg: 146.5, Med: 141.0
+Episode 7900: Training score = 39.0, Epsilon = 0.962, lr = 0.0000951
+Evaluation after episode 8000: Score over 500 games = Avg: 143.8, Med: 140.0
+Episode 8000: Training score = 37.0, Epsilon = 0.961, lr = 0.0000950
+Evaluation after episode 8100: Score over 500 games = Avg: 144.8, Med: 140.0
+Episode 8100: Training score = 29.0, Epsilon = 0.961, lr = 0.0000949
+Evaluation after episode 8200: Score over 500 games = Avg: 145.4, Med: 139.0
+Episode 8200: Training score = 53.0, Epsilon = 0.960, lr = 0.0000949
+Evaluation after episode 8300: Score over 500 games = Avg: 146.0, Med: 142.0
+Episode 8300: Training score = 34.0, Epsilon = 0.960, lr = 0.0000948
+Evaluation after episode 8400: Score over 500 games = Avg: 147.1, Med: 142.5
+Episode 8400: Training score = 52.0, Epsilon = 0.960, lr = 0.0000947
+Evaluation after episode 8500: Score over 500 games = Avg: 149.8, Med: 145.5
+Episode 8500: Training score = 62.0, Epsilon = 0.959, lr = 0.0000947
+Evaluation after episode 8600: Score over 500 games = Avg: 144.8, Med: 141.5
+Episode 8600: Training score = 43.0, Epsilon = 0.959, lr = 0.0000946
+Evaluation after episode 8700: Score over 500 games = Avg: 146.7, Med: 140.0
+Episode 8700: Training score = 27.0, Epsilon = 0.958, lr = 0.0000946
+Evaluation after episode 8800: Score over 500 games = Avg: 150.3, Med: 146.0
+Episode 8800: Training score = 36.0, Epsilon = 0.958, lr = 0.0000945
+Evaluation after episode 8900: Score over 500 games = Avg: 151.5, Med: 148.5
+Episode 8900: Training score = 46.0, Epsilon = 0.957, lr = 0.0000944
+Evaluation after episode 9000: Score over 500 games = Avg: 147.5, Med: 144.0
+Episode 9000: Training score = 56.0, Epsilon = 0.957, lr = 0.0000944
+Evaluation after episode 9100: Score over 500 games = Avg: 149.9, Med: 144.5
+Episode 9100: Training score = 53.0, Epsilon = 0.956, lr = 0.0000943
+Evaluation after episode 9200: Score over 500 games = Avg: 150.2, Med: 145.0
+Episode 9200: Training score = 27.0, Epsilon = 0.956, lr = 0.0000943
+Evaluation after episode 9300: Score over 500 games = Avg: 153.3, Med: 150.0
+Episode 9300: Training score = 66.0, Epsilon = 0.955, lr = 0.0000942
+Evaluation after episode 9400: Score over 500 games = Avg: 152.5, Med: 148.5
+Episode 9400: Training score = 45.0, Epsilon = 0.955, lr = 0.0000941
+Evaluation after episode 9500: Score over 500 games = Avg: 151.8, Med: 147.0
+Episode 9500: Training score = 34.0, Epsilon = 0.954, lr = 0.0000941
+Evaluation after episode 9600: Score over 500 games = Avg: 153.9, Med: 152.0
+Episode 9600: Training score = 25.0, Epsilon = 0.954, lr = 0.0000940
+Evaluation after episode 9700: Score over 500 games = Avg: 158.1, Med: 155.0
+Episode 9700: Training score = 48.0, Epsilon = 0.953, lr = 0.0000939
+Evaluation after episode 9800: Score over 500 games = Avg: 157.2, Med: 153.5
+Episode 9800: Training score = 45.0, Epsilon = 0.953, lr = 0.0000939
+Evaluation after episode 9900: Score over 500 games = Avg: 156.8, Med: 155.0
+Episode 9900: Training score = 29.0, Epsilon = 0.952, lr = 0.0000938
+Evaluation after episode 10000: Score over 500 games = Avg: 159.4, Med: 157.0
+Episode 10000: Training score = 59.0, Epsilon = 0.952, lr = 0.0000938
+Evaluation after episode 10100: Score over 500 games = Avg: 154.2, Med: 152.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_152.0
+Episode 10100: Training score = 44.0, Epsilon = 0.951, lr = 0.0000937
+Evaluation after episode 10200: Score over 500 games = Avg: 154.3, Med: 152.5
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_152.5
+Episode 10200: Training score = 46.0, Epsilon = 0.951, lr = 0.0000936
+Evaluation after episode 10300: Score over 500 games = Avg: 155.9, Med: 153.5
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_153.5
+Episode 10300: Training score = 46.0, Epsilon = 0.950, lr = 0.0000936
+Evaluation after episode 10400: Score over 500 games = Avg: 155.7, Med: 154.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_154.0
+Episode 10400: Training score = 24.0, Epsilon = 0.950, lr = 0.0000935
+Evaluation after episode 10500: Score over 500 games = Avg: 153.2, Med: 151.0
+Episode 10500: Training score = 62.0, Epsilon = 0.949, lr = 0.0000934
+Evaluation after episode 10600: Score over 500 games = Avg: 152.3, Med: 150.0
+Episode 10600: Training score = 28.0, Epsilon = 0.949, lr = 0.0000934
+Evaluation after episode 10700: Score over 500 games = Avg: 159.8, Med: 159.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_159.0
+Episode 10700: Training score = 33.0, Epsilon = 0.948, lr = 0.0000933
+Evaluation after episode 10800: Score over 500 games = Avg: 158.4, Med: 157.0
+Episode 10800: Training score = 42.0, Epsilon = 0.948, lr = 0.0000933
+Evaluation after episode 10900: Score over 500 games = Avg: 156.8, Med: 157.0
+Episode 10900: Training score = 41.0, Epsilon = 0.947, lr = 0.0000932
+Evaluation after episode 11000: Score over 500 games = Avg: 155.2, Med: 153.0
+Episode 11000: Training score = 49.0, Epsilon = 0.947, lr = 0.0000931
+Evaluation after episode 11100: Score over 500 games = Avg: 152.2, Med: 152.0
+Episode 11100: Training score = 33.0, Epsilon = 0.946, lr = 0.0000931
+Evaluation after episode 11200: Score over 500 games = Avg: 146.8, Med: 144.5
+Episode 11200: Training score = 54.0, Epsilon = 0.946, lr = 0.0000930
+Evaluation after episode 11300: Score over 500 games = Avg: 156.8, Med: 154.5
+Episode 11300: Training score = 56.0, Epsilon = 0.946, lr = 0.0000929
+Evaluation after episode 11400: Score over 500 games = Avg: 157.2, Med: 156.0
+Episode 11400: Training score = 53.0, Epsilon = 0.945, lr = 0.0000929
+Evaluation after episode 11500: Score over 500 games = Avg: 153.8, Med: 154.0
+Episode 11500: Training score = 63.0, Epsilon = 0.945, lr = 0.0000928
+Evaluation after episode 11600: Score over 500 games = Avg: 159.8, Med: 159.0
+Episode 11600: Training score = 42.0, Epsilon = 0.944, lr = 0.0000928
+Evaluation after episode 11700: Score over 500 games = Avg: 164.7, Med: 164.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_164.0
+Episode 11700: Training score = 60.0, Epsilon = 0.944, lr = 0.0000927
+Evaluation after episode 11800: Score over 500 games = Avg: 165.3, Med: 164.0
+Episode 11800: Training score = 86.0, Epsilon = 0.943, lr = 0.0000926
+Evaluation after episode 11900: Score over 500 games = Avg: 164.3, Med: 164.0
+Episode 11900: Training score = 72.0, Epsilon = 0.943, lr = 0.0000926
+Evaluation after episode 12000: Score over 500 games = Avg: 170.7, Med: 169.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_169.0
+Episode 12000: Training score = 45.0, Epsilon = 0.942, lr = 0.0000925
+Evaluation after episode 12100: Score over 500 games = Avg: 164.8, Med: 164.0
+Episode 12100: Training score = 68.0, Epsilon = 0.942, lr = 0.0000924
+Evaluation after episode 12200: Score over 500 games = Avg: 151.6, Med: 149.5
+Episode 12200: Training score = 37.0, Epsilon = 0.941, lr = 0.0000924
+Evaluation after episode 12300: Score over 500 games = Avg: 148.9, Med: 145.0
+Episode 12300: Training score = 62.0, Epsilon = 0.941, lr = 0.0000923
+Evaluation after episode 12400: Score over 500 games = Avg: 148.2, Med: 147.0
+Episode 12400: Training score = 41.0, Epsilon = 0.940, lr = 0.0000923
+Evaluation after episode 12500: Score over 500 games = Avg: 163.4, Med: 162.5
+Episode 12500: Training score = 33.0, Epsilon = 0.940, lr = 0.0000922
+Evaluation after episode 12600: Score over 500 games = Avg: 168.2, Med: 166.0
+Episode 12600: Training score = 35.0, Epsilon = 0.939, lr = 0.0000921
+Evaluation after episode 12700: Score over 500 games = Avg: 168.0, Med: 167.0
+Episode 12700: Training score = 59.0, Epsilon = 0.939, lr = 0.0000921
+Evaluation after episode 12800: Score over 500 games = Avg: 168.1, Med: 168.0
+Episode 12800: Training score = 53.0, Epsilon = 0.938, lr = 0.0000920
+Evaluation after episode 12900: Score over 500 games = Avg: 167.2, Med: 168.0
+Episode 12900: Training score = 87.0, Epsilon = 0.938, lr = 0.0000919
+Evaluation after episode 13000: Score over 500 games = Avg: 165.4, Med: 162.0
+Episode 13000: Training score = 34.0, Epsilon = 0.937, lr = 0.0000919
+Evaluation after episode 13100: Score over 500 games = Avg: 170.3, Med: 170.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_170.0
+Episode 13100: Training score = 48.0, Epsilon = 0.937, lr = 0.0000918
+Evaluation after episode 13200: Score over 500 games = Avg: 171.9, Med: 170.0
+Episode 13200: Training score = 81.0, Epsilon = 0.936, lr = 0.0000918
+Evaluation after episode 13300: Score over 500 games = Avg: 171.9, Med: 169.0
+Episode 13300: Training score = 41.0, Epsilon = 0.936, lr = 0.0000917
+Evaluation after episode 13400: Score over 500 games = Avg: 167.7, Med: 164.0
+Episode 13400: Training score = 49.0, Epsilon = 0.935, lr = 0.0000916
+Evaluation after episode 13500: Score over 500 games = Avg: 172.5, Med: 171.5
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_171.5
+Episode 13500: Training score = 66.0, Epsilon = 0.935, lr = 0.0000916
+Evaluation after episode 13600: Score over 500 games = Avg: 172.6, Med: 171.5
+Episode 13600: Training score = 28.0, Epsilon = 0.934, lr = 0.0000915
+Evaluation after episode 13700: Score over 500 games = Avg: 171.8, Med: 171.0
+Episode 13700: Training score = 35.0, Epsilon = 0.934, lr = 0.0000914
+Evaluation after episode 13800: Score over 500 games = Avg: 165.5, Med: 165.0
+Episode 13800: Training score = 45.0, Epsilon = 0.933, lr = 0.0000914
+Evaluation after episode 13900: Score over 500 games = Avg: 169.2, Med: 168.0
+Episode 13900: Training score = 21.0, Epsilon = 0.933, lr = 0.0000913
+Evaluation after episode 14000: Score over 500 games = Avg: 167.5, Med: 166.0
+Episode 14000: Training score = 34.0, Epsilon = 0.933, lr = 0.0000912
+Evaluation after episode 14100: Score over 500 games = Avg: 169.1, Med: 166.0
+Episode 14100: Training score = 37.0, Epsilon = 0.932, lr = 0.0000912
+Evaluation after episode 14200: Score over 500 games = Avg: 171.2, Med: 170.0
+Episode 14200: Training score = 51.0, Epsilon = 0.932, lr = 0.0000911
+Evaluation after episode 14300: Score over 500 games = Avg: 171.6, Med: 170.0
+Episode 14300: Training score = 59.0, Epsilon = 0.931, lr = 0.0000911
+Evaluation after episode 14400: Score over 500 games = Avg: 170.9, Med: 168.0
+Episode 14400: Training score = 49.0, Epsilon = 0.931, lr = 0.0000910
+Evaluation after episode 14500: Score over 500 games = Avg: 172.4, Med: 171.5
+Episode 14500: Training score = 87.0, Epsilon = 0.930, lr = 0.0000909
+Evaluation after episode 14600: Score over 500 games = Avg: 172.8, Med: 173.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_173.0
+Episode 14600: Training score = 76.0, Epsilon = 0.930, lr = 0.0000909
+Evaluation after episode 14700: Score over 500 games = Avg: 173.0, Med: 172.0
+Episode 14700: Training score = 26.0, Epsilon = 0.929, lr = 0.0000908
+Evaluation after episode 14800: Score over 500 games = Avg: 168.1, Med: 167.0
+Episode 14800: Training score = 66.0, Epsilon = 0.929, lr = 0.0000907
+Evaluation after episode 14900: Score over 500 games = Avg: 170.4, Med: 170.0
+Episode 14900: Training score = 60.0, Epsilon = 0.928, lr = 0.0000907
+Evaluation after episode 15000: Score over 500 games = Avg: 172.3, Med: 171.0
+Episode 15000: Training score = 83.0, Epsilon = 0.928, lr = 0.0000906
+Evaluation after episode 15100: Score over 500 games = Avg: 175.4, Med: 174.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_174.0
+Episode 15100: Training score = 35.0, Epsilon = 0.927, lr = 0.0000906
+Evaluation after episode 15200: Score over 500 games = Avg: 173.9, Med: 172.0
+Episode 15200: Training score = 42.0, Epsilon = 0.927, lr = 0.0000905
+Evaluation after episode 15300: Score over 500 games = Avg: 172.4, Med: 172.0
+Episode 15300: Training score = 53.0, Epsilon = 0.926, lr = 0.0000904
+Evaluation after episode 15400: Score over 500 games = Avg: 171.7, Med: 170.0
+Episode 15400: Training score = 40.0, Epsilon = 0.926, lr = 0.0000904
+Evaluation after episode 15500: Score over 500 games = Avg: 169.2, Med: 169.0
+Episode 15500: Training score = 40.0, Epsilon = 0.925, lr = 0.0000903
+Evaluation after episode 15600: Score over 500 games = Avg: 168.5, Med: 167.5
+Episode 15600: Training score = 96.0, Epsilon = 0.925, lr = 0.0000902
+Evaluation after episode 15700: Score over 500 games = Avg: 172.3, Med: 171.0
+Episode 15700: Training score = 54.0, Epsilon = 0.924, lr = 0.0000902
+Evaluation after episode 15800: Score over 500 games = Avg: 173.7, Med: 173.0
+Episode 15800: Training score = 53.0, Epsilon = 0.924, lr = 0.0000901
+Evaluation after episode 15900: Score over 500 games = Avg: 173.3, Med: 174.0
+Episode 15900: Training score = 42.0, Epsilon = 0.923, lr = 0.0000901
+Evaluation after episode 16000: Score over 500 games = Avg: 167.1, Med: 167.0
+Episode 16000: Training score = 35.0, Epsilon = 0.923, lr = 0.0000900
+Evaluation after episode 16100: Score over 500 games = Avg: 164.2, Med: 164.0
+Episode 16100: Training score = 35.0, Epsilon = 0.922, lr = 0.0000899
+Evaluation after episode 16200: Score over 500 games = Avg: 161.7, Med: 160.0
+Episode 16200: Training score = 36.0, Epsilon = 0.922, lr = 0.0000899
+Evaluation after episode 16300: Score over 500 games = Avg: 165.0, Med: 167.0
+Episode 16300: Training score = 83.0, Epsilon = 0.921, lr = 0.0000898
+Evaluation after episode 16400: Score over 500 games = Avg: 164.8, Med: 163.0
+Episode 16400: Training score = 54.0, Epsilon = 0.921, lr = 0.0000897
+Evaluation after episode 16500: Score over 500 games = Avg: 161.9, Med: 161.0
+Episode 16500: Training score = 27.0, Epsilon = 0.920, lr = 0.0000897
+Evaluation after episode 16600: Score over 500 games = Avg: 168.7, Med: 167.0
+Episode 16600: Training score = 35.0, Epsilon = 0.920, lr = 0.0000896
+Evaluation after episode 16700: Score over 500 games = Avg: 162.4, Med: 161.0
+Episode 16700: Training score = 70.0, Epsilon = 0.919, lr = 0.0000896
+Evaluation after episode 16800: Score over 500 games = Avg: 163.0, Med: 163.5
+Episode 16800: Training score = 58.0, Epsilon = 0.919, lr = 0.0000895
+Evaluation after episode 16900: Score over 500 games = Avg: 166.7, Med: 165.5
+Episode 16900: Training score = 35.0, Epsilon = 0.919, lr = 0.0000894
+Evaluation after episode 17000: Score over 500 games = Avg: 166.4, Med: 166.0
+Episode 17000: Training score = 45.0, Epsilon = 0.918, lr = 0.0000894
+Evaluation after episode 17100: Score over 500 games = Avg: 165.4, Med: 163.0
+Episode 17100: Training score = 39.0, Epsilon = 0.918, lr = 0.0000893
+Evaluation after episode 17200: Score over 500 games = Avg: 170.4, Med: 167.0
+Episode 17200: Training score = 37.0, Epsilon = 0.917, lr = 0.0000893
+Evaluation after episode 17300: Score over 500 games = Avg: 170.4, Med: 170.0
+Episode 17300: Training score = 69.0, Epsilon = 0.917, lr = 0.0000892
+Evaluation after episode 17400: Score over 500 games = Avg: 172.6, Med: 172.0
+Episode 17400: Training score = 82.0, Epsilon = 0.916, lr = 0.0000891
+Evaluation after episode 17500: Score over 500 games = Avg: 172.1, Med: 173.0
+Episode 17500: Training score = 30.0, Epsilon = 0.916, lr = 0.0000891
+Evaluation after episode 17600: Score over 500 games = Avg: 173.8, Med: 173.0
+Episode 17600: Training score = 68.0, Epsilon = 0.915, lr = 0.0000890
+Evaluation after episode 17700: Score over 500 games = Avg: 173.9, Med: 173.0
+Episode 17700: Training score = 80.0, Epsilon = 0.915, lr = 0.0000889
+Evaluation after episode 17800: Score over 500 games = Avg: 170.9, Med: 170.0
+Episode 17800: Training score = 51.0, Epsilon = 0.914, lr = 0.0000889
+Evaluation after episode 17900: Score over 500 games = Avg: 172.7, Med: 173.0
+Episode 17900: Training score = 101.0, Epsilon = 0.914, lr = 0.0000888
+Evaluation after episode 18000: Score over 500 games = Avg: 171.4, Med: 168.5
+Episode 18000: Training score = 93.0, Epsilon = 0.913, lr = 0.0000888
+Evaluation after episode 18100: Score over 500 games = Avg: 170.4, Med: 169.0
+Episode 18100: Training score = 32.0, Epsilon = 0.913, lr = 0.0000887
+Evaluation after episode 18200: Score over 500 games = Avg: 177.1, Med: 176.0
+Checkpoint saved to /home/mc5635/yahtzee/yahtzee_rl/saved_models/euphoric-heartthrob-189_med_176.0
+Episode 18200: Training score = 52.0, Epsilon = 0.912, lr = 0.0000886
+Evaluation after episode 18300: Score over 500 games = Avg: 175.3, Med: 174.0
+Episode 18300: Training score = 64.0, Epsilon = 0.912, lr = 0.0000886
+Evaluation after episode 18400: Score over 500 games = Avg: 168.7, Med: 166.0
+Episode 18400: Training score = 37.0, Epsilon = 0.911, lr = 0.0000885
+Evaluation after episode 18500: Score over 500 games = Avg: 172.5, Med: 171.0
+Episode 18500: Training score = 37.0, Epsilon = 0.911, lr = 0.0000884
+Evaluation after episode 18600: Score over 500 games = Avg: 172.1, Med: 172.0
+Episode 18600: Training score = 30.0, Epsilon = 0.910, lr = 0.0000884
+Evaluation after episode 18700: Score over 500 games = Avg: 167.4, Med: 166.0
+Episode 18700: Training score = 37.0, Epsilon = 0.910, lr = 0.0000883
+Evaluation after episode 18800: Score over 500 games = Avg: 170.6, Med: 167.0
+Episode 18800: Training score = 58.0, Epsilon = 0.909, lr = 0.0000883
+Evaluation after episode 18900: Score over 500 games = Avg: 168.9, Med: 165.0
+Episode 18900: Training score = 70.0, Epsilon = 0.909, lr = 0.0000882
+Evaluation after episode 19000: Score over 500 games = Avg: 170.4, Med: 170.0
+Episode 19000: Training score = 28.0, Epsilon = 0.908, lr = 0.0000881
+Evaluation after episode 19100: Score over 500 games = Avg: 165.6, Med: 163.0
+Episode 19100: Training score = 59.0, Epsilon = 0.908, lr = 0.0000881
+Evaluation after episode 19200: Score over 500 games = Avg: 166.9, Med: 166.0
+Episode 19200: Training score = 36.0, Epsilon = 0.907, lr = 0.0000880
+Evaluation after episode 19300: Score over 500 games = Avg: 167.4, Med: 167.0
+Episode 19300: Training score = 50.0, Epsilon = 0.907, lr = 0.0000879
+Evaluation after episode 19400: Score over 500 games = Avg: 161.4, Med: 163.0
+Episode 19400: Training score = 28.0, Epsilon = 0.906, lr = 0.0000879
+Evaluation after episode 19500: Score over 500 games = Avg: 159.9, Med: 159.0
+Episode 19500: Training score = 32.0, Epsilon = 0.906, lr = 0.0000878
+Evaluation after episode 19600: Score over 500 games = Avg: 171.1, Med: 171.0
+Episode 19600: Training score = 82.0, Epsilon = 0.906, lr = 0.0000878
+Evaluation after episode 19700: Score over 500 games = Avg: 173.5, Med: 175.5
+Episode 19700: Training score = 30.0, Epsilon = 0.905, lr = 0.0000877
+/usr/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 3 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
