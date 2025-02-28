@@ -1,11 +1,11 @@
 # Yahtzee Reinforcement Q-Learning Agent
 
-Yahtzee is a dice game where the goal is to roll high-scoring combinations of dice. It's a tricky game because the player must balance risk and reward while adapting to the randomness of the dice. The optimal Yahtzee strategy has actually been discovered, and can be obtained by [computing the expected value of every possible game state](http://www.yahtzee.org.uk/optimal_yahtzee_TV.pdf "http://www.yahtzee.org.uk/optimal_yahtzee_TV.pdf by Tom Verhoeff"), and scores a median of 248. This project instead implements a Deep Q-Network (DQN) agent to see if it can approach optimal play with a model-free approach. 
+Yahtzee is a dice game where the goal is to roll high-scoring combinations of dice. The player must balance risk and reward while adapting to the randomness of the dice. The optimal Yahtzee strategy has actually been discovered, and can be obtained by [computing the expected value of every possible game state](http://www.yahtzee.org.uk/optimal_yahtzee_TV.pdf "http://www.yahtzee.org.uk/optimal_yahtzee_TV.pdf by Tom Verhoeff"), and scores a median of 248. This project instead implements a Deep Q-Network (DQN) agent to see if it can approach optimal play with a model-free approach. 
 
-The agent uses a dueling network architecture to separate state value estimation from action advantage estimation, allowing for more efficient learning. My best model so far achieves a median score of 211 over 1000 games. Compare this to a baseline of ~45 for random valid actions, and ~204 achieved in the 2018 paper[Reinforcement Learning for Solving Yahtzee](https://web.stanford.edu/class/aa228/reports/2018/final75.pdf "PDF of the paper by Minhyung Kang and Luca Schroeder"). 
+The agent uses a dueling network architecture to separate state value estimation from action advantage estimation, allowing for more efficient learning. My best model so far achieves a median score of 211 over 1000 games. Compare this to a baseline of ~45 for random valid actions, and ~204 achieved in the 2018 paper [Reinforcement Learning for Solving Yahtzee](https://web.stanford.edu/class/aa228/reports/2018/final75.pdf "PDF of the paper by Minhyung Kang and Luca Schroeder"). 
 
 
-## Architecture
+## Architecture 
 
 - **Dueling DQN**: Separate state value and action advantage estimation
 - **Prioritized Experience Replay**: Replay important experiences more frequently to speed up learning
