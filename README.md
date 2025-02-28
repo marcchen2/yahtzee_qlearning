@@ -24,6 +24,7 @@ I want to try sorted 1-hot encodings of the dice and adding some light probabili
 
 The Gradio UI allows you to observe the agent play, analyze its decisions, and evaluate its performance. 
 
+`git clone https://github.com/marcchen2/yahtzee_qlearning.git`
 
 `pip install -r requirements`
 
